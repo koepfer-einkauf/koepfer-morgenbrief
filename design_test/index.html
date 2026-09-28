@@ -10,200 +10,186 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
   <style>
 :root{
-  --ink:#111820;--muted:#687078;--paper:#f2eee5;--sheet:#fbf8f1;--line:#cfc8bb;
-  --red:#a9232d;--amber:#a96713;--green:#287052;--blue:#255d7a;--night:#0b1720;
-  --soft:#e9e4da;--shadow:0 10px 28px rgba(17,24,32,.07)
+  --ink:#15191d;--muted:#6f7478;--paper:#f0ece3;--sheet:#fbf8f1;--line:#c8c0b4;
+  --red:#a82d32;--amber:#ae6d18;--green:#2e7256;--blue:#285f7e;--night:#111b23;
+  --soft:#e9e3d9;--cream:#f7f2e8;--shadow:0 12px 32px rgba(21,25,29,.08)
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;color:var(--ink);background:var(--paper);
+  margin:0;color:var(--ink);background:
+  linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)),
+  repeating-linear-gradient(0deg,transparent 0 4px,rgba(60,48,34,.017) 4px 5px),
+  var(--paper);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   line-height:1.55
 }
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;
-  background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(64,50,33,.018) 4px 5px)
-}
 a{color:inherit}
-.masthead{position:relative;background:var(--sheet);border-bottom:4px double var(--night)}
+.masthead{background:var(--sheet);border-bottom:1px solid var(--line)}
 .masthead-inner,main,footer{width:min(1240px,calc(100% - 36px));margin:0 auto}
-.utility{
-  display:flex;justify-content:space-between;gap:18px;padding:9px 0 8px;
-  border-bottom:1px solid var(--line);color:var(--muted);font-size:.69rem;
-  font-weight:800;letter-spacing:.12em;text-transform:uppercase
+.edition-bar{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;
+  padding:8px 0;border-bottom:1px solid var(--line);color:var(--muted);
+  font-size:.66rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase
 }
-.brand{
-  display:grid;grid-template-columns:170px minmax(0,1fr) 260px;align-items:center;
-  gap:22px;padding:22px 0 19px
+.edition-bar .center{color:var(--red);font-weight:950;letter-spacing:.17em;text-align:center}
+.edition-bar .right{text-align:right}
+.mast-main{
+  display:grid;grid-template-columns:190px minmax(0,1fr) 250px;align-items:center;
+  gap:24px;padding:23px 0 19px
 }
+.mast-left{display:flex;align-items:center;gap:13px}
 .brand-mark{
-  width:58px;height:58px;border-radius:50%;overflow:hidden;background:#002951;
-  box-shadow:0 0 0 7px var(--sheet),0 0 0 8px var(--line)
+  width:56px;height:56px;border-radius:50%;overflow:hidden;background:#002951;flex:0 0 auto
 }
 .brand-mark img{width:100%;height:100%;display:block;object-fit:cover}
-.brand h1{
-  margin:0;text-align:center;color:var(--night);
-  font:800 clamp(2.8rem,6.4vw,5.7rem)/.82 Georgia,"Times New Roman",serif;
-  letter-spacing:-.055em
+.mast-left-copy{display:grid;gap:2px;color:var(--muted);font-size:.68rem;font-weight:800;line-height:1.25;text-transform:uppercase}
+.mast-left-copy b{color:var(--night);font-size:.8rem;letter-spacing:.06em}
+.mast-title{text-align:center}
+.mast-title h1{
+  margin:0;color:var(--night);font:800 clamp(3rem,7vw,6.2rem)/.79 Georgia,"Times New Roman",serif;
+  letter-spacing:-.062em
 }
-.brand h1 span{
-  display:block;margin-top:14px;color:var(--red);
-  font:800 .19em/1 Inter,sans-serif;letter-spacing:.36em;text-transform:uppercase
+.mast-title p{
+  margin:15px 0 0;color:var(--red);font-size:.74rem;font-weight:900;letter-spacing:.33em;text-transform:uppercase
 }
-.brand-side{color:var(--muted);font-size:.78rem;line-height:1.45}
-.brand-side.right{text-align:right}
+.mast-actions{display:grid;justify-items:end;gap:8px}
+.mast-actions .issue-count{color:var(--muted);font-size:.7rem;text-align:right}
+.action-row{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
 .archive-cta{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;
-  padding:7px 10px;border:1px solid var(--night);border-radius:2px;background:transparent;
-  color:var(--night);font-size:.68rem;font-weight:900;letter-spacing:.02em;text-decoration:none
+  display:inline-flex;align-items:center;justify-content:center;padding:8px 11px;border:1px solid var(--night);
+  border-radius:999px;background:transparent;color:var(--night);font-size:.69rem;font-weight:900;text-decoration:none
 }
 .archive-cta:hover{background:var(--night);color:#fff}
 nav{
-  display:flex;gap:0;overflow-x:auto;padding:0;border-top:1px solid var(--line);
+  display:flex;gap:0;overflow-x:auto;padding:0;border-top:3px double var(--night);border-bottom:1px solid var(--line);
   scrollbar-width:thin
 }
 nav a{
-  flex:0 0 auto;padding:9px 14px;border-right:1px solid var(--line);
-  text-decoration:none;font-family:Georgia,"Times New Roman",serif;font-size:.86rem;font-weight:700;
-  background:transparent
+  flex:0 0 auto;padding:9px 13px;border-right:1px solid var(--line);text-decoration:none;
+  font:700 .82rem/1 Georgia,"Times New Roman",serif;background:transparent
 }
 nav a:first-child{border-left:1px solid var(--line)}
 nav a:hover{background:var(--soft);color:var(--red)}
 main{padding:22px 0 70px}
 .alert{
-  display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:18px;
-  margin:0 0 24px;padding:10px 0;border-top:1px solid var(--night);border-bottom:1px solid var(--night);
-  color:var(--ink);background:transparent;box-shadow:none;border-radius:0
+  display:grid;grid-template-columns:160px 1fr auto;align-items:center;gap:18px;
+  margin:0 0 24px;padding:11px 0;border-top:1px solid var(--night);border-bottom:1px solid var(--night);
+  color:var(--ink);background:transparent;border-radius:0;box-shadow:none
 }
 .alert strong{
-  color:var(--red);font-size:.7rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase
+  color:var(--red);font-size:.68rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase
 }
-.alert span{font:700 1rem/1.35 Georgia,"Times New Roman",serif}
-.alert a{font-size:.72rem;font-weight:900;text-decoration:none;color:var(--blue)}
+.alert span{font:700 1.03rem/1.35 Georgia,"Times New Roman",serif}
+.alert a{color:var(--blue);font-size:.71rem;font-weight:900;text-decoration:none}
 .lead-grid{
-  display:grid;grid-template-columns:minmax(0,2.1fr) minmax(250px,.72fr);gap:0;
-  align-items:stretch;border-top:5px solid var(--night);border-bottom:1px solid var(--night)
+  display:grid;grid-template-columns:minmax(0,1.72fr) minmax(275px,.72fr);gap:18px;align-items:stretch
 }
 .lead{
-  position:relative;min-height:570px;overflow:hidden;color:#fff;background:var(--night);
-  box-shadow:none;border-radius:0;container-type:inline-size
+  position:relative;min-height:560px;overflow:hidden;border-radius:4px;color:#fff;background:var(--night);
+  box-shadow:var(--shadow);container-type:inline-size
 }
-.lead-art{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.lead:before{
+  content:"Titelseite";position:absolute;z-index:3;left:24px;top:20px;padding-bottom:5px;border-bottom:2px solid rgba(255,255,255,.65);
+  color:#fff;font-size:.62rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase
+}
+.lead-art{position:absolute;inset:0;width:100%;height:100%;opacity:.88}
 .lead:after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(7,15,21,.02) 0%,rgba(7,15,21,.14) 43%,rgba(7,15,21,.94) 100%)
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,15,21,.03),rgba(7,15,21,.14) 42%,rgba(7,15,21,.95) 100%)
 }
-.lead-copy{position:absolute;z-index:2;inset:auto 0 0;padding:clamp(28px,5vw,52px)}
-.kicker{color:#f0c08d;font-size:.68rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
+.lead-copy{position:absolute;z-index:2;inset:auto 0 0;padding:clamp(28px,5vw,50px)}
+.kicker{color:#f1b986;font-size:.67rem;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
 .lead h2{
-  max-width:900px;margin:10px 0 13px;color:#fff;
-  font:800 clamp(2.35rem,6cqw,4.7rem)/.93 Georgia,"Times New Roman",serif;
-  letter-spacing:-.043em
+  max-width:900px;margin:10px 0 13px;color:#fff;font:800 clamp(2.4rem,6cqw,4.55rem)/.94 Georgia,"Times New Roman",serif;
+  letter-spacing:-.042em
 }
-.lead p{max-width:760px;margin:0;color:#e2e5e6;font:400 1.03rem/1.55 Georgia,"Times New Roman",serif}
+.lead p{max-width:760px;margin:0;color:#e4e7e8;font:400 1rem/1.55 Georgia,"Times New Roman",serif}
 .scorecard{
-  display:grid;grid-template-rows:repeat(3,1fr);border-left:1px solid var(--night);background:var(--sheet)
+  display:grid;grid-template-rows:auto repeat(3,1fr);gap:0;background:var(--sheet);
+  border-top:4px solid var(--night);border-bottom:1px solid var(--line)
+}
+.scorecard:before{
+  content:"Was heute zählt";display:block;padding:14px 18px 11px;border-bottom:1px solid var(--line);
+  color:var(--night);font:800 1.18rem/1 Georgia,"Times New Roman",serif
 }
 .score{
-  padding:23px 21px;background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0
+  padding:18px;background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0
 }
 .score:last-child{border-bottom:0}
-.score small{
-  display:block;color:var(--muted);font-size:.66rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase
-}
-.score b{
-  display:block;margin-top:7px;color:var(--night);font:800 2.45rem/1 Georgia,"Times New Roman",serif;
-  letter-spacing:-.035em
-}
-.score p{margin:9px 0 0;color:#505962;font-size:.78rem;line-height:1.45}
-.risk-scale{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:13px}
-.risk-scale i{height:4px;background:#d7d0c4}
-.risk-scale i.on{background:var(--red)}
+.score small{display:block;color:var(--muted);font-size:.63rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+.score b{display:block;margin-top:5px;color:var(--night);font:800 2.05rem/1 Georgia,"Times New Roman",serif}
+.score p{margin:8px 0 0;color:#50575d;font-size:.78rem;line-height:1.44}
+.risk-scale{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:11px}
+.risk-scale i{height:4px;background:#d7d0c4}.risk-scale i.on{background:var(--red)}
 .section-head{
-  display:flex;justify-content:space-between;gap:20px;align-items:end;
-  margin:48px 0 17px;padding:0 0 8px;border-bottom:4px solid var(--night)
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:end;
+  margin:48px 0 16px;padding-bottom:8px;border-bottom:3px solid var(--night)
 }
-.section-head h2{
-  margin:0;color:var(--night);font:800 clamp(1.9rem,4vw,3.15rem)/.95 Georgia,"Times New Roman",serif;
-  letter-spacing:-.035em
+.section-head:before{content:"◆";color:var(--red);font-size:.62rem;padding-bottom:3px}
+.section-head h2{margin:0;color:var(--night);font:800 clamp(1.85rem,4vw,3rem)/.95 Georgia,"Times New Roman",serif;letter-spacing:-.03em}
+.section-head span{color:var(--muted);font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
+.news-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:16px;align-items:stretch
 }
-.section-head span{
-  color:var(--muted);font-size:.67rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em
-}
-.news-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .story{
-  grid-column:span 4;display:flex;flex-direction:column;padding:22px 22px 24px;background:var(--sheet);
-  border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;box-shadow:none
+  grid-column:span 4;display:flex;flex-direction:column;padding:20px;background:var(--sheet);
+  border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:3px;box-shadow:none
 }
-.story.wide{grid-column:span 6}
-.story.high,.story.watch,.story.good{border-top:0}
-.story.high:before,.story.watch:before,.story.good:before{content:"";display:block;width:44px;height:4px;margin:-22px 0 18px}
-.story.high:before{background:var(--red)}
-.story.watch:before{background:var(--amber)}
-.story.good:before{background:var(--green)}
+#top .story:nth-child(1){grid-column:span 7}
+#top .story:nth-child(2){grid-column:span 5}
+#top .story:nth-child(3),#top .story:nth-child(4){grid-column:span 6}
+#top .story:nth-child(n+5){grid-column:span 4}
+.story.high{border-top-color:var(--red)}.story.watch{border-top-color:var(--amber)}.story.good{border-top-color:var(--green)}
 .meta{
   display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);
-  font-size:.64rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase
+  font-size:.63rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase
 }
 .pill{
-  display:inline-flex;align-items:center;gap:6px;padding:0;background:transparent!important;color:var(--red);
-  border-radius:0;font-size:.64rem
+  display:inline-flex;align-items:center;gap:6px;padding:0;background:transparent!important;color:var(--red);border-radius:0
 }
 .pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.pill.medium{color:var(--amber)}
-.pill.low{color:var(--green)}
-.pill.update{color:var(--blue)}
-.story h3{
-  margin:13px 0 8px;color:var(--night);
-  font:800 1.58rem/1.08 Georgia,"Times New Roman",serif;letter-spacing:-.02em
-}
-.story>p{margin:0 0 17px;color:#434b53;font-family:Georgia,"Times New Roman",serif;font-size:.96rem}
+.pill.medium{color:var(--amber)}.pill.low{color:var(--green)}.pill.update{color:var(--blue)}
+.story h3{margin:13px 0 8px;color:var(--night);font:800 1.52rem/1.09 Georgia,"Times New Roman",serif;letter-spacing:-.018em}
+#top .story:nth-child(1) h3{font-size:2rem}
+#top .story:nth-child(2) h3{font-size:1.75rem}
+.story>p{margin:0 0 15px;color:#434a50;font-family:Georgia,"Times New Roman",serif;font-size:.93rem}
 .impact,.action{
-  margin-top:auto;padding:11px 0 0;border:0;border-top:1px solid var(--line);background:transparent;font-size:.82rem
+  margin-top:auto;padding:10px 0 0;border:0;border-top:1px solid var(--line);background:transparent;font-size:.81rem
 }
-.action{margin-top:10px;border-top-style:dashed}
-.impact b,.action b{
-  display:block;margin-bottom:4px;color:var(--muted);font-size:.62rem;font-weight:950;letter-spacing:.11em;text-transform:uppercase
-}
+.action{margin-top:9px;border-top-style:dashed}
+.impact b,.action b{display:block;margin-bottom:3px;color:var(--muted);font-size:.61rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
 .action b{color:var(--green)}
-.source{
-  margin-top:14px;color:var(--blue);font-size:.72rem;font-weight:900;text-decoration-thickness:1px;text-underline-offset:3px
-}
+.source{margin-top:13px;color:var(--blue);font-size:.71rem;font-weight:900;text-decoration-thickness:1px;text-underline-offset:3px}
 .feedback{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:12px;
-  border-top:1px solid var(--line)
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:11px;border-top:1px solid var(--line)
 }
-.feedback-copy{display:grid;gap:1px}.feedback-copy b{font-size:.7rem}.feedback-copy small,.feedback-status{color:var(--muted);font-size:.65rem}
+.feedback-copy{display:grid;gap:1px}.feedback-copy b{font-size:.69rem}.feedback-copy small,.feedback-status{color:var(--muted);font-size:.64rem}
 .feedback-actions{display:flex;align-items:center;gap:6px}
 .feedback-button{
-  min-width:38px;height:32px;padding:0 9px;border:1px solid var(--line);border-radius:2px;
-  background:transparent;color:var(--ink);font-size:.94rem;cursor:pointer
+  min-width:38px;height:32px;padding:0 9px;border:1px solid var(--line);border-radius:999px;background:#f8f4ec;color:var(--ink);font-size:.92rem;cursor:pointer
 }
-.feedback-button:hover:not(:disabled){border-color:var(--night);background:var(--soft)}
-.feedback-button.selected-up{border-color:var(--green);background:#e7efe9}
-.feedback-button.selected-down{border-color:var(--red);background:#f4e7e7}
+.feedback-button:hover:not(:disabled){border-color:var(--blue)}
+.feedback-button.selected-up{border-color:var(--green);background:#e8f0eb}
+.feedback-button.selected-down{border-color:var(--red);background:#f2e6e6}
 .feedback-button:disabled{cursor:default}
 .feedback-status{min-width:70px;text-align:right}
-.dashboard,.supplier{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border:1px solid var(--line)}
+.dashboard,.supplier{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:16px
+}
 .panel,.panel.light,.supplier-card{
-  padding:24px;background:var(--sheet);color:var(--ink);border:0;border-right:1px solid var(--line);
-  border-radius:0;box-shadow:none
+  padding:22px;background:var(--sheet);color:var(--ink);border:1px solid var(--line);border-radius:3px;box-shadow:none
 }
-.panel:last-child,.supplier-card:last-child{border-right:0}
-.panel h3,.supplier-card h3{
-  margin:4px 0 12px;color:var(--night);font:800 1.72rem/1.08 Georgia,"Times New Roman",serif
-}
+.panel h3,.supplier-card h3{margin:4px 0 11px;color:var(--night);font:800 1.65rem/1.09 Georgia,"Times New Roman",serif}
+.panel p,.supplier-card p{color:#444b50;font-family:Georgia,"Times New Roman",serif}
 .supplier-card{position:relative;overflow:hidden}
-.supplier-card:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--green)}
-.supplier-card p,.panel p{color:#434b53;font-family:Georgia,"Times New Roman",serif}
+.supplier-card:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--green)}
 .supplier-card dl{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;font-size:.8rem}
 .supplier-card dt{color:var(--muted);font-weight:800}.supplier-card dd{margin:0;font-weight:800}
-.source-note{padding:14px 16px;margin-top:16px;border:1px solid var(--line);background:var(--soft);border-radius:0;color:var(--muted);font-size:.78rem}
+.source-note{padding:14px 16px;margin-top:16px;border:1px solid var(--line);background:var(--soft);border-radius:3px;color:var(--muted);font-size:.78rem}
 .sources{columns:2;column-gap:42px;padding-left:1.2rem}
 .sources li{break-inside:avoid;margin-bottom:10px;color:#3e4850;font-family:Georgia,"Times New Roman",serif;font-size:.86rem}
 .sources a{color:var(--blue);overflow-wrap:anywhere}
-.map-shell{overflow:hidden;border:1px solid var(--night);border-radius:0;background:var(--sheet);box-shadow:none}
+.map-shell{overflow:hidden;border:1px solid var(--line);border-radius:3px;background:var(--sheet);box-shadow:none}
 #event-map{height:min(72vh,690px);min-height:540px;background:#dce4e7}
 .map-note{display:flex;justify-content:space-between;gap:18px;padding:12px 15px;border-top:1px solid var(--line);color:var(--muted);font-size:.72rem}
 .map-note b{color:var(--ink)}
@@ -212,46 +198,47 @@ main{padding:22px 0 70px}
 .map-popup small{display:block;margin-bottom:5px;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
 .map-popup b{display:block;margin-bottom:7px;color:var(--night);font:800 1.05rem/1.15 Georgia,serif}
 .map-popup p{margin:0 0 8px;color:#424d56}.map-popup a{color:var(--blue);font-size:.78rem;font-weight:800}
-.map-legend{padding:9px 11px;background:rgba(251,248,241,.95);border:1px solid var(--line);border-radius:0;box-shadow:none;font-size:.7rem}
+.map-legend{padding:9px 11px;background:rgba(251,248,241,.95);border:1px solid var(--line);border-radius:3px;box-shadow:none;font-size:.7rem}
 .map-legend span{display:flex;align-items:center;gap:7px;margin:4px 0}.map-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
 .map-legend .news{background:var(--blue)}.map-legend .conflict{background:var(--red)}
 .news-marker{background:transparent;border:0}.news-marker span{width:30px;height:30px;display:grid;place-items:center;border:2px solid #fff;border-radius:50%;background:var(--blue);color:#fff;font-size:.72rem;font-weight:900;box-shadow:0 3px 10px rgba(15,28,39,.3)}
 .marker-cluster div{background:var(--blue);color:#fff;font-weight:900}
 .marker-cluster-small,.marker-cluster-medium,.marker-cluster-large{background:rgba(36,95,132,.3)}
 .wish-launch{
-  position:fixed;right:22px;bottom:22px;z-index:1000;border:1px solid var(--night);border-radius:2px;
-  padding:12px 16px;background:var(--sheet);color:var(--night);font-weight:900;box-shadow:var(--shadow);cursor:pointer
+  position:fixed;right:22px;bottom:22px;z-index:1000;border:1px solid var(--night);border-radius:999px;padding:12px 16px;
+  background:var(--night);color:#fff;font-weight:900;box-shadow:var(--shadow);cursor:pointer
 }
-.wish-launch:hover{background:var(--night);color:#fff}
-.wish-dialog{width:min(560px,calc(100% - 28px));border:1px solid var(--night);border-radius:0;padding:0;background:var(--sheet);color:var(--ink);box-shadow:0 24px 70px rgba(15,28,39,.35)}
+.wish-launch:hover{background:var(--red)}
+.wish-dialog{width:min(560px,calc(100% - 28px));border:1px solid var(--night);border-radius:4px;padding:0;background:var(--sheet);color:var(--ink);box-shadow:0 24px 70px rgba(15,28,39,.35)}
 .wish-dialog::backdrop{background:rgba(15,28,39,.66);backdrop-filter:blur(3px)}
 .wish-form{padding:25px}.wish-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
 .wish-head h2{margin:0 0 5px;font:800 1.8rem/1.1 Georgia,serif}.wish-head p{margin:0;color:var(--muted);font-size:.86rem}
 .wish-close{border:0;background:transparent;font-size:1.5rem;cursor:pointer;color:var(--muted)}
 .wish-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wish-field{display:grid;gap:6px}.wish-field.full{grid-column:1/-1}
 .wish-field label{font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-.wish-field select,.wish-field input{width:100%;border:1px solid var(--line);border-radius:0;background:#fff;padding:11px 12px;color:var(--ink);font:inherit}
-.wish-note{margin:4px 0 0;color:var(--muted);font-size:.72rem}.wish-submit{width:100%;margin-top:18px;border:0;border-radius:0;padding:12px;background:var(--night);color:#fff;font-weight:900;cursor:pointer}
+.wish-field select,.wish-field input{width:100%;border:1px solid var(--line);border-radius:3px;background:#fff;padding:11px 12px;color:var(--ink);font:inherit}
+.wish-note{margin:4px 0 0;color:var(--muted);font-size:.72rem}.wish-submit{width:100%;margin-top:18px;border:0;border-radius:3px;padding:12px;background:var(--night);color:#fff;font-weight:900;cursor:pointer}
 .wish-submit:disabled{opacity:.6}.wish-message{min-height:20px;margin:10px 0 0;text-align:center;font-size:.78rem;font-weight:700}
-footer{padding:24px 0 42px;border-top:4px double var(--night);color:var(--muted);font-size:.72rem}
-@media(max-width:960px){
-  .brand{grid-template-columns:90px 1fr 220px}
-  .lead-grid{grid-template-columns:1fr}.scorecard{grid-template-columns:repeat(3,1fr);grid-template-rows:auto;border-left:0;border-top:1px solid var(--night)}
-  .score{border-right:1px solid var(--line);border-bottom:0}.score:last-child{border-right:0}
-  .story,.story.wide{grid-column:span 6}
+footer{padding:24px 0 42px;border-top:3px double var(--night);color:var(--muted);font-size:.72rem}
+@media(max-width:980px){
+  .mast-main{grid-template-columns:150px minmax(0,1fr) 220px}
+  .lead-grid{grid-template-columns:1fr}.scorecard{grid-template-columns:repeat(3,1fr);grid-template-rows:auto;border-top-width:3px}
+  .scorecard:before{grid-column:1/-1}.score{border-right:1px solid var(--line);border-bottom:0}.score:last-child{border-right:0}
+  #top .story:nth-child(n){grid-column:span 6}
 }
 @media(max-width:680px){
-  .utility .hide-mobile,.brand-side{display:none}
-  .brand{grid-template-columns:64px 1fr;gap:14px;padding:18px 0 16px}
-  .brand h1{text-align:left;font-size:2.75rem}.brand h1 span{letter-spacing:.2em;margin-top:9px}
-  .brand-mark{width:48px;height:48px;box-shadow:none}
-  nav a{padding:8px 10px;font-size:.78rem}
-  .alert{grid-template-columns:1fr;gap:6px;padding:10px 0}
-  .lead{min-height:620px}.lead h2{font-size:2.7rem}
+  .edition-bar .center,.edition-bar .right,.mast-left-copy,.mast-actions .issue-count{display:none}
+  .edition-bar{grid-template-columns:1fr}.mast-main{grid-template-columns:58px 1fr;gap:14px}
+  .mast-actions{grid-column:1/-1;justify-items:start}.action-row{justify-content:flex-start}
+  .mast-title{text-align:left}.mast-title h1{font-size:3rem}.mast-title p{letter-spacing:.18em;font-size:.62rem}
+  .brand-mark{width:50px;height:50px}
+  nav a{padding:8px 10px;font-size:.76rem}
+  .alert{grid-template-columns:1fr;gap:5px}
+  .lead{min-height:610px}.lead h2{font-size:2.65rem}
   .scorecard{grid-template-columns:1fr}.score{border-right:0;border-bottom:1px solid var(--line)}
-  .story,.story.wide{grid-column:1/-1}
-  .section-head{align-items:flex-start;flex-direction:column;gap:6px}
-  .dashboard,.supplier{grid-template-columns:1fr}.panel,.supplier-card{border-right:0;border-bottom:1px solid var(--line)}
+  #top .story:nth-child(n){grid-column:1/-1}
+  .section-head{grid-template-columns:auto 1fr}.section-head span{grid-column:2}
+  .dashboard,.supplier{grid-template-columns:1fr}
   .sources{columns:1}.feedback{align-items:flex-start;flex-direction:column}
   .wish-grid{grid-template-columns:1fr}.wish-field.full{grid-column:auto}.wish-launch{right:14px;bottom:14px}
   .map-note{flex-direction:column;gap:5px}
@@ -263,9 +250,37 @@ footer{padding:24px 0 42px;border-top:4px double var(--night);color:var(--muted)
 </style>
 </head>
 <body data-edition-date="2026-09-28">
-  <header class="masthead"><div class="masthead-inner"><div class="utility"><span>DESIGN-TEST · Montag, 28. September 2026 · 06:15 Uhr MESZ</span><span class="hide-mobile">Wirtschaft · Einkauf · Lieferkette · Industrie</span></div><div class="brand"><div class="brand-mark"><img src="/koepfer-morgenbrief/assets/koepfer-logo.svg" alt="KOEPFER"></div><h1>Der Morgenbrief<span>KOEPFER Industry Intelligence</span></h1><div class="brand-side right"><b>Ausgabe 28.09.2026</b><br>8 priorisierte Signale<br><a class="archive-cta" href="../archive/">Archiv öffnen →</a><a class="archive-cta" href="kalender.html" style="margin-left:6px">Kalender öffnen →</a></div></div><nav aria-label="Rubriken"><a href="#lage">Lagebild</a><a href="#top">Topmeldungen</a><a href="#risikokarte">Risikokarte</a><a href="#regional">Regional</a><a href="#lieferanten">Lieferantenradar</a><a href="#ki">KI &amp; Compliance</a><a href="#wunsch">Wunsch-Radar</a><a href="#quellen">Quellen</a></nav></div></header>
+  <header class="masthead">
+  <div class="masthead-inner">
+    <div class="edition-bar">
+      <span>Montag · 28. September 2026 · 06:15 Uhr MESZ</span>
+      <span class="center">KOEPFER Industry Intelligence</span>
+      <span class="right">Design-Test · Ausgabe 09/28</span>
+    </div>
+    <div class="mast-main">
+      <div class="mast-left">
+        <div class="brand-mark"><img src="/koepfer-morgenbrief/assets/koepfer-logo.svg" alt="KOEPFER"></div>
+        <div class="mast-left-copy"><b>KOEPFER</b><span>Einkauf</span><span>Supply Chain</span></div>
+      </div>
+      <div class="mast-title">
+        <h1>Der Morgenbrief</h1>
+        <p>Wirtschaft · Industrie · Beschaffung</p>
+      </div>
+      <div class="mast-actions">
+        <div class="issue-count">8 priorisierte Signale<br>1 regionale Meldung</div>
+        <div class="action-row">
+          <a class="archive-cta" href="../archive/">Archiv öffnen →</a>
+          <a class="archive-cta" href="kalender.html">Kalender öffnen →</a>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Rubriken">
+      <a href="#lage">Lagebild</a><a href="#top">Topmeldungen</a><a href="#risikokarte">Risikokarte</a><a href="#regional">Regional</a><a href="#lieferanten">Lieferantenradar</a><a href="#ki">KI &amp; Compliance</a><a href="#wunsch">Wunsch-Radar</a><a href="#quellen">Quellen</a>
+    </nav>
+  </div>
+</header>
   <main>
-<div class="alert"><strong>Morgenlage</strong><span>Rheinlogistik weiter auf Extremniedrigwasser ausrichten, Gasrisiken bis zum ENTSOG Winterbericht beobachten und betroffene Stahl CN Codes vor Ende der EU Konsultation prüfen.</span><a href="#top">Zur Topmeldung ↓</a></div>
+<div class="alert"><strong>Heute im Fokus</strong><span>Rheinlogistik weiter auf Extremniedrigwasser ausrichten, Gasrisiken bis zum ENTSOG Winterbericht beobachten und betroffene Stahl CN Codes vor Ende der EU Konsultation prüfen.</span><a href="#top">Zur Topmeldung ↓</a></div>
 <section class="lead-grid" id="lage"><article class="lead"><svg class="lead-art" viewBox="0 0 900 620" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstrakte Illustration eines Binnenschiffs auf extrem niedrigem Fahrwasser"><defs><linearGradient id="bg0924" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061722"/><stop offset=".55" stop-color="#163b47"/><stop offset="1" stop-color="#53282e"/></linearGradient><radialGradient id="g0924" cx=".72" cy=".3" r=".62"><stop stop-color="#9d5749" stop-opacity=".5"/><stop offset="1" stop-color="#173b48" stop-opacity="0"/></radialGradient></defs><rect width="900" height="620" fill="url(#bg0924)"/><rect width="900" height="620" fill="url(#g0924)"/><path d="M0 150c182 42 328 30 463-9s279-24 437 35v102c-175-37-317-29-451 10S171 327 0 296z" fill="#244d5c" opacity=".64"/><path d="M0 397c161-17 309-8 449 17s292 24 451-10v101c-176 30-328 27-469 7S173 498 0 531z" fill="#123541" opacity=".96"/><g fill="none" stroke="#668b98" stroke-width="4" opacity=".4"><path d="M41 433c162-16 300-7 430 15s251 18 390-11"/><path d="M65 480c143-13 267-6 392 13s244 17 367-10"/></g><path d="M244 365h361l44 57-45 45H235l-35-37z" fill="#102934" stroke="#6d8c97" stroke-width="6" stroke-linejoin="round"/><path d="M307 309h188l60 56H271z" fill="#183944" stroke="#6d8c97" stroke-width="6" stroke-linejoin="round"/><rect x="350" y="257" width="102" height="51" rx="5" fill="#203f4a" stroke="#6d8c97" stroke-width="5"/><path d="M395 257v-78M395 179l54 27" stroke="#a25a4d" stroke-width="9" stroke-linecap="round"/><g fill="#a25a4d" opacity=".88"><circle cx="151" cy="434" r="11"/><circle cx="714" cy="414" r="12"/><circle cx="795" cy="462" r="9"/></g><path d="M0 562c170-21 319-16 472 9s292 22 428-6v55H0z" fill="#0a2029"/></svg><div class="lead-copy"><div class="kicker">TOPMELDUNG · Rhein / Binnenschifffahrt</div><h2>Kaub steht am Morgen bei 3 Zentimetern, BfG bleibt bis Freitag im einstelligen Bereich</h2><p>Der bestätigte ELWIS Messwert liegt am Montag um 05:00 Uhr bei 3 Zentimetern. Die BfG Werte vom Sonntag erwarten auch in den kommenden Tagen nur einstellige Wasserstände.</p></div></article><aside class="scorecard" aria-label="Kurzlage"><div class="score"><small>Gesamtrisiko heute</small><b style="color:var(--red)">Sehr hoch</b><div class="risk-scale"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><p>Extremniedrigwasser am Rhein bleibt der stärkste kurzfristige operative Risikofaktor. Energie und geopolitische Transportthemen erhöhen die Kostenunsicherheit zusätzlich.</p></div><div class="score"><small>Reguläre Signale</small><b>8</b><p>Acht belastbare neue oder wesentlich fortgeschriebene Entwicklungen. Regionale News und Zusatzrubriken zählen nicht mit.</p></div><div class="score"><small>Pegel Kaub</small><b>3 cm</b><p>Messwert am 28. September um 05:00 Uhr. Die BfG Vorhersage bleibt bis Freitag im einstelligen Bereich.</p></div></aside></section>
 <section id="top"><div class="section-head"><h2>Priorisierte Meldungen</h2><span>8 Signale · Relevanz vor Menge</span></div><div class="news-grid"><article class="story wide high"><div class="meta"><span>28.09.2026 · Rhein / Logistik</span><span class="pill update">UPDATE</span></div><h3>Kaub steht am Morgen bei 3 Zentimetern, BfG bleibt bis Freitag im einstelligen Bereich</h3><p>ELWIS weist am 28. September um 05:00 Uhr für Kaub 3 Zentimeter aus. Die BfG Vorhersage und Abschätzung vom 27. September erwartet für Montag im Tagesverlauf etwa 5 bis 6 Zentimeter und für die Folgetage überwiegend etwa 3 bis 5 Zentimeter. Unsicherheit: Vorhersagewerte können sich mit Niederschlag und Zuflüssen kurzfristig verändern.</p><div class="impact"><b>KOEPFER Relevanz</b>Das Extremniedrigwasser bleibt ein unmittelbares Risiko für Abladetiefe, Kleinwasserzuschläge, Teilbeladungen und zusätzliche Umläufe auf dem Mittelrhein.</div><div class="action"><b>Handlung</b>Rheinabhängige Materialströme einzeln prüfen, Pufferzeiten und Alternativrouten absichern und Frachtangebote gegen den tatsächlich verwendeten Pegelbezug kontrollieren.</div><a class="source" href="https://www.elwis.de/DE/dynamisch/Wasserstaende/Pegelvorhersage%3AKAUB" target="_blank" rel="noopener">Quelle: ELWIS / BfG, Abruf 28.09.2026 ↗</a></article><article class="story wide watch"><div class="meta"><span>28.09.2026 · Nahost / Energie & Logistik</span><span class="pill medium">ENERGIE</span></div><h3>Nahost Rohölexporte erholen sich auf 12,8 Millionen Barrel pro Tag</h3><p>Nach vorläufigen Kpler Daten, die Reuters am Montag veröffentlichte, steigen die Rohölexporte wichtiger Produzenten im Nahen Osten im September auf 12,8 Millionen Barrel pro Tag. Davon sollen rund 7,4 Millionen Barrel pro Tag über die Straße von Hormus laufen. Das liegt weiterhin rund 6 Millionen Barrel pro Tag unter dem Niveau von Februar. Unsicherheit: Schiffsverfolgungsdaten erfassen Transporte mit deaktiviertem AIS nicht vollständig.</p><div class="impact"><b>KOEPFER Relevanz</b>Die Erholung entschärft einen Teil des kurzfristigen Ölangebotsrisikos, die hohe Abhängigkeit von Hormus hält Diesel, Energie, Versicherung und internationale Frachten aber störungsanfällig.</div><div class="action"><b>Handlung</b>Diesel und energiebezogene Preisgleitklauseln weiter eng verfolgen und bei kritischen Seefrachten Versicherungs sowie Routenzuschläge separat ausweisen lassen.</div><a class="source" href="https://au.investing.com/news/commodities-news/mideast-oil-exports-rebound-in-september-as-saudi-arabia-boosts-shipments-4660584" target="_blank" rel="noopener">Quelle: Reuters über Investing.com, 28.09.2026 ↗</a></article><article class="story"><div class="meta"><span>25.09.2026 · Automotive / Export</span><span class="pill medium">NACHFRAGE</span></div><h3>ifo Exporterwartungen fallen auf 8,0 Punkte, Automobilindustrie dreht wieder ins Minus</h3><p>Die ifo Exporterwartungen sanken im September von 9,8 auf 8,0 Punkte. Hauptgrund ist laut ifo die Automobilindustrie, deren Hersteller nach dem optimistischen August wieder mit sinkenden Exporten rechnen. Im Maschinenbau verbesserten sich die Aussichten dagegen deutlich. Unsicherheit: Die Umfrage misst Erwartungen und keine bereits realisierten Abrufe.</p><div class="impact"><b>KOEPFER Relevanz</b>Für automotive geprägte Lieferketten steigt das Risiko schwächerer Auslandsnachfrage, während Maschinenbau und elektrische Ausrüstungen ein stabileres Gegensignal senden.</div><div class="action"><b>Handlung</b>Kundenforecast und Abrufentwicklung nach Branche und Plattform getrennt beobachten und Kapazitätsannahmen nicht aus einem einzigen Konjunkturindikator ableiten.</div><a class="source" href="https://www.ifo.de/fakten/2026-09-25/ifo-exporterwartungen-gesunken-september-2026" target="_blank" rel="noopener">Quelle: ifo Institut, 25.09.2026 ↗</a></article><article class="story watch"><div class="meta"><span>25.09.2026 · EU / Gas</span><span class="pill medium">ENERGIE</span></div><h3>EU bestätigt stabile Gasversorgung trotz niedrigerer Speicherstände</h3><p>Die Gas Coordination Group von Kommission und Mitgliedstaaten bestätigte am 25. September eine stabile EU Gasversorgung, obwohl die Speicherstände unter historischen Niveaus liegen. ENTSOG soll den Winter Preparedness Report am 8. Oktober veröffentlichen. Unsicherheit: Die Einschätzung gilt für die aktuelle Marktlage und kann sich bei neuen geopolitischen oder wetterbedingten Störungen verändern.</p><div class="impact"><b>KOEPFER Relevanz</b>Für energieintensive Lieferketten bleibt das Versorgungsrisiko aktuell beherrschbar, Preisvolatilität und Winterrisiken sind wegen der niedrigeren Speicherstände aber weiter relevant.</div><div class="action"><b>Handlung</b>Gas und energieabhängige Lieferanten bis zum ENTSOG Bericht am 8. Oktober eng beobachten und Eskalationsschwellen für Preis oder Versorgung vorab definieren.</div><a class="source" href="https://energy.ec.europa.eu/news/gas-coordination-group-continues-work-winter-preparedness-2026-09-25_en" target="_blank" rel="noopener">Quelle: Europäische Kommission, 25.09.2026 ↗</a></article><article class="story watch"><div class="meta"><span>28.09.2026 · EU / Stahl & Handel</span><span class="pill medium">FRIST 30.09.</span></div><h3>EU prüft Ausweitung der Stahlmaßnahmen auf Drähte und Schmiedestäbe</h3><p>Die laufende EU Konsultation zur ersten Produktbereichsprüfung der Steel Regulation endet am 30. September um 23:59 Uhr. Geprüft wird unter anderem, ob bestimmte nicht legierte und legierte Drähte, Edelstahldrähte sowie geschmiedete Stäbe in den Anwendungsbereich aufgenommen werden sollen. Unsicherheit: Die Konsultation ist noch keine Entscheidung über zusätzliche Handelsmaßnahmen.</p><div class="impact"><b>KOEPFER Relevanz</b>Bei betroffenen CN Codes könnten sich künftig Beschaffungskosten, Importoptionen und Lieferantenstrategien verändern.</div><div class="action"><b>Handlung</b>Eigene Materialstämme und Lieferantenursprünge gegen die genannten CN Codes prüfen und mögliche Exposition vor einer späteren Regeländerung dokumentieren.</div><a class="source" href="https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en" target="_blank" rel="noopener">Quelle: Europäische Kommission, Stand 28.09.2026 ↗</a></article><article class="story high"><div class="meta"><span>27.09.2026 · Ukraine / Logistik</span><span class="pill">GEOPOLITIK</span></div><h3>Russland meldet Angriffe auf Logistikzentren und Frachtschiffe bei Odesa</h3><p>Das russische Verteidigungsministerium erklärte am Sonntag, Logistikzentren in den Regionen Kyiv und Odesa, Hafeninfrastruktur in Kiliya sowie Frachtschiffe auf dem Weg nach Odesa getroffen zu haben. Reuters konnte die Angaben nicht unabhängig verifizieren. Kyivstar bestätigte einen Treffer am eigenen Hauptsitz ohne gemeldete Opfer. Unsicherheit: Umfang und militärische Einordnung der behaupteten Logistiktreffer sind nicht unabhängig bestätigt.</p><div class="impact"><b>KOEPFER Relevanz</b>Für Schwarzmeer Transporte bleibt das Risiko von Routenunterbrechungen, höheren Versicherungsprämien und kurzfristigen Hafenrestriktionen hoch.</div><div class="action"><b>Handlung</b>Bei Verkehren mit Bezug zur Ukraine oder zum Schwarzen Meer Route, Hafenstatus und Versicherung vor Buchung erneut bestätigen. Ohne direkten Bezug als Beobachtungssignal führen.</div><a class="source" href="https://www.internazionale.it/ultime-notizie-reuters/2026/09/27/russia-says-it-struck-military-infrastructure-vessels-in-ukraine" target="_blank" rel="noopener">Quelle: Reuters über Internazionale, 27.09.2026 ↗</a></article><article class="story good"><div class="meta"><span>17.09.2026 · Automotive / Mercedes Benz</span><span class="pill low">PRODUKTION</span></div><h3>Mercedes Benz startet GLA Serienproduktion in Rastatt antriebsflexibel</h3><p>Mercedes Benz hat die Serienproduktion des neuen GLA im Werk Rastatt gestartet. Die vollelektrische Variante läuft bereits, 48 Volt Hybridmodelle sollen noch 2026 folgen. Das Werk fertigt unterschiedliche Antriebe auf einer Linie und investiert für weitere Umbauten einen niedrigen dreistelligen Millionenbetrag. Unsicherheit: Die Mitteilung nennt keine konkreten Stückzahlen oder Lieferantenabrufe.</p><div class="impact"><b>KOEPFER Relevanz</b>Die flexible Mischproduktion kann den Teilemix kurzfristiger verschieben und macht plattformbezogene Forecasts wichtiger als reine Gesamtstückzahlen.</div><div class="action"><b>Handlung</b>Bei relevanten Mercedes Plattformen Abrufe nach Antriebsvariante trennen und Änderungen im Mix zwischen Elektro und Hybrid früh mit Lieferantenkapazitäten abgleichen.</div><a class="source" href="https://media.mercedes-benz.com/en/article/55f347d5-2d36-4f6b-94a3-cd840efcee46" target="_blank" rel="noopener">Quelle: Mercedes Benz Media, 17.09.2026 ↗</a></article><article class="story good"><div class="meta"><span>25.09.2026 · Automotive / Nutzfahrzeuge</span><span class="pill low">MODELLJAHR</span></div><h3>Stellantis Pro One vereinfacht Modelljahr 2027 auf drei Ausstattungsstufen</h3><p>Stellantis Pro One öffnet in den Niederlanden die Orderbücher für das Modelljahr 2027 und strukturiert Citroën Jumpy, FIAT Professional Scudo, Opel Vivaro und Peugeot Expert jeweils in drei klarere Ausstattungsstufen. Sondervarianten und CustomFit Lösungen bleiben verfügbar. Unsicherheit: Die veröffentlichte Angebotsstruktur bezieht sich auf den niederländischen Markt und erlaubt keine direkte Aussage über Produktionsvolumen.</p><div class="impact"><b>KOEPFER Relevanz</b>Weniger Konfigurationskomplexität kann Variantenmix und Teilebedarf verändern und ist ein relevantes Signal für die Nutzfahrzeugplattformen des Konzerns.</div><div class="action"><b>Handlung</b>Bei Stellantis bezogenen Abrufen auf Veränderungen im Variantenmix achten und lokale Vertriebsänderungen nicht automatisch als konzernweite Produktionsänderung interpretieren.</div><a class="source" href="https://www.media.stellantis.com/nl-nl/corporate/press/stellantis-pro-one-opent-orderboeken-van-modeljaar-27-met-nieuwe-uitvoeringsvarianten" target="_blank" rel="noopener">Quelle: Stellantis Media, 25.09.2026 ↗</a></article></div></section>
 <section id="risikokarte"><div class="section-head"><h2>Globale Risiko- &amp; Ereigniskarte</h2><span>8 Meldungen · 3 laufende Konflikte</span></div><div class="map-shell"><div id="event-map" role="application" aria-label="Interaktive Karte aktueller KOEPFER relevanter Meldungen und Konflikte"></div><div class="map-note"><span><b>8 blaue Meldungsmarker:</b> nummeriert; Überlappungen werden als Anzahl gruppiert</span><span><b>3 rote Marker:</b> länger laufende Konflikte</span><span>Positionen sind bei überregionalen Themen geografische Näherungen.</span></div><noscript><p class="source-note">Für die interaktive Karte muss JavaScript aktiviert sein.</p></noscript></div></section>
