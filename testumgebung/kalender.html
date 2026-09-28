@@ -6,213 +6,304 @@
   <meta name="color-scheme" content="light">
   <title>KOEPFER Termin-Kalender — Testumgebung</title>
   <style>
-    :root{--ink:#17212b;--muted:#67727d;--paper:#f4f0e8;--card:#fffdf8;--line:#d8d0c2;--red:#a82d32;--amber:#b66b12;--green:#237355;--blue:#245f84;--night:#0f1c27;--shadow:0 14px 38px rgba(30,35,38,.1)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:linear-gradient(rgba(255,255,255,.34),rgba(255,255,255,.34)),repeating-linear-gradient(0deg,transparent 0 3px,rgba(50,40,25,.015) 3px 4px),var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.masthead{border-bottom:1px solid var(--line);background:rgba(255,253,248,.92);backdrop-filter:blur(10px)}.wrap,main,footer{width:min(1180px,calc(100% - 34px));margin:0 auto}.utility{display:flex;justify-content:space-between;gap:18px;padding:11px 0 9px;border-bottom:1px solid var(--line);color:var(--muted);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}.brand{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:24px 0 18px}.brand h1{margin:0;color:var(--night);font:800 clamp(2.1rem,6vw,4.6rem)/.92 Georgia,"Times New Roman",serif;letter-spacing:-.045em;text-align:center}.brand h1 span{display:block;color:var(--red);font:700 .23em/1.2 Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;margin-top:10px}.brand-mark{width:52px;height:52px;border-radius:50%;overflow:hidden;background:#002951}.brand-mark img{width:100%;height:100%;display:block;object-fit:cover}.brand-side{color:var(--muted);font-size:.82rem}.brand-side.right{text-align:right}.cta{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border:1px solid var(--night);border-radius:999px;color:var(--night);font-size:.72rem;font-weight:900;text-decoration:none}.cta:hover{color:#fff;background:var(--night)}nav{display:flex;gap:8px;overflow-x:auto;padding:10px 0;border-top:1px solid var(--line);scrollbar-width:thin}nav a{flex:0 0 auto;padding:6px 10px;border-radius:999px;text-decoration:none;font-size:.78rem;font-weight:700;background:#ece6dc}main{padding:28px 0 64px}.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}.hero-main{padding:30px;border-radius:6px;background:var(--night);color:#fff;box-shadow:var(--shadow)}.hero-main .kicker{color:#e0a76e;font-size:.74rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero-main h2{margin:10px 0 12px;font:800 clamp(2rem,4vw,3.3rem)/1 Georgia,serif}.hero-main p{margin:0;max-width:760px;color:#d9e1e5}.hero-stats{display:grid;gap:12px}.stat{padding:18px;background:var(--card);border:1px solid var(--line);border-radius:6px}.stat small{color:var(--muted);font-weight:800;letter-spacing:.08em;text-transform:uppercase}.stat b{display:block;margin-top:4px;font:800 2rem/1 Georgia,serif}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 12px}.filter{border:1px solid var(--line);border-radius:999px;background:#ece6dc;padding:8px 12px;font-weight:800;font-size:.78rem;cursor:pointer}.filter[aria-pressed="true"]{background:var(--night);color:#fff;border-color:var(--night)}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin:30px 0 16px;padding-bottom:9px;border-bottom:3px solid var(--night)}.section-head h2{margin:0;font:800 clamp(1.6rem,4vw,2.5rem)/1 Georgia,serif}.section-head span{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.09em}.timeline{display:grid;gap:13px}.event{display:grid;grid-template-columns:116px 1fr auto;gap:18px;align-items:start;padding:20px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:6px;box-shadow:0 7px 20px rgba(30,35,38,.05)}.event[data-cat="handel"]{border-left-color:var(--amber)}.event[data-cat="compliance"]{border-left-color:var(--red)}.event[data-cat="logistik"]{border-left-color:var(--green)}.event[data-cat="energie"]{border-left-color:#6c7b2c}.event[data-cat="geopolitik"]{border-left-color:#7c4b68}.event[data-cat="industrie"]{border-left-color:#4f6470}.datebox{display:grid;gap:2px}.datebox b{font:800 1.45rem Georgia,serif}.datebox span{color:var(--muted);font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.event h3{margin:0 0 6px;font:800 1.35rem/1.15 Georgia,serif}.event p{margin:0;color:#424d56}.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.pill{display:inline-flex;padding:4px 8px;border-radius:999px;background:#edf3f5;color:var(--blue);font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.pill.warn{background:#f4ead9;color:var(--amber)}.pill.high{background:#f0e4e2;color:var(--red)}.pill.good{background:#e1eee8;color:var(--green)}.countdown{min-width:96px;text-align:right;font-weight:900;color:var(--night)}.countdown small{display:block;color:var(--muted);font-weight:700}.source{display:inline-block;margin-top:10px;color:var(--blue);font-size:.78rem;font-weight:800;text-underline-offset:3px}.note{margin-top:20px;padding:16px 18px;border:1px solid var(--line);border-radius:6px;background:#f9f5ee;color:var(--muted);font-size:.82rem}footer{padding:24px 0 42px;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}.hidden{display:none!important}@media(max-width:780px){.hero{grid-template-columns:1fr}.brand{grid-template-columns:auto 1fr}.brand-side{display:none}.brand h1{text-align:left;font-size:2.5rem}.event{grid-template-columns:1fr}.countdown{text-align:left}.utility .hide-mobile{display:none}}@media print{nav,.filters{display:none}.event,.stat,.hero-main{box-shadow:none;break-inside:avoid}}
+    :root{--ink:#17212b;--muted:#67727d;--paper:#f4f0e8;--card:#fffdf8;--line:#d8d0c2;--red:#a82d32;--amber:#b66b12;--green:#237355;--blue:#245f84;--night:#0f1c27;--violet:#76506f;--steel:#536a78;--olive:#6f7b2c;--shadow:0 14px 38px rgba(30,35,38,.1)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:linear-gradient(rgba(255,255,255,.34),rgba(255,255,255,.34)),repeating-linear-gradient(0deg,transparent 0 3px,rgba(50,40,25,.015) 3px 4px),var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+    a{color:inherit}
+    .masthead{border-bottom:1px solid var(--line);background:rgba(255,253,248,.94);backdrop-filter:blur(10px)}
+    .wrap,main,footer{width:min(1180px,calc(100% - 34px));margin:0 auto}
+    .utility{display:flex;justify-content:space-between;gap:18px;padding:11px 0 9px;border-bottom:1px solid var(--line);color:var(--muted);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+    .brand{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:24px 0 18px}
+    .brand h1{margin:0;color:var(--night);font:800 clamp(2.1rem,6vw,4.6rem)/.92 Georgia,"Times New Roman",serif;letter-spacing:-.045em;text-align:center}
+    .brand h1 span{display:block;color:var(--red);font:700 .23em/1.2 Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;margin-top:10px}
+    .brand-mark{width:52px;height:52px;border-radius:50%;overflow:hidden;background:#002951}
+    .brand-mark img{width:100%;height:100%;display:block;object-fit:cover}
+    .brand-side{color:var(--muted);font-size:.82rem}.brand-side.right{text-align:right}
+    .cta{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border:1px solid var(--night);border-radius:999px;color:var(--night);font-size:.72rem;font-weight:900;text-decoration:none}
+    .cta:hover{color:#fff;background:var(--night)}
+    nav{display:flex;gap:8px;overflow-x:auto;padding:10px 0;border-top:1px solid var(--line);scrollbar-width:thin}
+    nav a{flex:0 0 auto;padding:6px 10px;border-radius:999px;text-decoration:none;font-size:.78rem;font-weight:700;background:#ece6dc}
+    main{padding:28px 0 64px}
+    .intro{display:grid;grid-template-columns:1.4fr .6fr;gap:18px;align-items:stretch}
+    .intro-main{padding:28px 30px;background:var(--night);color:#fff;border-radius:6px;box-shadow:var(--shadow)}
+    .intro-main .kicker{color:#e0a76e;font-size:.74rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .intro-main h2{margin:8px 0 10px;font:800 clamp(2rem,4vw,3.15rem)/1 Georgia,serif}
+    .intro-main p{margin:0;color:#d9e1e5;max-width:800px}
+    .quick{display:grid;gap:12px}
+    .quick-card{padding:17px 18px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+    .quick-card small{display:block;color:var(--muted);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .quick-card b{display:block;margin:3px 0 5px;font:800 1.55rem/1.1 Georgia,serif}
+    .calendar-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 14px}
+    .calendar-toolbar .group{display:flex;gap:8px;flex-wrap:wrap}
+    .tool-button,.filter{border:1px solid var(--line);border-radius:999px;background:#ece6dc;color:var(--ink);padding:8px 12px;font-size:.78rem;font-weight:850;cursor:pointer}
+    .tool-button:hover,.filter:hover{border-color:var(--night)}
+    .filter[aria-pressed="true"]{background:var(--night);border-color:var(--night);color:#fff}
+    .legend{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 18px;color:var(--muted);font-size:.74rem}
+    .legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+    .dot-compliance{background:var(--red)}.dot-handel{background:var(--amber)}.dot-logistik{background:var(--green)}.dot-energie{background:var(--olive)}.dot-geopolitik{background:var(--violet)}.dot-industrie{background:var(--steel)}
+    .calendar-stack{display:grid;gap:22px}
+    .month-card{overflow:visible;background:var(--card);border:1px solid var(--line);border-radius:6px;box-shadow:0 8px 22px rgba(30,35,38,.055)}
+    .month-title{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:15px 18px 13px;border-bottom:1px solid var(--line);background:#ece8e0}
+    .month-title h3{margin:0;font:800 clamp(1.55rem,4vw,2.25rem)/1 Georgia,serif}
+    .month-title span{color:var(--muted);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .calendar-grid{display:grid;grid-template-columns:46px repeat(7,minmax(0,1fr))}
+    .head-cell{min-height:48px;display:grid;place-items:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#f2eee7;text-align:center;font-size:.72rem;font-weight:900;line-height:1.1}
+    .head-cell small{display:block;margin-top:2px;color:var(--muted);font-size:.58rem;font-weight:700}
+    .weekno{min-height:68px;display:grid;place-items:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#efebe4;color:var(--muted);font-size:.78rem;font-weight:900}
+    .day{position:relative;min-height:68px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fffdf8;color:var(--ink);padding:7px 7px 6px;text-align:left;cursor:default;font:inherit}
+    .day.is-weekend{background:#f3f1ed}.day.is-sunday .day-num{color:#d33a42}.day.is-outside{background:#f7f5f1;color:#b1aaa0}
+    .day.has-events{cursor:pointer;background:#fff}.day.has-events:hover,.day.has-events:focus-visible{outline:2px solid var(--blue);outline-offset:-2px;z-index:6}
+    .day.is-today{box-shadow:inset 0 0 0 2px var(--night)}
+    .day-num{font:800 1.35rem/1 Georgia,serif}
+    .dots{display:flex;gap:4px;flex-wrap:wrap;position:absolute;left:7px;right:7px;bottom:7px;min-height:8px}
+    .dots i{width:8px;height:8px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.8)}
+    .event-count{position:absolute;right:6px;top:6px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--night);color:#fff;display:grid;place-items:center;font-size:.62rem;font-weight:900}
+    .preview{display:none;position:absolute;z-index:20;left:50%;bottom:calc(100% - 2px);transform:translateX(-50%);width:min(310px,78vw);padding:11px 12px;border:1px solid #bfc6cb;border-radius:6px;background:var(--night);color:#fff;box-shadow:0 16px 36px rgba(15,28,39,.26);text-align:left;pointer-events:none}
+    .preview:after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--night)}
+    .preview b{display:block;margin-bottom:3px;font-size:.78rem}.preview p{margin:0;color:#d9e1e5;font-size:.72rem;line-height:1.35}.preview p+p{margin-top:5px}
+    @media (hover:hover) and (pointer:fine){.day.has-events:hover .preview{display:block}}.day.has-events:focus-visible .preview{display:block}
+    .note{margin-top:20px;padding:15px 17px;border:1px solid var(--line);border-radius:6px;background:#f9f5ee;color:var(--muted);font-size:.82rem}
+    dialog{width:min(760px,calc(100% - 28px));max-height:82%;border:0;border-radius:8px;padding:0;background:var(--card);color:var(--ink);box-shadow:0 24px 70px rgba(15,28,39,.35)}
+    dialog::backdrop{background:rgba(15,28,39,.68);backdrop-filter:blur(3px)}
+    .dialog-head{display:flex;justify-content:space-between;gap:18px;padding:22px 24px 16px;border-bottom:1px solid var(--line);background:#f2eee7}
+    .dialog-head h2{margin:0;font:800 1.85rem/1 Georgia,serif}.dialog-head p{margin:6px 0 0;color:var(--muted);font-size:.82rem}
+    .dialog-close{border:0;background:transparent;color:var(--muted);font-size:1.7rem;cursor:pointer}
+    .dialog-body{display:grid;gap:12px;padding:18px 24px 24px}
+    .detail-card{padding:16px 17px;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:5px;background:#fff}
+    .detail-card[data-cat="compliance"]{border-left-color:var(--red)}.detail-card[data-cat="handel"]{border-left-color:var(--amber)}.detail-card[data-cat="logistik"]{border-left-color:var(--green)}.detail-card[data-cat="energie"]{border-left-color:var(--olive)}.detail-card[data-cat="geopolitik"]{border-left-color:var(--violet)}.detail-card[data-cat="industrie"]{border-left-color:var(--steel)}
+    .detail-meta{color:var(--muted);font-size:.7rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+    .detail-card h3{margin:7px 0 6px;font:800 1.35rem/1.15 Georgia,serif}.detail-card p{margin:0;color:#424d56}.detail-card a{display:inline-block;margin-top:10px;color:var(--blue);font-size:.78rem;font-weight:850;text-underline-offset:3px}
+    footer{padding:24px 0 42px;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}
+    @media(max-width:780px){.intro{grid-template-columns:1fr}.brand{grid-template-columns:auto 1fr}.brand-side{display:none}.brand h1{text-align:left;font-size:2.45rem}.utility .hide-mobile{display:none}.calendar-grid{grid-template-columns:34px repeat(7,minmax(0,1fr))}.head-cell{font-size:.6rem}.head-cell small{display:none}.weekno{font-size:.66rem}.day{min-height:56px;padding:5px}.day-num{font-size:1.05rem}.dots{left:5px;right:5px;bottom:5px;gap:3px}.dots i{width:6px;height:6px}.event-count{display:none}.month-title{padding:13px 14px}.preview{display:none!important}}
+    @media(max-width:470px){.wrap,main,footer{width:min(100% - 16px,1180px)}.calendar-grid{grid-template-columns:30px repeat(7,minmax(0,1fr))}.head-cell{min-height:40px}.day{min-height:49px}.weekno{min-height:49px}.day-num{font-size:.95rem}.dots i{width:5px;height:5px}.calendar-toolbar{align-items:flex-start}.tool-button,.filter{padding:7px 10px}}
+    @media print{nav,.calendar-toolbar,.legend{display:none}.month-card{box-shadow:none;break-inside:avoid}}
   </style>
 </head>
 <body>
 <header class="masthead">
   <div class="wrap">
-    <div class="utility"><span>TESTUMGEBUNG · Stand 28. September 2026</span><span class="hide-mobile">Einkauf · Supply Chain · Compliance</span></div>
+    <div class="utility"><span>TESTUMGEBUNG · Kalender-Prototyp</span><span class="hide-mobile">Einkauf · Supply Chain · Compliance</span></div>
     <div class="brand">
       <div class="brand-mark"><img src="/koepfer-morgenbrief/assets/koepfer-logo.svg" alt="KOEPFER"></div>
       <h1>Der Morgenbrief<span>Termin-Kalender</span></h1>
       <div class="brand-side right">Frühwarnsystem<br><a class="cta" href="index.html">← Morgenbrief</a></div>
     </div>
-    <nav aria-label="Kalender-Navigation"><a href="index.html">Morgenbrief</a><a href="#termine">Termine</a><a href="#hinweis">Hinweis</a></nav>
+    <nav aria-label="Kalender-Navigation"><a href="index.html">Morgenbrief</a><a href="#kalender">Kalender</a><a href="#hinweis">Hinweis</a></nav>
   </div>
 </header>
+
 <main>
-  <section class="hero">
-    <article class="hero-main">
+  <section class="intro">
+    <article class="intro-main">
       <div class="kicker">TERMINE · FRISTEN · EREIGNISSE</div>
-      <h2>Was als Nächstes für Einkauf und Lieferkette wichtig wird</h2>
-      <p>Regulatorik, Handel, Energie, Logistik, Sanktionen und internationale Ereignisse mit plausibler Auswirkung auf Material, Kosten, Verfügbarkeit oder Kunden- und Lieferantenumfeld.</p>
+      <h2>Beschaffungsrelevante Termine auf einen Blick</h2>
+      <p>EU und internationale Regeln, Handel und Zölle, Logistik, Energie, Sanktionen, Automotive und Industrie. Markierte Tage zeigen eine Kurzvorschau; ein Klick öffnet die vollständige Tagesansicht.</p>
     </article>
-    <aside class="hero-stats">
-      <div class="stat"><small>Nächster Termin</small><b id="next-date">30.09.</b><p id="next-title">EU-Stahlkonsultation endet</p></div>
-      <div class="stat"><small>In den nächsten 90 Tagen</small><b id="next-90">8</b><p>Aktuell gepflegte Fristen und Ereignisse.</p></div>
-      <div class="stat"><small>Abdeckung</small><b>Global</b><p>EU plus wichtige internationale Handels-, Logistik- und Sanktionsereignisse.</p></div>
+    <aside class="quick">
+      <div class="quick-card"><small>Nächster Termin</small><b id="next-date">–</b><span id="next-title">Wird geladen</span></div>
+      <div class="quick-card"><small>In den nächsten 90 Tagen</small><b id="next-90">0</b><span>gepflegte Ereignisse</span></div>
     </aside>
   </section>
 
-  <div class="filters" aria-label="Kalender filtern">
-    <button class="filter" type="button" data-filter="all" aria-pressed="true">Alle</button>
-    <button class="filter" type="button" data-filter="compliance" aria-pressed="false">Compliance</button>
-    <button class="filter" type="button" data-filter="handel" aria-pressed="false">Handel & Zölle</button>
-    <button class="filter" type="button" data-filter="logistik" aria-pressed="false">Logistik</button>
-    <button class="filter" type="button" data-filter="energie" aria-pressed="false">Energie</button>
-    <button class="filter" type="button" data-filter="geopolitik" aria-pressed="false">Geopolitik</button><button class="filter" type="button" data-filter="industrie" aria-pressed="false">Industrie & Automotive</button>
-  </div>
-
-  <section id="termine">
-    <div class="section-head"><h2>Kalenderübersicht</h2><span>Chronologisch · Quellen direkt verlinkt</span></div>
-    <div class="timeline">
-
-      <article class="event" data-cat="handel" data-date="2026-09-30">
-        <div class="datebox"><b>30.09.2026</b><span>Frist</span></div>
-        <div><h3>EU-Stahl: Konsultation zur Ausweitung des Produktumfangs endet</h3><p>Die Kommission prüft unter anderem Drähte, Edelstahldrähte und geschmiedete Stäbe für eine mögliche Aufnahme in die EU-Stahlmaßnahmen. Für betroffene CN-Codes kann sich die Import- und Preislandschaft ändern.</p><div class="meta"><span class="pill warn">Stahl</span><span class="pill">EU-Handel</span></div><a class="source" href="https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="logistik" data-date="2026-10-01" data-end="2026-10-07">
-        <div class="datebox"><b>01.–07.10.</b><span>China</span></div>
-        <div><h3>China National Day: siebentägige Feiertagsphase</h3><p>Landesweite Feiertage können Produktion, Abfertigung, Spedition und Reaktionszeiten chinesischer Lieferanten verzögern. Der 10. Oktober ist laut offiziellem Kalender ein Ausgleichs-Arbeitstag.</p><div class="meta"><span class="pill good">Lieferkette</span><span class="pill">China</span></div><a class="source" href="https://big5.www.gov.cn/gate/big5/www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm" target="_blank" rel="noopener">Quelle: Staatsrat der Volksrepublik China ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="geopolitik" data-date="2026-10-09">
-        <div class="datebox"><b>09.10.2026</b><span>Review</span></div>
-        <div><h3>EU-Sanktionsrahmen zu russischen hybriden Aktivitäten: aktuelles Ablaufdatum</h3><p>Die bestehenden restriktiven Maßnahmen gegen destabilisierende russische Aktivitäten im Ausland laufen nach aktuellem Beschluss bis zu diesem Datum. Vorher ist mit einer politischen Überprüfung beziehungsweise möglicher Verlängerung zu rechnen.</p><div class="meta"><span class="pill high">Sanktionen</span><span class="pill">Geopolitik</span></div><a class="source" href="https://www.consilium.europa.eu/en/policies/sanctions-against-russia/timeline-sanctions-against-russia/" target="_blank" rel="noopener">Quelle: Rat der Europäischen Union ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="energie" data-date="2026-12-01">
-        <div class="datebox"><b>01.12.2026</b><span>Zielkorridor</span></div>
-        <div><h3>EU-Gasspeicher: Ende des flexiblen 90-Prozent-Zielkorridors</h3><p>Die verlängerten Speicherregeln geben den Mitgliedstaaten jährlich vom 1. Oktober bis 1. Dezember Zeit, das 90-Prozent-Ziel zu erreichen. Der Speicherstand bleibt ein relevanter Frühindikator für europäische Gas- und Industriepreise.</p><div class="meta"><span class="pill">Energie</span><span class="pill warn">Winter</span></div><a class="source" href="https://energy.ec.europa.eu/topics/energy-security/gas-storage_en" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="logistik" data-date="2026-11-30" data-end="2026-12-04">
-        <div class="datebox"><b>30.11.–04.12.</b><span>IMO</span></div>
-        <div><h3>MEPC 85 und mögliche Fortsetzung der IMO-Net-Zero-Verhandlungen</h3><p>Das globale Schifffahrtsgremium tagt vom 30. November bis 3. Dezember; für den 4. Dezember ist vorbehaltlich Bestätigung die Fortsetzung der außerordentlichen Sitzung zum Net-Zero-Rahmen vorgesehen. Ergebnisse können langfristig Treibstoff- und Frachtraten beeinflussen.</p><div class="meta"><span class="pill good">Seefracht</span><span class="pill">Global</span></div><a class="source" href="https://www.imo.org/en/mediacentre/meetingsummaries/pages/temporary-mepc-84th-session.aspx" target="_blank" rel="noopener">Quelle: International Maritime Organization ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="compliance" data-date="2026-12-11">
-        <div class="datebox"><b>11.12.2026</b><span>CRA</span></div>
-        <div><h3>Cyber Resilience Act: ausreichende Konformitätsbewertungsstellen vorgesehen</h3><p>Die EU-Umsetzungsplanung sieht bis zu diesem Datum ausreichende notifizierte Konformitätsbewertungsstellen in den Mitgliedstaaten vor. Die Meldepflichten für aktiv ausgenutzte Schwachstellen gelten bereits seit 11. September 2026.</p><div class="meta"><span class="pill high">Cyber</span><span class="pill">Compliance</span></div><a class="source" href="https://digital-strategy.ec.europa.eu/en/factpages/cyber-resilience-act-implementation" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="compliance" data-date="2026-12-30">
-        <div class="datebox"><b>30.12.2026</b><span>EUDR</span></div>
-        <div><h3>EU-Entwaldungsverordnung gilt für große und mittlere Marktteilnehmer</h3><p>Ab diesem Datum greifen die EUDR-Pflichten für große und mittlere Betreiber sowie für bestimmte kleinere Unternehmen, die bereits unter die frühere Holzregelung fielen. Relevante Rohstoffe sind unter anderem Kautschuk und Holz.</p><div class="meta"><span class="pill high">Lieferkette</span><span class="pill">ESG</span></div><a class="source" href="https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="handel" data-date="2026-12-31">
-        <div class="datebox"><b>31.12.2026</b><span>Prüffrist</span></div>
-        <div><h3>EU-Kommission muss erste Stahl-Produktbereichsprüfung abschließen</h3><p>Bis Jahresende muss die Kommission bewerten, ob weitere Produktgruppen wie bestimmte Drähte und geschmiedete Stäbe in den Geltungsbereich der EU-Stahlregelung aufgenommen werden sollen.</p><div class="meta"><span class="pill warn">Stahl</span><span class="pill">Handel</span></div><a class="source" href="https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="handel" data-date="2027-01-01">
-        <div class="datebox"><b>01.01.2027</b><span>UK-CBAM</span></div>
-        <div><h3>Vereinigtes Königreich führt Carbon Border Adjustment Mechanism ein</h3><p>Der britische CBAM startet für bestimmte Importe aus Aluminium, Zement, Düngemitteln, Wasserstoff sowie Eisen und Stahl. Für Lieferketten mit UK-Bezug werden Warenklassifizierung und Emissionsdaten wichtiger.</p><div class="meta"><span class="pill warn">CO₂-Kosten</span><span class="pill">UK</span></div><a class="source" href="https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism/carbon-border-adjustment-mechanism" target="_blank" rel="noopener">Quelle: HM Revenue & Customs ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="industrie" data-date="2027-04-05" data-end="2027-04-08">
-        <div class="datebox"><b>05.–08.04.</b><span>Industrie</span></div>
-        <div><h3>HANNOVER MESSE 2027</h3><p>Die internationale Industriemesse bündelt Maschinenbau, Elektro- und Digitalindustrie sowie Energiewirtschaft. Für Einkauf und Lieferantenmanagement ist sie ein Frühindikator für Automatisierung, KI, Energie, Produktionstechnik und neue Anbieter.</p><div class="meta"><span class="pill good">Maschinenbau</span><span class="pill">Technologie</span></div><a class="source" href="https://www.hannovermesse.de/de/fuer-besucher/oeffnungszeiten/" target="_blank" rel="noopener">Quelle: HANNOVER MESSE ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="geopolitik" data-date="2027-06-23">
-        <div class="datebox"><b>23.06.2027</b><span>Review</span></div>
-        <div><h3>EU-Sanktionen wegen der Annexion der Krim: aktuelles Ablaufdatum</h3><p>Die maßnahmenbezogenen Beschränkungen wurden bis zu diesem Datum verlängert. Für Lieferanten- und Transaktionsscreening ist die weitere politische Verlängerung beziehungsweise Anpassung zu beobachten.</p><div class="meta"><span class="pill high">Sanktionen</span><span class="pill">Russland</span></div><a class="source" href="https://www.consilium.europa.eu/en/press/press-releases/2026/06/15/russia-s-war-of-aggression-against-ukraine-new-eu-sanctions-target-energy-revenues-the-military-industrial-complex-propaganda-and-human-rights-violations/" target="_blank" rel="noopener">Quelle: Rat der Europäischen Union ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="geopolitik" data-date="2027-07-31">
-        <div class="datebox"><b>31.07.2027</b><span>Review</span></div>
-        <div><h3>EU-Wirtschaftssanktionen gegen Russland: aktuelles Ablaufdatum</h3><p>Die sektoralen Wirtschaftssanktionen zu Handel, Finanzen, Energie, Dual-Use und Transport wurden im Juni 2026 für zwölf Monate bis Ende Juli 2027 verlängert.</p><div class="meta"><span class="pill high">Sanktionen</span><span class="pill">Handel</span></div><a class="source" href="https://www.consilium.europa.eu/en/press/press-releases/2026/06/25/russia-s-war-of-aggression-against-ukraine-council-extends-economic-sanctions-for-another-year/" target="_blank" rel="noopener">Quelle: Rat der Europäischen Union ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="compliance" data-date="2027-08-18">
-        <div class="datebox"><b>18.08.2027</b><span>Batterien</span></div>
-        <div><h3>EU-Batterieverordnung: Sorgfaltspflichten starten</h3><p>Ab diesem Datum gelten die Batterie-Sorgfaltspflichten für erfasste Wirtschaftsakteure. Dazu gehören Due-Diligence-Strategien und unabhängige Prüfung entlang relevanter Rohstoffketten.</p><div class="meta"><span class="pill high">Rohstoffe</span><span class="pill">Compliance</span></div><a class="source" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1775489433349&uri=CELEX%3A02023R1542-20250731" target="_blank" rel="noopener">Quelle: EUR-Lex ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="logistik" data-date="2027-09-01">
-        <div class="datebox"><b>01.09.2027</b><span>IMO</span></div>
-        <div><h3>Nordostatlantik-Emissionskontrollgebiet tritt in Kraft</h3><p>Das neue IMO-Emissionskontrollgebiet im Nordostatlantik tritt formal in Kraft; die verschärften Grenzwerte werden zwölf Monate später wirksam. Für Seefracht entstehen mittelfristig zusätzliche Anforderungen an Brennstoffe und Emissionen.</p><div class="meta"><span class="pill good">Seefracht</span><span class="pill">Emissionen</span></div><a class="source" href="https://www.imo.org/en/mediacentre/meetingsummaries/pages/temporary-mepc-84th-session.aspx" target="_blank" rel="noopener">Quelle: International Maritime Organization ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="compliance" data-date="2027-12-02">
-        <div class="datebox"><b>02.12.2027</b><span>AI Act</span></div>
-        <div><h3>EU-AI-Act: neue Frist für bestimmte Hochrisiko-Systeme</h3><p>Nach dem angepassten Zeitplan gelten die Vorgaben für Hochrisiko-KI in Bereichen wie Beschäftigung, kritischer Infrastruktur und weiteren sensiblen Einsatzfeldern ab diesem Datum.</p><div class="meta"><span class="pill high">KI</span><span class="pill">Compliance</span></div><a class="source" href="https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="compliance" data-date="2027-12-11">
-        <div class="datebox"><b>11.12.2027</b><span>CRA</span></div>
-        <div><h3>Cyber Resilience Act wird vollständig anwendbar</h3><p>Ab diesem Datum greifen die wesentlichen CRA-Anforderungen an Produkte mit digitalen Elementen umfassend. Relevant sind unter anderem Produktentwicklung, Sicherheitsanforderungen, Schwachstellenmanagement und CE-Konformität.</p><div class="meta"><span class="pill high">Cyber</span><span class="pill">Produkte</span></div><a class="source" href="https://digital-strategy.ec.europa.eu/en/policies/cra-summary" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="compliance" data-date="2027-12-14">
-        <div class="datebox"><b>14.12.2027</b><span>Lieferkette</span></div>
-        <div><h3>EU-Verordnung gegen Produkte aus Zwangsarbeit wird anwendbar</h3><p>Ab diesem Datum dürfen Produkte, die mit Zwangsarbeit hergestellt wurden, nicht mehr auf dem EU-Markt bereitgestellt oder aus der EU exportiert werden. Die Regel gilt unabhängig vom Ursprung der Ware.</p><div class="meta"><span class="pill high">Menschenrechte</span><span class="pill">Compliance</span></div><a class="source" href="https://single-market-economy.ec.europa.eu/single-market/goods/forced-labour-regulation_en" target="_blank" rel="noopener">Quelle: Europäische Kommission ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="industrie" data-date="2027-09-07" data-end="2027-09-12">
-        <div class="datebox"><b>07.–12.09.</b><span>Automotive</span></div>
-        <div><h3>IAA MOBILITY 2027 in München</h3><p>Der internationale Mobilitätstreff startet am 7. September, der Pressetag ist am 6. September. Für Automotive-Einkauf relevant sind neue Plattformen, Software-defined Vehicles, Elektrifizierung, autonome Systeme und Lieferantenankündigungen.</p><div class="meta"><span class="pill good">Automotive</span><span class="pill">OEMs</span></div><a class="source" href="https://www.iaa-mobility.com/de" target="_blank" rel="noopener">Quelle: IAA MOBILITY ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
-      <article class="event" data-cat="logistik" data-date="2027-11-29">
-        <div class="datebox"><b>29.11.2027</b><span>IMO</span></div>
-        <div><h3>HNS-Übereinkommen für gefährliche und schädliche Stoffe tritt in Kraft</h3><p>Das internationale Haftungs- und Entschädigungsregime für Unfälle mit gefährlichen und schädlichen Stoffen auf See wird wirksam. Relevant für Chemikalien, alternative Kraftstoffe und entsprechende Transport- und Versicherungsbedingungen.</p><div class="meta"><span class="pill good">Seefracht</span><span class="pill">Gefahrgut</span></div><a class="source" href="https://www.imo.org/en/mediacentre/pressbriefings/pages/imo-hns-treaty-to-enter-into-force-in-2027-.aspx" target="_blank" rel="noopener">Quelle: International Maritime Organization ↗</a></div>
-        <div class="countdown" data-countdown></div>
-      </article>
-
+  <section id="kalender">
+    <div class="calendar-toolbar">
+      <div class="group">
+        <button class="tool-button" type="button" id="prev-range">‹ 3 Monate</button>
+        <button class="tool-button" type="button" id="today-range">Heute</button>
+        <button class="tool-button" type="button" id="next-range">3 Monate ›</button>
+      </div>
+      <div class="group" aria-label="Kategorien filtern">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">Alle</button>
+        <button class="filter" type="button" data-filter="compliance" aria-pressed="false">Compliance</button>
+        <button class="filter" type="button" data-filter="handel" aria-pressed="false">Handel &amp; Zölle</button>
+        <button class="filter" type="button" data-filter="logistik" aria-pressed="false">Logistik</button>
+        <button class="filter" type="button" data-filter="energie" aria-pressed="false">Energie</button>
+        <button class="filter" type="button" data-filter="geopolitik" aria-pressed="false">Geopolitik</button>
+        <button class="filter" type="button" data-filter="industrie" aria-pressed="false">Industrie &amp; Automotive</button>
+      </div>
     </div>
+
+    <div class="legend" aria-label="Legende">
+      <span><i class="dot-compliance"></i>Compliance</span>
+      <span><i class="dot-handel"></i>Handel &amp; Zölle</span>
+      <span><i class="dot-logistik"></i>Logistik</span>
+      <span><i class="dot-energie"></i>Energie</span>
+      <span><i class="dot-geopolitik"></i>Geopolitik</span>
+      <span><i class="dot-industrie"></i>Industrie &amp; Automotive</span>
+    </div>
+
+    <div class="calendar-stack" id="calendar-stack" aria-live="polite"></div>
   </section>
 
-  <p class="note" id="hinweis"><b>Testfunktion:</b> Der Kalender ist eine redaktionelle Frühwarnübersicht. Termine mit politischer Entscheidung oder möglicher Verlängerung werden als Review- beziehungsweise Ablaufdatum gekennzeichnet und nicht als sicher eintretende Rechtsänderung dargestellt. Quellen und Termine sollten bei jeder Morgenbrief-Recherche frisch geprüft werden.</p>
+  <p class="note" id="hinweis"><b>Testfunktion:</b> Ein Punkt bedeutet, dass an diesem Tag mindestens ein relevanter Termin oder ein laufendes Ereignis hinterlegt ist. Bei mehrtägigen Ereignissen wird jeder betroffene Tag markiert. Politische Review- und Ablaufdaten werden nicht als sicher eintretende Rechtsänderung dargestellt.</p>
 </main>
-<footer><p><b>TESTUMGEBUNG.</b> Diese Kalenderseite verändert die produktive Morgenbrief-Ausgabe nicht.</p></footer>
+
+<footer><p><b>TESTUMGEBUNG.</b> Der Kalender verändert die produktive Morgenbrief-Ausgabe nicht.</p></footer>
+
+<dialog id="day-dialog" aria-labelledby="dialog-title">
+  <div class="dialog-head">
+    <div><h2 id="dialog-title">Tagesansicht</h2><p id="dialog-subtitle"></p></div>
+    <button class="dialog-close" type="button" aria-label="Schließen">×</button>
+  </div>
+  <div class="dialog-body" id="dialog-body"></div>
+</dialog>
+
 <script>
 (() => {
-  const events = [...document.querySelectorAll(".event")];
-  const buttons = [...document.querySelectorAll(".filter")];
-  const parse = value => {
-    const [y,m,d] = value.split("-").map(Number);
-    return Date.UTC(y,m-1,d);
+  const events = [
+    {start:"2026-09-30",cat:"handel",label:"Frist",title:"EU-Stahl: Konsultation zur Ausweitung des Produktumfangs endet",text:"Die Kommission prüft unter anderem Drähte, Edelstahldrähte und geschmiedete Stäbe für eine mögliche Aufnahme in die EU-Stahlmaßnahmen. Für betroffene CN-Codes kann sich die Import- und Preislandschaft ändern.",source:"Europäische Kommission",url:"https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en"},
+    {start:"2026-10-01",end:"2026-10-07",cat:"logistik",label:"China",title:"China National Day: siebentägige Feiertagsphase",text:"Landesweite Feiertage können Produktion, Abfertigung, Spedition und Reaktionszeiten chinesischer Lieferanten verzögern. Der 10. Oktober ist laut offiziellem Kalender ein Ausgleichs-Arbeitstag.",source:"Staatsrat der Volksrepublik China",url:"https://big5.www.gov.cn/gate/big5/www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm"},
+    {start:"2026-10-09",cat:"geopolitik",label:"Review",title:"EU-Sanktionsrahmen zu russischen hybriden Aktivitäten: aktuelles Ablaufdatum",text:"Die bestehenden restriktiven Maßnahmen gegen destabilisierende russische Aktivitäten im Ausland laufen nach aktuellem Beschluss bis zu diesem Datum. Vorher ist mit einer politischen Überprüfung beziehungsweise möglicher Verlängerung zu rechnen.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/policies/sanctions-against-russia/timeline-sanctions-against-russia/"},
+    {start:"2026-11-30",end:"2026-12-04",cat:"logistik",label:"IMO",title:"MEPC 85 und mögliche Fortsetzung der IMO-Net-Zero-Verhandlungen",text:"Das globale Schifffahrtsgremium tagt vom 30. November bis 3. Dezember; für den 4. Dezember ist vorbehaltlich Bestätigung die Fortsetzung der außerordentlichen Sitzung zum Net-Zero-Rahmen vorgesehen.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/meetingsummaries/pages/temporary-mepc-84th-session.aspx"},
+    {start:"2026-12-01",cat:"energie",label:"Zielkorridor",title:"EU-Gasspeicher: Ende des flexiblen 90-Prozent-Zielkorridors",text:"Die verlängerten Speicherregeln geben den Mitgliedstaaten jährlich vom 1. Oktober bis 1. Dezember Zeit, das 90-Prozent-Ziel zu erreichen. Der Speicherstand bleibt ein relevanter Frühindikator für europäische Gas- und Industriepreise.",source:"Europäische Kommission",url:"https://energy.ec.europa.eu/topics/energy-security/gas-storage_en"},
+    {start:"2026-12-11",cat:"compliance",label:"CRA",title:"Cyber Resilience Act: ausreichende Konformitätsbewertungsstellen vorgesehen",text:"Die EU-Umsetzungsplanung sieht bis zu diesem Datum ausreichende notifizierte Konformitätsbewertungsstellen in den Mitgliedstaaten vor.",source:"Europäische Kommission",url:"https://digital-strategy.ec.europa.eu/en/factpages/cyber-resilience-act-implementation"},
+    {start:"2026-12-30",cat:"compliance",label:"EUDR",title:"EU-Entwaldungsverordnung gilt für große und mittlere Marktteilnehmer",text:"Ab diesem Datum greifen die EUDR-Pflichten für große und mittlere Betreiber sowie für bestimmte kleinere Unternehmen. Relevante Rohstoffe sind unter anderem Kautschuk und Holz.",source:"Europäische Kommission",url:"https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en"},
+    {start:"2026-12-31",cat:"handel",label:"Prüffrist",title:"EU-Kommission muss erste Stahl-Produktbereichsprüfung abschließen",text:"Bis Jahresende muss die Kommission bewerten, ob weitere Produktgruppen wie bestimmte Drähte und geschmiedete Stäbe in den Geltungsbereich der EU-Stahlregelung aufgenommen werden sollen.",source:"Europäische Kommission",url:"https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en"},
+    {start:"2027-01-01",cat:"handel",label:"UK-CBAM",title:"Vereinigtes Königreich führt Carbon Border Adjustment Mechanism ein",text:"Der britische CBAM startet für bestimmte Importe aus Aluminium, Zement, Düngemitteln, Wasserstoff sowie Eisen und Stahl.",source:"HM Revenue & Customs",url:"https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism/carbon-border-adjustment-mechanism"},
+    {start:"2027-04-05",end:"2027-04-08",cat:"industrie",label:"Industrie",title:"HANNOVER MESSE 2027",text:"Die internationale Industriemesse bündelt Maschinenbau, Elektro- und Digitalindustrie sowie Energiewirtschaft. Für Einkauf und Lieferantenmanagement ist sie ein Frühindikator für Automatisierung, KI, Energie, Produktionstechnik und neue Anbieter.",source:"HANNOVER MESSE",url:"https://www.hannovermesse.de/de/fuer-besucher/oeffnungszeiten/"},
+    {start:"2027-06-23",cat:"geopolitik",label:"Review",title:"EU-Sanktionen wegen der Annexion der Krim: aktuelles Ablaufdatum",text:"Die maßnahmenbezogenen Beschränkungen wurden bis zu diesem Datum verlängert. Für Lieferanten- und Transaktionsscreening ist die weitere politische Verlängerung beziehungsweise Anpassung zu beobachten.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/06/15/russia-s-war-of-aggression-against-ukraine-new-eu-sanctions-target-energy-revenues-the-military-industrial-complex-propaganda-and-human-rights-violations/"},
+    {start:"2027-07-31",cat:"geopolitik",label:"Review",title:"EU-Wirtschaftssanktionen gegen Russland: aktuelles Ablaufdatum",text:"Die sektoralen Wirtschaftssanktionen zu Handel, Finanzen, Energie, Dual-Use und Transport wurden im Juni 2026 für zwölf Monate bis Ende Juli 2027 verlängert.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/06/25/russia-s-war-of-aggression-against-ukraine-council-extends-economic-sanctions-for-another-year/"},
+    {start:"2027-08-18",cat:"compliance",label:"Batterien",title:"EU-Batterieverordnung: Sorgfaltspflichten starten",text:"Ab diesem Datum gelten die Batterie-Sorgfaltspflichten für erfasste Wirtschaftsakteure. Dazu gehören Due-Diligence-Strategien und unabhängige Prüfung entlang relevanter Rohstoffketten.",source:"EUR-Lex",url:"https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1775489433349&uri=CELEX%3A02023R1542-20250731"},
+    {start:"2027-09-01",cat:"logistik",label:"IMO",title:"Nordostatlantik-Emissionskontrollgebiet tritt in Kraft",text:"Das neue IMO-Emissionskontrollgebiet im Nordostatlantik tritt formal in Kraft; die verschärften Grenzwerte werden zwölf Monate später wirksam.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/meetingsummaries/pages/temporary-mepc-84th-session.aspx"},
+    {start:"2027-09-07",end:"2027-09-12",cat:"industrie",label:"Automotive",title:"IAA MOBILITY 2027 in München",text:"Der internationale Mobilitätstreff startet am 7. September. Für Automotive-Einkauf relevant sind neue Plattformen, Software-defined Vehicles, Elektrifizierung, autonome Systeme und Lieferantenankündigungen.",source:"IAA MOBILITY",url:"https://www.iaa-mobility.com/de"},
+    {start:"2027-11-29",cat:"logistik",label:"IMO",title:"HNS-Übereinkommen für gefährliche und schädliche Stoffe tritt in Kraft",text:"Das internationale Haftungs- und Entschädigungsregime für Unfälle mit gefährlichen und schädlichen Stoffen auf See wird wirksam.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/pressbriefings/pages/imo-hns-treaty-to-enter-into-force-in-2027-.aspx"},
+    {start:"2027-12-02",cat:"compliance",label:"AI Act",title:"EU-AI-Act: neue Frist für bestimmte Hochrisiko-Systeme",text:"Nach dem angepassten Zeitplan gelten die Vorgaben für Hochrisiko-KI in Bereichen wie Beschäftigung, kritischer Infrastruktur und weiteren sensiblen Einsatzfeldern ab diesem Datum.",source:"Europäische Kommission",url:"https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems"},
+    {start:"2027-12-11",cat:"compliance",label:"CRA",title:"Cyber Resilience Act wird vollständig anwendbar",text:"Ab diesem Datum greifen die wesentlichen CRA-Anforderungen an Produkte mit digitalen Elementen umfassend.",source:"Europäische Kommission",url:"https://digital-strategy.ec.europa.eu/en/policies/cra-summary"},
+    {start:"2027-12-14",cat:"compliance",label:"Lieferkette",title:"EU-Verordnung gegen Produkte aus Zwangsarbeit wird anwendbar",text:"Ab diesem Datum dürfen Produkte, die mit Zwangsarbeit hergestellt wurden, nicht mehr auf dem EU-Markt bereitgestellt oder aus der EU exportiert werden.",source:"Europäische Kommission",url:"https://single-market-economy.ec.europa.eu/single-market/goods/forced-labour-regulation_en"}
+  ];
+
+  const catLabel={compliance:"Compliance",handel:"Handel & Zölle",logistik:"Logistik",energie:"Energie",geopolitik:"Geopolitik",industrie:"Industrie & Automotive"};
+  const monthNames=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+  const dayNames=[["Montag","Mo"],["Dienstag","Di"],["Mittwoch","Mi"],["Donnerstag","Do"],["Freitag","Fr"],["Samstag","Sa"],["Sonntag","So"]];
+  const stack=document.querySelector("#calendar-stack");
+  const dialog=document.querySelector("#day-dialog");
+  const dialogTitle=document.querySelector("#dialog-title");
+  const dialogSubtitle=document.querySelector("#dialog-subtitle");
+  const dialogBody=document.querySelector("#dialog-body");
+  const filters=[...document.querySelectorAll(".filter")];
+  const today=new Date();
+  const todayKey=[today.getFullYear(),String(today.getMonth()+1).padStart(2,"0"),String(today.getDate()).padStart(2,"0")].join("-");
+  let rangeStart=new Date(today.getFullYear(),today.getMonth(),1);
+  let activeFilter="all";
+
+  const toKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  const parseKey=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+  const formatDate=s=>parseKey(s).toLocaleDateString("de-DE",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+  const eventOnDay=(event,key)=>key>=event.start&&key<=(event.end||event.start);
+  const visibleEventsForDay=key=>events.filter(e=>eventOnDay(e,key)&&(activeFilter==="all"||e.cat===activeFilter));
+  const isoWeek=date=>{
+    const d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()));
+    const day=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-day);
+    const yearStart=new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    return Math.ceil((((d-yearStart)/86400000)+1)/7);
   };
-  const now = new Date();
-  const today = Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());
-  const dayMs = 86400000;
-  events.forEach(event => {
-    const start = parse(event.dataset.date);
-    const end = event.dataset.end ? parse(event.dataset.end) : start;
-    const box = event.querySelector("[data-countdown]");
-    if (today < start) {
-      const days = Math.ceil((start-today)/dayMs);
-      box.innerHTML = days === 1 ? "morgen<small>bis Beginn</small>" : "in " + days + " Tagen<small>bis Beginn</small>";
-    } else if (today <= end) {
-      box.innerHTML = "läuft jetzt<small>aktiver Zeitraum</small>";
-    } else {
-      box.innerHTML = "abgelaufen<small>erneut prüfen</small>";
-      box.style.color = "var(--muted)";
-    }
-  });
-  const future = events
-    .map(e => ({e, t:parse(e.dataset.date)}))
-    .filter(x => x.t >= today)
-    .sort((a,b) => a.t-b.t);
-  if (future.length) {
-    const e = future[0].e;
-    const d = new Date(future[0].t);
-    document.querySelector("#next-date").textContent = String(d.getUTCDate()).padStart(2,"0") + "." + String(d.getUTCMonth()+1).padStart(2,"0") + ".";
-    document.querySelector("#next-title").textContent = e.querySelector("h3").textContent;
+
+  function previewHtml(dayEvents){
+    const shown=dayEvents.slice(0,3).map(e=>"<p><b>"+e.label+"</b> · "+e.title+"</p>").join("");
+    const more=dayEvents.length>3?"<p>+"+(dayEvents.length-3)+" weitere</p>":"";
+    return '<div class="preview"><b>Vorschau</b>'+shown+more+"</div>";
   }
-  document.querySelector("#next-90").textContent = String(events.filter(e => {
-    const t = parse(e.dataset.date);
-    return t >= today && t <= today + 90*dayMs;
-  }).length);
-  buttons.forEach(btn => btn.addEventListener("click", () => {
-    const filter = btn.dataset.filter;
-    buttons.forEach(b => b.setAttribute("aria-pressed", b === btn ? "true" : "false"));
-    events.forEach(e => e.classList.toggle("hidden", filter !== "all" && e.dataset.cat !== filter));
+
+  function openDay(key){
+    const dayEvents=visibleEventsForDay(key);
+    if(!dayEvents.length)return;
+    dialogTitle.textContent=formatDate(key);
+    dialogSubtitle.textContent=dayEvents.length===1?"1 Ereignis":dayEvents.length+" Ereignisse";
+    dialogBody.innerHTML=dayEvents.map(e=>
+      '<article class="detail-card" data-cat="'+e.cat+'">'+
+        '<div class="detail-meta">'+catLabel[e.cat]+' · '+e.label+(e.end?" · "+formatDate(e.start)+" bis "+formatDate(e.end):"")+'</div>'+
+        '<h3>'+e.title+'</h3><p>'+e.text+'</p>'+
+        '<a href="'+e.url+'" target="_blank" rel="noopener">Quelle: '+e.source+' ↗</a>'+
+      '</article>'
+    ).join("");
+    dialog.showModal();
+  }
+
+  function monthElement(year,month){
+    const card=document.createElement("section");card.className="month-card";
+    const first=new Date(year,month,1);
+    const last=new Date(year,month+1,0);
+    const start=new Date(first);
+    const firstDow=(first.getDay()+6)%7;
+    start.setDate(first.getDate()-firstDow);
+    const rows=Math.ceil((firstDow+last.getDate())/7);
+
+    const title=document.createElement("div");title.className="month-title";
+    const eventCount=events.filter(e=>{
+      const es=parseKey(e.start),ee=parseKey(e.end||e.start);
+      return ee>=first&&es<=last&&(activeFilter==="all"||e.cat===activeFilter)
+    }).length;
+    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+(eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
+    card.appendChild(title);
+
+    const grid=document.createElement("div");grid.className="calendar-grid";
+    const kw=document.createElement("div");kw.className="head-cell";kw.textContent="KW";grid.appendChild(kw);
+    dayNames.forEach(([full,short])=>{const h=document.createElement("div");h.className="head-cell";h.innerHTML=short+"<small>"+full+"</small>";grid.appendChild(h)});
+
+    for(let r=0;r<rows;r++){
+      const monday=new Date(start);monday.setDate(start.getDate()+r*7);
+      const w=document.createElement("div");w.className="weekno";w.textContent=isoWeek(monday);grid.appendChild(w);
+      for(let c=0;c<7;c++){
+        const d=new Date(monday);d.setDate(monday.getDate()+c);
+        const key=toKey(d);
+        const dayEvents=visibleEventsForDay(key);
+        const btn=document.createElement("button");
+        btn.type="button";btn.className="day";
+        if(d.getMonth()!==month)btn.classList.add("is-outside");
+        if(c>=5)btn.classList.add("is-weekend");
+        if(c===6)btn.classList.add("is-sunday");
+        if(key===todayKey)btn.classList.add("is-today");
+        btn.innerHTML='<span class="day-num">'+d.getDate()+'</span>';
+        if(dayEvents.length){
+          btn.classList.add("has-events");
+          btn.setAttribute("aria-label",formatDate(key)+": "+dayEvents.length+" Ereignis"+(dayEvents.length===1?"":"se"));
+          const cats=[...new Set(dayEvents.map(e=>e.cat))];
+          btn.innerHTML+=(dayEvents.length>1?'<span class="event-count">'+dayEvents.length+'</span>':"")+
+            '<span class="dots">'+cats.map(cat=>'<i class="dot-'+cat+'"></i>').join("")+'</span>'+previewHtml(dayEvents);
+          btn.addEventListener("click",()=>openDay(key));
+        }else{
+          btn.disabled=true;
+          btn.setAttribute("aria-label",formatDate(key)+": keine Ereignisse");
+        }
+        grid.appendChild(btn);
+      }
+    }
+    card.appendChild(grid);
+    return card;
+  }
+
+  function render(){
+    stack.innerHTML="";
+    for(let i=0;i<3;i++){
+      const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+i,1);
+      stack.appendChild(monthElement(d.getFullYear(),d.getMonth()));
+    }
+  }
+
+  function updateQuick(){
+    const nowKey=todayKey;
+    const future=events.filter(e=>(e.end||e.start)>=nowKey).sort((a,b)=>a.start.localeCompare(b.start));
+    if(future.length){
+      document.querySelector("#next-date").textContent=parseKey(future[0].start).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"});
+      document.querySelector("#next-title").textContent=future[0].title;
+    }
+    const end90=new Date(today);end90.setDate(end90.getDate()+90);
+    const end90Key=toKey(end90);
+    document.querySelector("#next-90").textContent=String(events.filter(e=>e.start>=nowKey&&e.start<=end90Key).length);
+  }
+
+  document.querySelector("#prev-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()-3,1);render()});
+  document.querySelector("#next-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+3,1);render()});
+  document.querySelector("#today-range").addEventListener("click",()=>{rangeStart=new Date(today.getFullYear(),today.getMonth(),1);render()});
+  filters.forEach(btn=>btn.addEventListener("click",()=>{
+    activeFilter=btn.dataset.filter;
+    filters.forEach(b=>b.setAttribute("aria-pressed",b===btn?"true":"false"));
+    render();
   }));
+  dialog.querySelector(".dialog-close").addEventListener("click",()=>dialog.close());
+  dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
+  updateQuick();render();
 })();
 </script>
 </body>
