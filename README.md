@@ -1,6 +1,6 @@
 # KOEPFER Morgenbrief
 
-Stand: 30. September 2026
+Stand: 1. Oktober 2026
 
 ## Projektzweck
 
@@ -48,6 +48,30 @@ Besonders relevant sind:
 * Restrukturierungen, Insolvenzen, Produktionsänderungen, Übernahmen und Kapazitätsanpassungen
 * KI im Einkauf, sofern ein konkreter Bezug zu Datenqualität, Freigaben, Lieferantenmanagement oder Compliance besteht
 
+## Verbindlicher täglicher Nachrichtencheck
+
+Vor der endgültigen Themenauswahl wird an jedem Werktag zusätzlich zur Fach und Primärquellenrecherche ein breiter deutscher Nachrichtencheck durchgeführt.
+
+Mindestens geprüft werden:
+
+* Tagesschau
+* n-tv
+* ZDFheute
+* Handelsblatt
+* WirtschaftsWoche
+* Frankfurter Allgemeine Zeitung
+* Reuters mit Deutschland, Industrie oder Automotive Bezug
+
+Der Zweck dieses Checks ist Früherkennung. Große Ereignisse dürfen nicht deshalb fehlen, weil sie zuerst in allgemeinen Nachrichtenquellen und nicht in einer bereits beobachteten Fachquelle auftauchen.
+
+Besonders auf Vollständigkeit geprüft werden Nachrichten zu Volkswagen, Mercedes-Benz, BMW, Bosch, ZF, Schaeffler und weiteren großen deutschen Industrieunternehmen sowie zu Tarifkonflikten, Werksschließungen, Stellenabbau, Produktionsstopps, Insolvenzen, Restrukturierungen, Standortentscheidungen, Energie, Kraftstoff, Steuern, Zöllen und neuen gesetzlichen Vorgaben.
+
+Allgemeine Nachrichtenquellen dienen auch als Entdeckungsquelle. Für strittige Details, Zahlen, Geltungsdaten und direkte Unternehmensmaßnahmen werden nach Möglichkeit zusätzlich Primärquellen wie Unternehmen, Gewerkschaften, Behörden, Ministerien, EU Organe oder Originaldokumente verwendet.
+
+Vor Veröffentlichung wird ausdrücklich geprüft, ob seit der letzten Ausgabe ein großes deutsches Wirtschafts, Industrie oder Automotive Ereignis vorliegt, das in der Auswahl fehlt.
+
+Meldungen mit hoher unmittelbarer Tagesrelevanz, insbesondere Maßnahmen die ab dem aktuellen Tag gelten, große Kunden oder OEM Ereignisse, gravierende Tarif oder Standortentscheidungen sowie neue regulatorische Pflichten, werden im Nachrichtenteil weit oben priorisiert. Eine hohe Priorität darf nicht allein wegen später Entdeckung zu einer Platzierung am Ende führen.
+
 ## Umfang der regulären Meldungen
 
 Eine reguläre Ausgabe enthält mindestens 6 Wirtschafts und Einkaufsmeldungen, sofern dafür ausreichend belastbare und relevante Meldungen verfügbar sind.
@@ -70,18 +94,20 @@ Ein Update zu einer bereits produktiv berichteten Entwicklung wird nur veröffen
 2. Zentrale Feedback Komponente prüfen.
 3. `feedback-summary.json` lesen.
 4. Aktuelle Bewertungen und Wünsche zusätzlich direkt aus Supabase prüfen.
-5. Neue Nachrichten und Primärquellen recherchieren.
-6. Dubletten gegen produktive Root und Archiv Ausgaben prüfen.
-7. Lieferantenradar durchführen.
-8. Regionale News für ungefähr 50 km um Furtwangen recherchieren.
-9. Reguläre Meldungen priorisieren und redaktionell ausarbeiten.
-10. Globale Risiko und Ereigniskarte aktualisieren.
-11. Vorherige Root Ausgabe archivieren.
-12. Archivindex ergänzen.
-13. Neue Root Ausgabe aus der aktuellen Mastervorlage erzeugen.
-14. Vor Veröffentlichung die vorbereitete Ausgabe validieren.
-15. Root `index.html` aktualisieren.
-16. GitHub Stand und anschließend die veröffentlichte Seite prüfen.
+5. Breiten deutschen Nachrichtencheck bei Tagesschau, n-tv, ZDFheute, Handelsblatt, WirtschaftsWoche, FAZ und Reuters durchführen.
+6. Neue Fachmeldungen und Primärquellen recherchieren.
+7. Vor Themenabschluss einen Vollständigkeitscheck auf große deutsche Wirtschafts, Industrie und Automotive Ereignisse durchführen.
+8. Dubletten gegen produktive Root und Archiv Ausgaben prüfen.
+9. Lieferantenradar durchführen.
+10. Regionale News für ungefähr 50 km um Furtwangen recherchieren.
+11. Reguläre Meldungen priorisieren und redaktionell ausarbeiten.
+12. Globale Risiko und Ereigniskarte aktualisieren.
+13. Vorherige Root Ausgabe archivieren.
+14. Archivindex ergänzen.
+15. Neue Root Ausgabe aus der aktuellen Mastervorlage erzeugen.
+16. Vor Veröffentlichung die vorbereitete Ausgabe validieren.
+17. Root `index.html` aktualisieren.
+18. GitHub Stand und anschließend die veröffentlichte Seite prüfen.
 
 ## Feedback, Bewertungen und Wünsche
 
@@ -249,6 +275,9 @@ Vor dem Root Update wird mindestens geprüft:
 * keine alternative Inline Feedbacklogik wurde erzeugt
 * Lead SVG enthält keine eingebettete Beschriftung
 * Quellenlinks sind vorhanden und anklickbar
+* der verpflichtende deutsche Nachrichtencheck wurde durchgeführt
+* es fehlt kein erkennbar großes deutsches Wirtschafts, Industrie oder Automotive Ereignis aus der aktuellen Nachrichtenlage
+* Meldungen mit hoher unmittelbarer Tagesrelevanz sind im oberen Bereich angemessen priorisiert
 * keine sichtbaren internen Hinweise oder vertraulichen Daten erscheinen im Bericht
 * HTML und JavaScript weisen keine offensichtlichen strukturellen Fehler auf
 
@@ -277,7 +306,7 @@ Zusätzlich wird der GitHub Änderungsumfang kontrolliert, damit keine unbeabsic
 
 Falls der Morgenbrief in einer neuen Unterhaltung oder Automatisierung wieder eingerichtet werden muss, gilt folgende Kurzfassung:
 
-> Arbeite im Repository `koepfer-einkauf/koepfer-morgenbrief` auf Branch `main`. Starte montags bis freitags um 06:00 Uhr Europe/Berlin. Samstags und sonntags gibt es keine Ausgabe. Lies vor der Recherche Feedback und Wünsche aus Supabase. Recherchiere aktuelle, belastbare und KOEPFER relevante Meldungen zu Automotive, Lieferanten, Kunden, Stahl, Rohstoffen, Energie, Logistik, Maschinenbau, Konjunktur, EU Regeln, Compliance, Zöllen, Handelspolitik und relevanter Geopolitik. Reguläre Wirtschafts und Einkaufsmeldungen: mindestens 6, Zielbereich 8 bis 10, bei außergewöhnlicher Nachrichtenlage bis 15. Keine Füllmeldungen und keine künstlichen Wiederholungen. Regionale News im Umkreis von ungefähr 50 km um Furtwangen sind ein eigener Zusatzabschnitt und zählen nicht zur Artikelzahl. Archiviere zuerst die bisherige Root Ausgabe. Verwende ausschließlich die aktuelle `index.html` als Mastervorlage. Bewahre Design, Navigation, Feedback, Themenwunsch und Kartenfunktionen. Aktualisiere exakt einen blauen Kartenmarker je regulärer Meldung. Verändere `testumgebung/` niemals. Lies vor jedem Schreibvorgang die betroffene GitHub Datei erneut und verwende beim Aktualisieren den aktuellen Blob SHA. Prüfe nach Veröffentlichung Root, Archiv, Feedback, Karte, Links und Änderungsumfang.
+> Arbeite im Repository `koepfer-einkauf/koepfer-morgenbrief` auf Branch `main`. Starte montags bis freitags um 06:00 Uhr Europe/Berlin. Samstags und sonntags gibt es keine Ausgabe. Lies vor der Recherche Feedback und Wünsche aus Supabase. Führe täglich einen breiten deutschen Nachrichtencheck bei Tagesschau, n-tv, ZDFheute, Handelsblatt, WirtschaftsWoche, FAZ und Reuters durch und prüfe vor Themenabschluss ausdrücklich, ob ein großes deutsches Wirtschafts, Industrie oder Automotive Ereignis fehlt. Recherchiere anschließend aktuelle, belastbare und KOEPFER relevante Meldungen zu Automotive, Lieferanten, Kunden, Stahl, Rohstoffen, Energie, Logistik, Maschinenbau, Konjunktur, EU Regeln, Compliance, Zöllen, Handelspolitik und relevanter Geopolitik. Hohe Tagesrelevanz wie ab heute geltende Maßnahmen, große OEM Ereignisse, Tarif oder Standortentscheidungen und neue regulatorische Pflichten werden weit oben priorisiert. Reguläre Wirtschafts und Einkaufsmeldungen: mindestens 6, Zielbereich 8 bis 10, bei außergewöhnlicher Nachrichtenlage bis 15. Keine Füllmeldungen und keine künstlichen Wiederholungen. Regionale News im Umkreis von ungefähr 50 km um Furtwangen sind ein eigener Zusatzabschnitt und zählen nicht zur Artikelzahl. Archiviere zuerst die bisherige Root Ausgabe. Verwende ausschließlich die aktuelle `index.html` als Mastervorlage. Bewahre Design, Navigation, Feedback, Themenwunsch und Kartenfunktionen. Aktualisiere exakt einen blauen Kartenmarker je regulärer Meldung. Verändere `testumgebung/` niemals. Lies vor jedem Schreibvorgang die betroffene GitHub Datei erneut und verwende beim Aktualisieren den aktuellen Blob SHA. Prüfe nach Veröffentlichung Root, Archiv, Feedback, Karte, Links und Änderungsumfang.
 
 ## Grundsatz
 
