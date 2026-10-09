@@ -197,7 +197,7 @@ Tagesabhängig geändert werden nur:
 * Quellen und Verlinkungen
 * redaktionelle Kennzahlen
 * Karteninhalte
-* thematisch passende Lead Grafik
+* thematisch passendes Titelbild, vorzugsweise ein rechtssicher nutzbares Originalfoto
 
 Das KOEPFER Logo bleibt unverändert:
 
@@ -205,15 +205,25 @@ Das KOEPFER Logo bleibt unverändert:
 
 Die Datei `assets/koepfer-logo.svg` wird bei täglichen Ausgaben nicht verändert.
 
-## Lead Grafik
+## Titelbild und Lead Grafik
 
-Die große Lead Grafik greift die erste Hauptmeldung visuell auf.
+Das große Titelbild greift die erste Hauptmeldung konkret auf. **Echte, thematisch passende Fotos haben Vorrang vor selbst erstellten Illustrationen.** Bevorzugt werden Originalfotos des betroffenen Unternehmens, Standorts, Produkts oder Ereignisses.
 
-Sie bleibt eine illustrative und abstrakte SVG Grafik.
+Für die Bildauswahl gilt diese Reihenfolge:
 
-Im `<svg class="lead-art">` werden keine eingebetteten Textblöcke, Zahlenlabels, Datenkarten oder hellen Infoboxen verwendet.
+1. Passendes Originalfoto aus der offiziellen Presse- oder Mediendatenbank des Unternehmens, einer Behörde oder einer anderen Primärquelle, **wenn die Nutzungsbedingungen eine Veröffentlichung auf der öffentlichen Morgenbrief Website einschließlich dauerhafter Archivierung erlauben**.
+2. Passendes, nachweislich zur Wiederveröffentlichung freigegebenes redaktionelles Foto aus einer seriösen Bildquelle unter Einhaltung aller Lizenzauflagen.
+3. Wenn kein geeignetes rechtssicher verwendbares Foto verfügbar ist, eine eigenständig gestaltete, klar zum Hauptthema passende abstrakte SVG Illustration.
 
-Headline und Beschreibung bleiben als normales HTML außerhalb der SVG Grafik.
+Die freie Erreichbarkeit eines Pressefotos bedeutet nicht, dass es kopiert oder veröffentlicht werden darf. Ein Quellenlink allein ersetzt keine Lizenz. Bilder von Nachrichtenagenturen und Medien, etwa Reuters, dpa, Getty und Handelsblatt, werden ohne entsprechende Nutzungsrechte weder kopiert noch eingebettet oder als Screenshot verwendet. Auch direktes Einbetten externer Bilddateien erfolgt nur, wenn dies erlaubt ist.
+
+Bei jedem realen Foto werden **Bildquelle, Urheber beziehungsweise Rechteinhaber, Nutzungsgrundlage und alle Auflagen** vor Veröffentlichung geprüft. Die im konkreten Fall erforderlichen Bildnachweise sind im Morgenbrief sichtbar und anklickbar anzubringen. Rechte müssen auch für die im Archiv dauerhaft erreichbare Ausgabe gelten. Wird ein älteres Foto gezeigt, muss es, falls andernfalls eine Fehlvorstellung entstehen könnte, als Archivbild erkennbar sein. Kein Bild darf ein anderes Werk, Produkt oder Ereignis vortäuschen.
+
+Ist das lokale Hosting von der Lizenz gedeckt, wird das Foto unter einem datumsbezogenen Pfad in `assets/lead/` gespeichert und für bestehende Archive nicht gelöscht. Ansonsten kommt ausschließlich eine nachweislich zulässige Einbindungsart infrage. Das Foto wird mit einer sachlich richtigen Alternativbeschreibung und sinnvoller mobiler Bildanpassung in der Lead Fläche verwendet, etwa als `<img class="lead-art">`. Die vorhandene Seitenstruktur, das Design und die Textüberlagerung bleiben bestehen.
+
+Eine SVG Ausweichillustration enthält keine eingebetteten Textblöcke, Zahlenlabels, Datenkarten oder hellen Infoboxen. Sie muss sichtbar zur Hauptmeldung passen und abwechslungsreich gestaltet sein. **Dieselbe oder nur geringfügig abgeänderte Illustration wird nicht an aufeinanderfolgenden Ausgabetagen erneut verwendet.**
+
+Headline und Beschreibung bleiben immer normales HTML außerhalb des Bildes.
 
 ## Globale Risiko und Ereigniskarte
 
@@ -273,7 +283,9 @@ Vor dem Root Update wird mindestens geprüft:
 * Themenwunsch Button und Dialog sind vorhanden
 * zentrale Feedback Komponente wird exakt eingebunden
 * keine alternative Inline Feedbacklogik wurde erzeugt
-* Lead SVG enthält keine eingebettete Beschriftung
+* Lead Bild ist thematisch konkret und unterscheidet sich deutlich von vorherigen Ausgaben
+* bei Fotografien sind Nutzungsrechte einschließlich Archivierung vorab geklärt, Bildquelle und Urheber im Bericht verlinkt
+* bei SVG Ausweichillustrationen sind keine Beschriftungen eingebettet
 * Quellenlinks sind vorhanden und anklickbar
 * der verpflichtende deutsche Nachrichtencheck wurde durchgeführt
 * es fehlt kein erkennbar großes deutsches Wirtschafts, Industrie oder Automotive Ereignis aus der aktuellen Nachrichtenlage
@@ -298,6 +310,7 @@ Nach dem GitHub Update wird mindestens geprüft:
 * Anzahl der blauen Marker entspricht der Zahl der regulären Meldungen
 * regionale Rubrik ist sichtbar
 * Links weisen keine offensichtlichen Fehler auf
+* Titelbild lädt fehlerfrei, Bildnachweis ist sichtbar und Bilddarstellung auf Mobilgeräten und im Archiv funktioniert
 * Layout und mobile Darstellung entsprechen weiterhin der Mastervorlage
 
 Zusätzlich wird der GitHub Änderungsumfang kontrolliert, damit keine unbeabsichtigten Dateien verändert wurden.
