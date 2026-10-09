@@ -209,6 +209,10 @@ Die Datei `assets/koepfer-logo.svg` wird bei täglichen Ausgaben nicht veränder
 
 Das große Titelbild greift die erste Hauptmeldung konkret auf. **Echte, thematisch passende Fotos haben Vorrang vor selbst erstellten Illustrationen.** Bevorzugt werden Originalfotos des betroffenen Unternehmens, Standorts, Produkts oder Ereignisses.
 
+**Tägliche Bildrecherche für die produktive Root Ausgabe:** Zuerst wird genau das Bild geprüft, das die für die Hauptmeldung verlinkte Nachrichtenquelle im konkreten Artikel verwendet. Ein beliebiges anderes Foto desselben Herstellers gilt nicht als gleichwertiger Ersatz. Stimmen Bildmotiv und Rechte, wird dieses Originalbild auch in der regulären Ausgabe gezeigt, mit eindeutiger Bildquelle und Urhebernennung. Falls dieses Foto nicht für die öffentliche Nutzung einschließlich Archiv freigegeben ist, wird zunächst ein thematisch möglichst nahes, nachweislich nutzbares Originalfoto gesucht; erst danach kommt eine neue Illustration infrage. Die fehlende Lizenz darf nicht durch eine bloße Verlinkung, Hotlinking, einen Screenshot oder durch die Annahme einer angeblich rein internen Website umgangen werden.
+
+Gelbe Testhinweise, Vorschau- und Statusbanner gehören weder in den produktiven Morgenbrief noch in eine dem Nutzer präsentierte Bildtestansicht. Änderungen an Bildmotiven dürfen keine Nachrichtenartikel, Karte, Feedback, Archiv oder Navigation unbeabsichtigt verändern.
+
 Für die Bildauswahl gilt diese Reihenfolge:
 
 1. Passendes Originalfoto aus der offiziellen Presse- oder Mediendatenbank des Unternehmens, einer Behörde oder einer anderen Primärquelle, **wenn die Nutzungsbedingungen eine Veröffentlichung auf der öffentlichen Morgenbrief Website einschließlich dauerhafter Archivierung erlauben**.
