@@ -13,6 +13,28 @@
   .lead img.lead-art.photo-lead{display:block;object-fit:cover;object-position:center center;opacity:.86}
   .lead-photo-credit{margin:12px 0 0!important;color:#e6edf0!important;font-size:.72rem!important;line-height:1.45;max-width:740px}
   .lead-photo-credit a{color:#fff1c8;text-underline-offset:2px}
+
+  /* Jahresauswahl für die eigenständige Kalenderseite */
+  #kalender .year-jump{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:11px 22px;align-items:center;margin:24px 0 12px;padding:20px 22px;border:1px solid var(--line);border-radius:6px;background:var(--card);box-shadow:0 8px 22px rgba(30,35,38,.045)}
+  #kalender .year-jump-title{display:grid;gap:3px}
+  #kalender .year-jump-title label{color:var(--night);font:800 1.28rem/1.1 Georgia,serif}
+  #kalender .year-jump-title span{color:var(--muted);font-size:.82rem}
+  #kalender .year-jump-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  #kalender .year-jump input{width:148px;min-height:45px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);font-size:1rem;font-weight:750}
+  #kalender .year-jump input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+  #kalender .year-jump input[aria-invalid="true"]{border-color:var(--red)}
+  #kalender .year-jump .tool-button{min-height:45px;padding:10px 16px;background:var(--night);border-color:var(--night);color:#fff}
+  #kalender .year-jump .tool-button:hover{background:var(--blue);border-color:var(--blue)}
+  #kalender .year-jump-hint,#kalender .year-jump-feedback{grid-column:1/-1;margin:0;color:var(--muted);font-size:.79rem}
+  #kalender .year-jump-feedback{color:var(--blue);font-weight:750;min-height:1.25em}
+  #kalender .calendar-stack.is-year-view{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  @media(max-width:1080px){#kalender .calendar-stack.is-year-view{grid-template-columns:1fr}}
+  @media(max-width:700px){
+    #kalender .year-jump{grid-template-columns:1fr;padding:17px 16px}
+    #kalender .year-jump-controls{width:100%}
+    #kalender .year-jump-controls input{min-width:120px;flex:1}
+    #kalender .year-jump-controls .tool-button{flex:1 1 160px}
+  }
 </style>
   <link rel="stylesheet" href="/koepfer-morgenbrief/assets/terminkalender.css">
 </head>
@@ -25,6 +47,19 @@
     <article class="intro-main"><div class="cal-kicker">TERMINE · FRISTEN · EREIGNISSE</div><h3>Wichtige Termine für den Einkauf</h3><p>EU-Regeln, Zölle, Logistik, Energie, Sanktionen und Automotive. Markierte Tage zeigen eine Kurzvorschau. Ein Klick öffnet die vollständige Tagesansicht mit Quellen.</p></article>
     <aside class="quick"><div class="quick-card"><small>Nächster Termin</small><b id="next-date">–</b><span id="next-title">Wird geladen</span></div><div class="quick-card"><small>In den nächsten 90 Tagen</small><b id="next-90">0</b><span>gepflegte Ereignisse</span></div></aside>
   </div>
+  <form id="year-jump" class="year-jump" novalidate aria-label="Kalenderjahr direkt aufrufen">
+    <div class="year-jump-title">
+      <label for="year-input">Jahr direkt aufrufen</label>
+      <span>Vergangenheit und Zukunft</span>
+    </div>
+    <div class="year-jump-controls">
+      <input id="year-input" name="jahr" type="number" inputmode="numeric" min="1000" max="9999" step="1" placeholder="z. B. 2030" aria-describedby="year-jump-hint year-jump-feedback" required>
+      <button type="submit" class="tool-button">Ganzes Jahr anzeigen →</button>
+    </div>
+    <p class="year-jump-hint" id="year-jump-hint">Auch Jahre ohne Termine lassen sich anzeigen. Für vergangene Jahre werden keine Meldungen nachgetragen.</p>
+    <p class="year-jump-feedback" id="year-jump-feedback" role="status" aria-live="polite"></p>
+  </form>
+
       <div class="calendar-toolbar">
       <div class="group">
         <button class="tool-button" type="button" id="prev-range">‹ 3 Monate</button>
