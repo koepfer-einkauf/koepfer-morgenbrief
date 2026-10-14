@@ -36,7 +36,7 @@
     #kalender .year-jump-controls .tool-button{flex:1 1 160px}
   }
 </style>
-  <link rel="stylesheet" href="/koepfer-morgenbrief/assets/terminkalender.css">
+  <link rel="stylesheet" href="/koepfer-morgenbrief/assets/terminkalender.css?v=julianisch-gregorianisch-1582">
 </head>
 <body>
   <header class="masthead"><div class="masthead-inner"><div class="utility"><span>Termin-Kalender · Einkauf &amp; Supply Chain</span><span class="hide-mobile">Entscheiderbriefing · KOEPFER Industry Intelligence</span></div><div class="brand"><div class="brand-mark"><img src="/koepfer-morgenbrief/assets/koepfer-logo.svg" alt="KOEPFER"></div><h1>Der Morgenbrief<span>KOEPFER Industry Intelligence</span></h1><div class="brand-side right">Terminübersicht<br>Fristen &amp; Ereignisse<br><a class="archive-cta" href="../">Morgenbrief öffnen →</a></div></div><nav aria-label="Seiten-Navigation"><a href="../">Morgenbrief</a><a href="#kalender" aria-current="page">Kalender</a><a href="../archive/">Archiv</a><a href="#kalender-hinweis">Hinweise</a></nav></div></header>
@@ -56,7 +56,7 @@
       <input id="year-input" name="jahr" type="number" inputmode="numeric" min="1000" max="9999" step="1" placeholder="z. B. 2030" aria-describedby="year-jump-hint year-jump-feedback" required>
       <button type="submit" class="tool-button">Ganzes Jahr anzeigen →</button>
     </div>
-    <p class="year-jump-hint" id="year-jump-hint">Auch Jahre ohne Termine lassen sich anzeigen. Für vergangene Jahre werden keine Meldungen nachgetragen.</p>
+    <p class="year-jump-hint" id="year-jump-hint">Auch Jahre ohne Termine lassen sich anzeigen. Für vergangene Jahre werden keine Meldungen nachgetragen. Die historische Ansicht verwendet bis zum 4. Oktober 1582 den julianischen und ab dem 15. Oktober 1582 den gregorianischen Kalender (Referenz: zuerst umstellende Länder).</p>
     <p class="year-jump-feedback" id="year-jump-feedback" role="status" aria-live="polite"></p>
   </form>
 
@@ -98,6 +98,6 @@
 </section>
   </main>
   <footer><p>KOEPFER Industry Intelligence · Terminangaben und Geltungsdaten anhand verlinkter Originalquellen prüfen. Änderungen bleiben möglich.</p></footer>
-  <script src="/koepfer-morgenbrief/assets/terminkalender.js?v=1582-kalenderreform" defer></script>
+  <script src="/koepfer-morgenbrief/assets/terminkalender.js?v=1582-wechsel-sichtbar" defer></script>
 </body>
 </html>
