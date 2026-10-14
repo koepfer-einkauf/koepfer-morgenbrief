@@ -126,8 +126,24 @@
       const es=civilToDay(sy,sm,sd),ee=civilToDay(ey,em,ed);
       return ee!==null&&es!==null&&ee>=firstDay&&es<endDay&&(activeFilter==="all"||e.cat===activeFilter);
     }).length;
-    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+(eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
+    const phase=year<1582||(year===1582&&month<9)?"julian":year===1582&&month===9?"transition":"gregorian";
+    const phaseName=phase==="julian"?"Julianischer Kalender":phase==="gregorian"?"Gregorianischer Kalender":"Julianisch → Gregorianisch";
+    card.dataset.calendarPhase=phase;
+    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3>"+
+      '<div class="month-meta"><span class="calendar-era era-'+phase+'">'+phaseName+'</span>'+
+      '<span class="month-event-count">'+(eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span></div>";
     card.appendChild(title);
+
+    if(phase==="transition"){
+      const notice=document.createElement("div");
+      notice.className="calendar-transition";
+      notice.innerHTML='<strong>Kalenderwechsel · Oktober 1582</strong>'+
+        '<div class="calendar-transition-days"><span><b>Donnerstag, 4. Oktober</b><small>letzter julianischer Tag</small></span>'+
+        '<span class="calendar-skip" aria-label="10 Kalendertage entfallen">→ 10 Tage entfallen →</span>'+
+        '<span><b>Freitag, 15. Oktober</b><small>erster gregorianischer Tag</small></span></div>'+
+        '<p>5. bis 14. Oktober 1582 entfielen bei der ersten Einführung der Reform. Andere Regionen, auch viele deutsche Gebiete, wechselten erst später.</p>';
+      card.appendChild(notice);
+    }
 
     const grid=document.createElement("div");grid.className="calendar-grid";
     const kw=document.createElement("div");kw.className="head-cell";kw.textContent="KW";grid.appendChild(kw);
@@ -158,17 +174,21 @@
           btn.disabled=true;
           btn.setAttribute("aria-label",formatDate(key)+": keine Ereignisse");
         }
+        if(year===1582&&month===9&&d.year===1582&&d.month===10){
+          const isJulian=d.day<=4;
+          btn.classList.add(isJulian?"is-julian":"is-gregorian");
+          if(d.day===4||d.day===15){
+            const isFirstGregorian=d.day===15;
+            btn.classList.add(isFirstGregorian?"is-reform-after":"is-reform-before");
+            btn.innerHTML+='<span class="calendar-boundary-label" aria-hidden="true">'+(isFirstGregorian?"Greg.":"Jul.")+"</span>";
+            btn.title=isFirstGregorian?"Erster Tag des gregorianischen Kalenders":"Letzter Tag des julianischen Kalenders";
+            btn.setAttribute("aria-label",btn.getAttribute("aria-label")+", "+btn.title);
+          }
+        }
         grid.appendChild(btn);
       }
     }
     card.appendChild(grid);
-    if(year===1582&&month===9){
-      const info=document.createElement("p");
-      info.className="note";
-      info.style.cssText="margin:10px 13px 14px;padding:10px 12px";
-      info.textContent="Kalenderreform 1582 (zuerst umstellende Länder): Auf Donnerstag, den 4. Oktober, folgte Freitag, der 15. Oktober. Die Tage 5.–14. Oktober entfielen. Deutsche Gebiete und andere Länder stellten teils später um; Kalenderwochen sind rückwirkend berechnet.";
-      card.appendChild(info);
-    }
     return card;
   }
 
