@@ -207,7 +207,7 @@
         const matched=events.filter(e=>e.start<=end&&(e.end||e.start)>=begin&&(activeFilter==="all"||e.cat===activeFilter)).length;
         yearFeedback.textContent=matched
           ?"Jahresansicht "+selectedYear+": "+matched+" belegte "+(matched===1?"Eintragung":"Eintragungen")+"."
-          :"Für "+selectedYear+" sind keine Termine hinterlegt. Frühere Nachrichten werden nicht nachgetragen.";
+          :"Für "+selectedYear+" sind keine Termine hinterlegt.";
       }else{
         const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+2,1);
         yearFeedback.textContent="Ansicht: "+monthNames[rangeStart.getMonth()]+" "+rangeStart.getFullYear()+" bis "+monthNames[d.getMonth()]+" "+d.getFullYear()+".";
