@@ -36,7 +36,11 @@
   const today=new Date();
   const todayKey=[today.getFullYear(),String(today.getMonth()+1).padStart(2,"0"),String(today.getDate()).padStart(2,"0")].join("-");
   let rangeStart=new Date(today.getFullYear(),today.getMonth(),1);
+  let visibleMonths=3;
   let activeFilter="all";
+  const yearForm=calendar.querySelector("#year-jump");
+  const yearInput=calendar.querySelector("#year-input");
+  const yearFeedback=calendar.querySelector("#year-jump-feedback");
 
   const toKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   const parseKey=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
@@ -126,9 +130,24 @@
 
   function render(){
     stack.innerHTML="";
-    for(let i=0;i<3;i++){
+    stack.classList.toggle("is-year-view",visibleMonths===12);
+    for(let i=0;i<visibleMonths;i++){
       const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+i,1);
       stack.appendChild(monthElement(d.getFullYear(),d.getMonth()));
+    }
+    if(yearFeedback){
+      if(visibleMonths===12){
+        const selectedYear=rangeStart.getFullYear();
+        const begin=selectedYear+"-01-01";
+        const end=selectedYear+"-12-31";
+        const matched=events.filter(e=>e.start<=end&&(e.end||e.start)>=begin&&(activeFilter==="all"||e.cat===activeFilter)).length;
+        yearFeedback.textContent=matched
+          ?"Jahresansicht "+selectedYear+": "+matched+" belegte "+(matched===1?"Eintragung":"Eintragungen")+"."
+          :"Für "+selectedYear+" sind keine Termine hinterlegt. Frühere Nachrichten werden nicht nachgetragen.";
+      }else{
+        const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+2,1);
+        yearFeedback.textContent="Ansicht: "+monthNames[rangeStart.getMonth()]+" "+rangeStart.getFullYear()+" bis "+monthNames[d.getMonth()]+" "+d.getFullYear()+".";
+      }
     }
   }
 
@@ -144,9 +163,27 @@
     calendar.querySelector("#next-90").textContent=String(events.filter(e=>e.start>=nowKey&&e.start<=end90Key).length);
   }
 
-  calendar.querySelector("#prev-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()-3,1);render()});
-  calendar.querySelector("#next-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+3,1);render()});
-  calendar.querySelector("#today-range").addEventListener("click",()=>{rangeStart=new Date(today.getFullYear(),today.getMonth(),1);render()});
+  calendar.querySelector("#prev-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()-3,1);visibleMonths=3;render()});
+  calendar.querySelector("#next-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+3,1);visibleMonths=3;render()});
+  calendar.querySelector("#today-range").addEventListener("click",()=>{rangeStart=new Date(today.getFullYear(),today.getMonth(),1);visibleMonths=3;if(yearInput)yearInput.value=String(today.getFullYear());render()});
+  if(yearForm&&yearInput&&yearFeedback){
+    yearInput.value=String(today.getFullYear());
+    yearForm.addEventListener("submit",e=>{
+      e.preventDefault();
+      const raw=yearInput.value.trim();
+      const year=Number(raw);
+      if(!/^\\d{4}$/.test(raw)||!Number.isInteger(year)||year<1000||year>9999){
+        yearInput.setAttribute("aria-invalid","true");
+        yearFeedback.textContent="Bitte ein vierstelliges Jahr zwischen 1000 und 9999 eingeben.";
+        yearInput.focus();
+        return;
+      }
+      yearInput.removeAttribute("aria-invalid");
+      rangeStart=new Date(year,0,1);
+      visibleMonths=12;
+      render();
+    });
+  }
   filters.forEach(btn=>btn.addEventListener("click",()=>{
     activeFilter=btn.dataset.filter;
     filters.forEach(b=>b.setAttribute("aria-pressed",b===btn?"true":"false"));
