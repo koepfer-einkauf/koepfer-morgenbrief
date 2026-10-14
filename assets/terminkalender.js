@@ -44,14 +44,50 @@
 
   const toKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   const parseKey=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
-  const formatDate=s=>parseKey(s).toLocaleDateString("de-DE",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+
+  // Historische Umstellung für die zuerst gregorianisch umgestellten Länder:
+  // Do. 04.10.1582 (julianisch) -> Fr. 15.10.1582 (gregorianisch).
+  // Andere Regionen, auch deutsche Territorien, stellten zu anderen Daten um.
+  // Native JavaScript Date rechnet hingegen durchgehend proleptisch gregorianisch.
+  const REFORM_DAY=2299161;
+  const civilToDay=(year,month,day)=>{
+    if(year===1582&&month===10&&day>=5&&day<=14)return null;
+    const a=Math.floor((14-month)/12);
+    const y=year+4800-a,m=month+12*a-3;
+    const base=day+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4);
+    const gregorian=year>1582||(year===1582&&(month>10||(month===10&&day>=15)));
+    return gregorian?base-Math.floor(y/100)+Math.floor(y/400)-32045:base-32083;
+  };
+  const dayToCivil=jdn=>{
+    let year,month,day;
+    if(jdn>=REFORM_DAY){
+      const a=jdn+32044,b=Math.floor((4*a+3)/146097),c=a-Math.floor(146097*b/4);
+      const d=Math.floor((4*c+3)/1461),e=c-Math.floor(1461*d/4),m=Math.floor((5*e+2)/153);
+      day=e-Math.floor((153*m+2)/5)+1;
+      month=m+3-12*Math.floor(m/10);
+      year=100*b+d-4800+Math.floor(m/10);
+    }else{
+      const a=jdn+32082,b=Math.floor((4*a+3)/1461),c=a-Math.floor(1461*b/4),m=Math.floor((5*c+2)/153);
+      day=c-Math.floor((153*m+2)/5)+1;
+      month=m+3-12*Math.floor(m/10);
+      year=b-4800+Math.floor(m/10);
+    }
+    return {year,month,day};
+  };
+  const weekDay=jdn=>((jdn%7)+7)%7; // 0 = Montag
+  const civilKey=d=>d.year+"-"+String(d.month).padStart(2,"0")+"-"+String(d.day).padStart(2,"0");
+  const formatDate=s=>{
+    const [year,month,day]=s.split("-").map(Number);
+    const jdn=civilToDay(year,month,day);
+    return (jdn===null?"":dayNames[weekDay(jdn)][0]+", ")+String(day).padStart(2,"0")+". "+monthNames[month-1]+" "+year;
+  };
   const eventOnDay=(event,key)=>key>=event.start&&key<=(event.end||event.start);
   const visibleEventsForDay=key=>events.filter(e=>eventOnDay(e,key)&&(activeFilter==="all"||e.cat===activeFilter));
-  const isoWeek=date=>{
-    const d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()));
-    const day=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-day);
-    const yearStart=new Date(Date.UTC(d.getUTCFullYear(),0,1));
-    return Math.ceil((((d-yearStart)/86400000)+1)/7);
+  const isoWeek=jdn=>{
+    // ISO-Wochennummer, für historische Daten rückwirkend berechnet.
+    const thursday=dayToCivil(jdn+3);
+    const jan4=civilToDay(thursday.year,1,4);
+    return Math.floor((jdn-(jan4-weekDay(jan4)))/7)+1;
   };
 
   function previewHtml(dayEvents){
@@ -77,17 +113,18 @@
 
   function monthElement(year,month){
     const card=document.createElement("section");card.className="month-card";
-    const first=new Date(year,month,1);
-    const last=new Date(year,month+1,0);
-    const start=new Date(first);
-    const firstDow=(first.getDay()+6)%7;
-    start.setDate(first.getDate()-firstDow);
-    const rows=Math.ceil((firstDow+last.getDate())/7);
+    // Fortlaufende echte Tage statt der proleptisch gregorianischen Date-Rückrechnung.
+    const firstDay=civilToDay(year,month+1,1);
+    const nextYear=month===11?year+1:year,nextMonth=month===11?1:month+2;
+    const endDay=civilToDay(nextYear,nextMonth,1);
+    const startDay=firstDay-weekDay(firstDay);
+    const rows=Math.ceil((endDay-startDay)/7);
 
     const title=document.createElement("div");title.className="month-title";
     const eventCount=events.filter(e=>{
-      const es=parseKey(e.start),ee=parseKey(e.end||e.start);
-      return ee>=first&&es<=last&&(activeFilter==="all"||e.cat===activeFilter)
+      const [sy,sm,sd]=e.start.split("-").map(Number),[ey,em,ed]=(e.end||e.start).split("-").map(Number);
+      const es=civilToDay(sy,sm,sd),ee=civilToDay(ey,em,ed);
+      return ee!==null&&es!==null&&ee>=firstDay&&es<endDay&&(activeFilter==="all"||e.cat===activeFilter);
     }).length;
     title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+(eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
     card.appendChild(title);
@@ -97,19 +134,19 @@
     dayNames.forEach(([full,short])=>{const h=document.createElement("div");h.className="head-cell";h.innerHTML=short+"<small>"+full+"</small>";grid.appendChild(h)});
 
     for(let r=0;r<rows;r++){
-      const monday=new Date(start);monday.setDate(start.getDate()+r*7);
+      const monday=startDay+r*7;
       const w=document.createElement("div");w.className="weekno";w.textContent=isoWeek(monday);grid.appendChild(w);
       for(let c=0;c<7;c++){
-        const d=new Date(monday);d.setDate(monday.getDate()+c);
-        const key=toKey(d);
+        const d=dayToCivil(monday+c);
+        const key=civilKey(d);
         const dayEvents=visibleEventsForDay(key);
         const btn=document.createElement("button");
         btn.type="button";btn.className="day";
-        if(d.getMonth()!==month)btn.classList.add("is-outside");
+        if(d.year!==year||d.month!==month+1)btn.classList.add("is-outside");
         if(c>=5)btn.classList.add("is-weekend");
         if(c===6)btn.classList.add("is-sunday");
         if(key===todayKey)btn.classList.add("is-today");
-        btn.innerHTML='<span class="day-num">'+d.getDate()+'</span>';
+        btn.innerHTML='<span class="day-num">'+d.day+'</span>';
         if(dayEvents.length){
           btn.classList.add("has-events");
           btn.setAttribute("aria-label",formatDate(key)+": "+dayEvents.length+" Ereignis"+(dayEvents.length===1?"":"se"));
@@ -125,6 +162,13 @@
       }
     }
     card.appendChild(grid);
+    if(year===1582&&month===9){
+      const info=document.createElement("p");
+      info.className="note";
+      info.style.cssText="margin:10px 13px 14px;padding:10px 12px";
+      info.textContent="Kalenderreform 1582 (zuerst umstellende Länder): Auf Donnerstag, den 4. Oktober, folgte Freitag, der 15. Oktober. Die Tage 5.–14. Oktober entfielen. Deutsche Gebiete und andere Länder stellten teils später um; Kalenderwochen sind rückwirkend berechnet.";
+      card.appendChild(info);
+    }
     return card;
   }
 
