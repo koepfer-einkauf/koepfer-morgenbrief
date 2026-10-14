@@ -172,7 +172,7 @@
       e.preventDefault();
       const raw=yearInput.value.trim();
       const year=Number(raw);
-      if(!/^\\d{4}$/.test(raw)||!Number.isInteger(year)||year<1000||year>9999){
+      if(!/^[0-9]{4}$/.test(raw)||!Number.isInteger(year)||year<1000||year>9999){
         yearInput.setAttribute("aria-invalid","true");
         yearFeedback.textContent="Bitte ein vierstelliges Jahr zwischen 1000 und 9999 eingeben.";
         yearInput.focus();
