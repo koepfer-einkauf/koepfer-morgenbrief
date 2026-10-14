@@ -319,12 +319,6 @@ Nach dem GitHub Update wird mindestens geprüft:
 
 Zusätzlich wird der GitHub Änderungsumfang kontrolliert, damit keine unbeabsichtigten Dateien verändert wurden.
 
-## Wiederanlauf Anweisung
-
-Falls der Morgenbrief in einer neuen Unterhaltung oder Automatisierung wieder eingerichtet werden muss, gilt folgende Kurzfassung:
-
-> Arbeite im Repository `koepfer-einkauf/koepfer-morgenbrief` auf Branch `main`. Starte montags bis freitags um 06:00 Uhr Europe/Berlin. Samstags und sonntags gibt es keine Ausgabe. Lies vor der Recherche Feedback und Wünsche aus Supabase. Führe täglich einen breiten deutschen Nachrichtencheck bei Tagesschau, n-tv, ZDFheute, Handelsblatt, WirtschaftsWoche, FAZ und Reuters durch und prüfe vor Themenabschluss ausdrücklich, ob ein großes deutsches Wirtschafts, Industrie oder Automotive Ereignis fehlt. Recherchiere anschließend aktuelle, belastbare und KOEPFER relevante Meldungen zu Automotive, Lieferanten, Kunden, Stahl, Rohstoffen, Energie, Logistik, Maschinenbau, Konjunktur, EU Regeln, Compliance, Zöllen, Handelspolitik und relevanter Geopolitik. Hohe Tagesrelevanz wie ab heute geltende Maßnahmen, große OEM Ereignisse, Tarif oder Standortentscheidungen und neue regulatorische Pflichten werden weit oben priorisiert. Reguläre Wirtschafts und Einkaufsmeldungen: mindestens 6, Zielbereich 8 bis 10, bei außergewöhnlicher Nachrichtenlage bis 15. Keine Füllmeldungen und keine künstlichen Wiederholungen. Regionale News im Umkreis von ungefähr 50 km um Furtwangen sind ein eigener Zusatzabschnitt und zählen nicht zur Artikelzahl. Archiviere zuerst die bisherige Root Ausgabe. Verwende ausschließlich die aktuelle `index.html` als Mastervorlage. Bewahre Design, Navigation, Feedback, Themenwunsch und Kartenfunktionen. Aktualisiere exakt einen blauen Kartenmarker je regulärer Meldung. Verändere `testumgebung/` niemals. Lies vor jedem Schreibvorgang die betroffene GitHub Datei erneut und verwende beim Aktualisieren den aktuellen Blob SHA. Prüfe nach Veröffentlichung Root, Archiv, Feedback, Karte, Links und Änderungsumfang.
-
 ## Grundsatz
 
 Die Root Ausgabe ist produktiv und stabil zu halten.
