@@ -127,11 +127,9 @@
       return ee!==null&&es!==null&&ee>=firstDay&&es<endDay&&(activeFilter==="all"||e.cat===activeFilter);
     }).length;
     const phase=year<1582||(year===1582&&month<9)?"julian":year===1582&&month===9?"transition":"gregorian";
-    const phaseName=phase==="julian"?"Julianischer Kalender":phase==="gregorian"?"Gregorianischer Kalender":"Julianisch → Gregorianisch";
     card.dataset.calendarPhase=phase;
-    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3>"+
-      '<div class="month-meta"><span class="calendar-era era-'+phase+'">'+phaseName+'</span>'+
-      '<span class="month-event-count">'+(eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span></div>";
+    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+
+      (eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
     card.appendChild(title);
 
     if(phase==="transition"){
