@@ -1,0 +1,158 @@
+(() => {
+  "use strict";
+  const calendar = document.querySelector("#kalender.calendar-ui");
+  if (!calendar) return;
+  const events = [
+    {start:"2026-09-30",cat:"handel",label:"Frist",title:"EU-Stahl: Konsultation zur Ausweitung des Produktumfangs endet",text:"Die Kommission prüft unter anderem Drähte, Edelstahldrähte und geschmiedete Stäbe für eine mögliche Aufnahme in die EU-Stahlmaßnahmen. Für betroffene CN-Codes kann sich die Import- und Preislandschaft ändern.",source:"Europäische Kommission",url:"https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en"},
+    {start:"2026-10-01",end:"2026-10-07",cat:"logistik",label:"China",title:"China National Day: siebentägige Feiertagsphase",text:"Landesweite Feiertage können Produktion, Abfertigung, Spedition und Reaktionszeiten chinesischer Lieferanten verzögern. Der 10. Oktober ist laut offiziellem Kalender ein Ausgleichs-Arbeitstag.",source:"Staatsrat der Volksrepublik China",url:"https://big5.www.gov.cn/gate/big5/www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm"},
+    {start:"2026-10-09",cat:"geopolitik",label:"Review",title:"EU-Sanktionsrahmen zu russischen hybriden Aktivitäten: aktuelles Ablaufdatum",text:"Die bestehenden restriktiven Maßnahmen gegen destabilisierende russische Aktivitäten im Ausland laufen nach aktuellem Beschluss bis zu diesem Datum. Vorher ist mit einer politischen Überprüfung beziehungsweise möglicher Verlängerung zu rechnen.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/policies/sanctions-against-russia/timeline-sanctions-against-russia/"},
+    {start:"2026-11-30",end:"2026-12-04",cat:"logistik",label:"IMO",title:"MEPC 85 und mögliche Fortsetzung der IMO-Net-Zero-Verhandlungen",text:"Das globale Schifffahrtsgremium tagt vom 30. November bis 3. Dezember; für den 4. Dezember ist vorbehaltlich Bestätigung die Fortsetzung der außerordentlichen Sitzung zum Net-Zero-Rahmen vorgesehen.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/meetingsummaries/pages/temporary-mepc-84th-session.aspx"},
+    {start:"2026-12-01",cat:"energie",label:"Zielkorridor",title:"EU-Gasspeicher: Ende des flexiblen 90-Prozent-Zielkorridors",text:"Die verlängerten Speicherregeln geben den Mitgliedstaaten jährlich vom 1. Oktober bis 1. Dezember Zeit, das 90-Prozent-Ziel zu erreichen. Der Speicherstand bleibt ein relevanter Frühindikator für europäische Gas- und Industriepreise.",source:"Europäische Kommission",url:"https://energy.ec.europa.eu/topics/energy-security/gas-storage_en"},
+    {start:"2026-12-11",cat:"compliance",label:"CRA",title:"Cyber Resilience Act: ausreichende Konformitätsbewertungsstellen vorgesehen",text:"Die EU-Umsetzungsplanung sieht bis zu diesem Datum ausreichende notifizierte Konformitätsbewertungsstellen in den Mitgliedstaaten vor.",source:"Europäische Kommission",url:"https://digital-strategy.ec.europa.eu/en/factpages/cyber-resilience-act-implementation"},
+    {start:"2026-12-30",cat:"compliance",label:"EUDR",title:"EU-Entwaldungsverordnung gilt für große und mittlere Marktteilnehmer",text:"Ab diesem Datum greifen die EUDR-Pflichten für große und mittlere Betreiber sowie für bestimmte kleinere Unternehmen. Relevante Rohstoffe sind unter anderem Kautschuk und Holz.",source:"Europäische Kommission",url:"https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en"},
+    {start:"2026-12-31",cat:"handel",label:"Prüffrist",title:"EU-Kommission muss erste Stahl-Produktbereichsprüfung abschließen",text:"Bis Jahresende muss die Kommission bewerten, ob weitere Produktgruppen wie bestimmte Drähte und geschmiedete Stäbe in den Geltungsbereich der EU-Stahlregelung aufgenommen werden sollen.",source:"Europäische Kommission",url:"https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en"},
+    {start:"2027-01-01",cat:"handel",label:"UK-CBAM",title:"Vereinigtes Königreich führt Carbon Border Adjustment Mechanism ein",text:"Der britische CBAM startet für bestimmte Importe aus Aluminium, Zement, Düngemitteln, Wasserstoff sowie Eisen und Stahl.",source:"HM Revenue & Customs",url:"https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism/carbon-border-adjustment-mechanism"},
+    {start:"2027-04-05",end:"2027-04-08",cat:"industrie",label:"Industrie",title:"HANNOVER MESSE 2027",text:"Die internationale Industriemesse bündelt Maschinenbau, Elektro- und Digitalindustrie sowie Energiewirtschaft. Für Einkauf und Lieferantenmanagement ist sie ein Frühindikator für Automatisierung, KI, Energie, Produktionstechnik und neue Anbieter.",source:"HANNOVER MESSE",url:"https://www.hannovermesse.de/de/fuer-besucher/oeffnungszeiten/"},
+    {start:"2027-06-23",cat:"geopolitik",label:"Review",title:"EU-Sanktionen wegen der Annexion der Krim: aktuelles Ablaufdatum",text:"Die maßnahmenbezogenen Beschränkungen wurden bis zu diesem Datum verlängert. Für Lieferanten- und Transaktionsscreening ist die weitere politische Verlängerung beziehungsweise Anpassung zu beobachten.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/06/15/russia-s-war-of-aggression-against-ukraine-new-eu-sanctions-target-energy-revenues-the-military-industrial-complex-propaganda-and-human-rights-violations/"},
+    {start:"2027-07-31",cat:"geopolitik",label:"Review",title:"EU-Wirtschaftssanktionen gegen Russland: aktuelles Ablaufdatum",text:"Die sektoralen Wirtschaftssanktionen zu Handel, Finanzen, Energie, Dual-Use und Transport wurden im Juni 2026 für zwölf Monate bis Ende Juli 2027 verlängert.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/06/25/russia-s-war-of-aggression-against-ukraine-council-extends-economic-sanctions-for-another-year/"},
+    {start:"2027-08-18",cat:"compliance",label:"Batterien",title:"EU-Batterieverordnung: Sorgfaltspflichten starten",text:"Ab diesem Datum gelten die Batterie-Sorgfaltspflichten für erfasste Wirtschaftsakteure. Dazu gehören Due-Diligence-Strategien und unabhängige Prüfung entlang relevanter Rohstoffketten.",source:"EUR-Lex",url:"https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1775489433349&uri=CELEX%3A02023R1542-20250731"},
+    {start:"2027-09-01",cat:"logistik",label:"IMO",title:"Nordostatlantik-Emissionskontrollgebiet tritt in Kraft",text:"Das neue IMO-Emissionskontrollgebiet im Nordostatlantik tritt formal in Kraft; die verschärften Grenzwerte werden zwölf Monate später wirksam.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/meetingsummaries/pages/temporary-mepc-84th-session.aspx"},
+    {start:"2027-09-07",end:"2027-09-12",cat:"industrie",label:"Automotive",title:"IAA MOBILITY 2027 in München",text:"Der internationale Mobilitätstreff startet am 7. September. Für Automotive-Einkauf relevant sind neue Plattformen, Software-defined Vehicles, Elektrifizierung, autonome Systeme und Lieferantenankündigungen.",source:"IAA MOBILITY",url:"https://www.iaa-mobility.com/de"},
+    {start:"2027-11-29",cat:"logistik",label:"IMO",title:"HNS-Übereinkommen für gefährliche und schädliche Stoffe tritt in Kraft",text:"Das internationale Haftungs- und Entschädigungsregime für Unfälle mit gefährlichen und schädlichen Stoffen auf See wird wirksam.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/pressbriefings/pages/imo-hns-treaty-to-enter-into-force-in-2027-.aspx"},
+    {start:"2027-12-02",cat:"compliance",label:"AI Act",title:"EU-AI-Act: neue Frist für bestimmte Hochrisiko-Systeme",text:"Nach dem angepassten Zeitplan gelten die Vorgaben für Hochrisiko-KI in Bereichen wie Beschäftigung, kritischer Infrastruktur und weiteren sensiblen Einsatzfeldern ab diesem Datum.",source:"Europäische Kommission",url:"https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems"},
+    {start:"2027-12-11",cat:"compliance",label:"CRA",title:"Cyber Resilience Act wird vollständig anwendbar",text:"Ab diesem Datum greifen die wesentlichen CRA-Anforderungen an Produkte mit digitalen Elementen umfassend.",source:"Europäische Kommission",url:"https://digital-strategy.ec.europa.eu/en/policies/cra-summary"},
+    {start:"2027-12-14",cat:"compliance",label:"Lieferkette",title:"EU-Verordnung gegen Produkte aus Zwangsarbeit wird anwendbar",text:"Ab diesem Datum dürfen Produkte, die mit Zwangsarbeit hergestellt wurden, nicht mehr auf dem EU-Markt bereitgestellt oder aus der EU exportiert werden.",source:"Europäische Kommission",url:"https://single-market-economy.ec.europa.eu/single-market/goods/forced-labour-regulation_en"}
+  ];
+
+  const catLabel={compliance:"Compliance",handel:"Handel & Zölle",logistik:"Logistik",energie:"Energie",geopolitik:"Geopolitik",industrie:"Industrie & Automotive"};
+  const monthNames=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+  const dayNames=[["Montag","Mo"],["Dienstag","Di"],["Mittwoch","Mi"],["Donnerstag","Do"],["Freitag","Fr"],["Samstag","Sa"],["Sonntag","So"]];
+  const stack=calendar.querySelector("#calendar-stack");
+  const dialog=calendar.querySelector("#day-dialog");
+  const dialogTitle=calendar.querySelector("#dialog-title");
+  const dialogSubtitle=calendar.querySelector("#dialog-subtitle");
+  const dialogBody=calendar.querySelector("#dialog-body");
+  const filters=[...calendar.querySelectorAll(".filter")];
+  const today=new Date();
+  const todayKey=[today.getFullYear(),String(today.getMonth()+1).padStart(2,"0"),String(today.getDate()).padStart(2,"0")].join("-");
+  let rangeStart=new Date(today.getFullYear(),today.getMonth(),1);
+  let activeFilter="all";
+
+  const toKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  const parseKey=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+  const formatDate=s=>parseKey(s).toLocaleDateString("de-DE",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+  const eventOnDay=(event,key)=>key>=event.start&&key<=(event.end||event.start);
+  const visibleEventsForDay=key=>events.filter(e=>eventOnDay(e,key)&&(activeFilter==="all"||e.cat===activeFilter));
+  const isoWeek=date=>{
+    const d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()));
+    const day=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-day);
+    const yearStart=new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    return Math.ceil((((d-yearStart)/86400000)+1)/7);
+  };
+
+  function previewHtml(dayEvents){
+    const shown=dayEvents.slice(0,3).map(e=>"<p><b>"+e.label+"</b> · "+e.title+"</p>").join("");
+    const more=dayEvents.length>3?"<p>+"+(dayEvents.length-3)+" weitere</p>":"";
+    return '<div class="preview"><b>Vorschau</b>'+shown+more+"</div>";
+  }
+
+  function openDay(key){
+    const dayEvents=visibleEventsForDay(key);
+    if(!dayEvents.length)return;
+    dialogTitle.textContent=formatDate(key);
+    dialogSubtitle.textContent=dayEvents.length===1?"1 Ereignis":dayEvents.length+" Ereignisse";
+    dialogBody.innerHTML=dayEvents.map(e=>
+      '<article class="detail-card" data-cat="'+e.cat+'">'+
+        '<div class="detail-meta">'+catLabel[e.cat]+' · '+e.label+(e.end?" · "+formatDate(e.start)+" bis "+formatDate(e.end):"")+'</div>'+
+        '<h3>'+e.title+'</h3><p>'+e.text+'</p>'+
+        '<a href="'+e.url+'" target="_blank" rel="noopener noreferrer">Quelle: '+e.source+' ↗</a>'+
+      '</article>'
+    ).join("");
+    dialog.showModal();
+  }
+
+  function monthElement(year,month){
+    const card=document.createElement("section");card.className="month-card";
+    const first=new Date(year,month,1);
+    const last=new Date(year,month+1,0);
+    const start=new Date(first);
+    const firstDow=(first.getDay()+6)%7;
+    start.setDate(first.getDate()-firstDow);
+    const rows=Math.ceil((firstDow+last.getDate())/7);
+
+    const title=document.createElement("div");title.className="month-title";
+    const eventCount=events.filter(e=>{
+      const es=parseKey(e.start),ee=parseKey(e.end||e.start);
+      return ee>=first&&es<=last&&(activeFilter==="all"||e.cat===activeFilter)
+    }).length;
+    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+(eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
+    card.appendChild(title);
+
+    const grid=document.createElement("div");grid.className="calendar-grid";
+    const kw=document.createElement("div");kw.className="head-cell";kw.textContent="KW";grid.appendChild(kw);
+    dayNames.forEach(([full,short])=>{const h=document.createElement("div");h.className="head-cell";h.innerHTML=short+"<small>"+full+"</small>";grid.appendChild(h)});
+
+    for(let r=0;r<rows;r++){
+      const monday=new Date(start);monday.setDate(start.getDate()+r*7);
+      const w=document.createElement("div");w.className="weekno";w.textContent=isoWeek(monday);grid.appendChild(w);
+      for(let c=0;c<7;c++){
+        const d=new Date(monday);d.setDate(monday.getDate()+c);
+        const key=toKey(d);
+        const dayEvents=visibleEventsForDay(key);
+        const btn=document.createElement("button");
+        btn.type="button";btn.className="day";
+        if(d.getMonth()!==month)btn.classList.add("is-outside");
+        if(c>=5)btn.classList.add("is-weekend");
+        if(c===6)btn.classList.add("is-sunday");
+        if(key===todayKey)btn.classList.add("is-today");
+        btn.innerHTML='<span class="day-num">'+d.getDate()+'</span>';
+        if(dayEvents.length){
+          btn.classList.add("has-events");
+          btn.setAttribute("aria-label",formatDate(key)+": "+dayEvents.length+" Ereignis"+(dayEvents.length===1?"":"se"));
+          const cats=[...new Set(dayEvents.map(e=>e.cat))];
+          btn.innerHTML+=(dayEvents.length>1?'<span class="event-count">'+dayEvents.length+'</span>':"")+
+            '<span class="dots">'+cats.map(cat=>'<i class="dot-'+cat+'"></i>').join("")+'</span>'+previewHtml(dayEvents);
+          btn.addEventListener("click",()=>openDay(key));
+        }else{
+          btn.disabled=true;
+          btn.setAttribute("aria-label",formatDate(key)+": keine Ereignisse");
+        }
+        grid.appendChild(btn);
+      }
+    }
+    card.appendChild(grid);
+    return card;
+  }
+
+  function render(){
+    stack.innerHTML="";
+    for(let i=0;i<3;i++){
+      const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+i,1);
+      stack.appendChild(monthElement(d.getFullYear(),d.getMonth()));
+    }
+  }
+
+  function updateQuick(){
+    const nowKey=todayKey;
+    const future=events.filter(e=>(e.end||e.start)>=nowKey).sort((a,b)=>a.start.localeCompare(b.start));
+    if(future.length){
+      calendar.querySelector("#next-date").textContent=parseKey(future[0].start).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"});
+      calendar.querySelector("#next-title").textContent=future[0].title;
+    }
+    const end90=new Date(today);end90.setDate(end90.getDate()+90);
+    const end90Key=toKey(end90);
+    calendar.querySelector("#next-90").textContent=String(events.filter(e=>e.start>=nowKey&&e.start<=end90Key).length);
+  }
+
+  calendar.querySelector("#prev-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()-3,1);render()});
+  calendar.querySelector("#next-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+3,1);render()});
+  calendar.querySelector("#today-range").addEventListener("click",()=>{rangeStart=new Date(today.getFullYear(),today.getMonth(),1);render()});
+  filters.forEach(btn=>btn.addEventListener("click",()=>{
+    activeFilter=btn.dataset.filter;
+    filters.forEach(b=>b.setAttribute("aria-pressed",b===btn?"true":"false"));
+    render();
+  }));
+  dialog.querySelector(".dialog-close").addEventListener("click",()=>dialog.close());
+  dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
+  updateQuick();render();
+})();
