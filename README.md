@@ -205,29 +205,21 @@ Das KOEPFER Logo bleibt unverändert:
 
 Die Datei `assets/koepfer-logo.svg` wird bei täglichen Ausgaben nicht verändert.
 
-## Titelbild und Lead Grafik
+## Titelbild und Lead Foto
 
-Das große Titelbild greift die erste Hauptmeldung konkret auf. **Echte, thematisch passende Fotos haben Vorrang vor selbst erstellten Illustrationen.** Bevorzugt werden Originalfotos des betroffenen Unternehmens, Standorts, Produkts oder Ereignisses.
+**Verbindlich für jede reguläre werktägliche Ausgabe: Ausschließlich ein echtes Foto als Titelbild. Niemals eine Grafik, Illustration, SVG Ausweichillustration, KI generiertes Bild, Fotomontage oder künstlich erzeugtes fotorealistisches Motiv als Ersatz veröffentlichen.** Ein Fehlen eines geeigneten Fotos erlaubt ausdrücklich keine Ausnahme.
 
-**Tägliche Bildauswahl für die produktive Root Ausgabe:** Entscheidend ist, dass das Titelbild konkret zur jeweiligen Hauptmeldung passt und das richtige Unternehmen, Werk, Produkt oder Ereignis zeigt. Das genaue Foto aus dem verlinkten Nachrichtenartikel ist nicht vorgeschrieben. Bevorzugt wird ein aussagekräftiges, zur öffentlichen Nutzung einschließlich Archiv freigegebenes Originalfoto aus Unternehmens-, Behörden- oder anderen verlässlichen Bildquellen. Wenn kein geeignetes nutzbares Foto existiert, wird eine deutlich auf das konkrete Thema abgestimmte neue Illustration verwendet. Generische oder an mehreren Tagen fast identische Bilder sind zu vermeiden. Bildquelle, Urheber und gegebenenfalls Archivcharakter werden ausgewiesen.
+Das Foto muss konkret, eindeutig und sichtbar zur ersten Hauptmeldung passen. Es zeigt die tatsächlich betroffene Person, das richtige Unternehmen, Werk, Produkt, Fahrzeug oder Ereignis. Das genaue Nachrichtenartikelfoto ist nicht erforderlich. Keine beliebigen Symbolfotos, irreführenden Motive oder fast identischen Wiederholungen an aufeinanderfolgenden Tagen. Die Themenpriorität richtet sich weiter nach Nachrichtenrelevanz und nicht nach Fotoverfügbarkeit.
 
-Gelbe Testhinweise, Vorschau- und Statusbanner gehören weder in den produktiven Morgenbrief noch in eine dem Nutzer präsentierte Bildtestansicht. Änderungen an Bildmotiven dürfen keine Nachrichtenartikel, Karte, Feedback, Archiv oder Navigation unbeabsichtigt verändern.
+**Bildrechte vor jeder Veröffentlichung nachweisen:** Bevorzugt ein echtes Originalfoto aus einer offiziellen Unternehmens- oder Behördenquelle, deren Nutzungsbedingungen die konkrete öffentliche Website und das dauerhaft erreichbare Archiv erlauben. Alternativ eine passende authentische Fotografie aus einer seriösen Quelle mit eindeutig belegter Wiederveröffentlichungslizenz, beispielsweise einer geeigneten Creative-Commons-Lizenz, unter Einhaltung aller Auflagen. Ein frei aufrufbares Pressebild ist nicht automatisch freigegeben. Medien- und Agenturfotos ohne entsprechende Rechte niemals kopieren, einbetten oder als Screenshot verwenden. Auch fremdgehostete Bilder nur einbinden, wenn dies ausdrücklich zulässig ist.
 
-Für die Bildauswahl gilt diese Reihenfolge:
+Urheber beziehungsweise Rechteinhaber, Quelle, konkrete Nutzungsgrundlage, Lizenzlink und erforderliche Namensnennung gehören direkt sichtbar und anklickbar zum Foto. Bei älteren Aufnahmen Datum und Archivcharakter direkt am Bild kenntlich machen. Archivfotos dürfen nicht als aktuelle Ereignisaufnahmen erscheinen. Wenn die Lizenz lokales Hosting erlaubt, das Foto unter einem datumsbezogenen Pfad in `assets/lead/` speichern und dauerhaft für das Archiv erhalten. Andernfalls nur eine nachweislich erlaubte Einbindung verwenden.
 
-1. Passendes Originalfoto aus der offiziellen Presse- oder Mediendatenbank des Unternehmens, einer Behörde oder einer anderen Primärquelle, **wenn die Nutzungsbedingungen eine Veröffentlichung auf der öffentlichen Morgenbrief Website einschließlich dauerhafter Archivierung erlauben**.
-2. Passendes, nachweislich zur Wiederveröffentlichung freigegebenes redaktionelles Foto aus einer seriösen Bildquelle unter Einhaltung aller Lizenzauflagen.
-3. Wenn kein geeignetes rechtssicher verwendbares Foto verfügbar ist, eine eigenständig gestaltete, klar zum Hauptthema passende abstrakte SVG Illustration.
+**Verpflichtende Prüfung des tatsächlichen Bildausschnitts:** Vor der Veröffentlichung kontrollieren, dass das Originalfoto wirklich geladen wird und die relevanten Personen, Gesichter, Werke oder Produkte auf Desktop und Mobilgeräten deutlich erkennbar und nicht abgeschnitten sind. Insbesondere keine abgeschnittenen Köpfe, verdeckten Gesichter oder irreführenden Anschnitte. Bildausschnitt, `object-fit`, `object-position` und bei Bedarf getrennte echte Fotoausschnitte für Desktop und Mobilansicht passend einstellen. Die Textüberlagerung muss lesbar bleiben; Bildquelle und Urheber ebenfalls. Geprüft werden mindestens schmale Handybreiten und die Desktopansicht sowie die Darstellung nach GitHub Pages Deployment. Ein bloßer HTML Check oder ein erfolgreicher GitHub Commit ersetzt keine visuelle Bildprüfung. Ist eine visuelle Kontrolle nicht möglich, darf eine einwandfreie Darstellung nicht behauptet werden.
 
-Die freie Erreichbarkeit eines Pressefotos bedeutet nicht, dass es kopiert oder veröffentlicht werden darf. Ein Quellenlink allein ersetzt keine Lizenz. Bilder von Nachrichtenagenturen und Medien, etwa Reuters, dpa, Getty und Handelsblatt, werden ohne entsprechende Nutzungsrechte weder kopiert noch eingebettet oder als Screenshot verwendet. Auch direktes Einbetten externer Bilddateien erfolgt nur, wenn dies erlaubt ist.
+Wenn für die geplante erste Hauptmeldung kein rechtssicher nutzbares und visuell geeignetes echtes Foto gefunden wird, gezielt weitere echte Fotos und belastbare Lizenzquellen prüfen. Allenfalls eine inhaltlich gleichrangige, tatsächlich aktuelle Hauptmeldung mit eigenem passenden echten Foto als Lead wählen, ohne Nachrichtenrelevanz künstlich zu verändern oder wichtige Themen wegzulassen. **Kann auch nach den zulässigen Alternativen kein passendes und rechtssicher nutzbares echtes Foto samt überprüfbarer Darstellung bereitgestellt werden, keine neue Root Ausgabe veröffentlichen; bisherige Ausgabe unverändert lassen und den konkreten Blocker melden. Niemals als Notlösung eine Grafik verwenden.**
 
-Bei jedem realen Foto werden **Bildquelle, Urheber beziehungsweise Rechteinhaber, Nutzungsgrundlage und alle Auflagen** vor Veröffentlichung geprüft. Die im konkreten Fall erforderlichen Bildnachweise sind im Morgenbrief sichtbar und anklickbar anzubringen. Rechte müssen auch für die im Archiv dauerhaft erreichbare Ausgabe gelten. Wird ein älteres Foto gezeigt, muss es, falls andernfalls eine Fehlvorstellung entstehen könnte, als Archivbild erkennbar sein. Kein Bild darf ein anderes Werk, Produkt oder Ereignis vortäuschen.
-
-Ist das lokale Hosting von der Lizenz gedeckt, wird das Foto unter einem datumsbezogenen Pfad in `assets/lead/` gespeichert und für bestehende Archive nicht gelöscht. Ansonsten kommt ausschließlich eine nachweislich zulässige Einbindungsart infrage. Das Foto wird mit einer sachlich richtigen Alternativbeschreibung und sinnvoller mobiler Bildanpassung in der Lead Fläche verwendet, etwa als `<img class="lead-art">`. Die vorhandene Seitenstruktur, das Design und die Textüberlagerung bleiben bestehen.
-
-Eine SVG Ausweichillustration enthält keine eingebetteten Textblöcke, Zahlenlabels, Datenkarten oder hellen Infoboxen. Sie muss sichtbar zur Hauptmeldung passen und abwechslungsreich gestaltet sein. **Dieselbe oder nur geringfügig abgeänderte Illustration wird nicht an aufeinanderfolgenden Ausgabetagen erneut verwendet.**
-
-Headline und Beschreibung bleiben immer normales HTML außerhalb des Bildes.
+Das vorhandene Layout, die normale HTML Headline außerhalb des Fotos, die Mastervorlage, Karte, Navigation, Feedback und Archivierung bleiben erhalten. Keine gelben Testhinweise, Vorschau- oder Statusbanner.
 
 ## Globale Risiko und Ereigniskarte
 
@@ -287,9 +279,9 @@ Vor dem Root Update wird mindestens geprüft:
 * Themenwunsch Button und Dialog sind vorhanden
 * zentrale Feedback Komponente wird exakt eingebunden
 * keine alternative Inline Feedbacklogik wurde erzeugt
-* Lead Bild ist thematisch konkret und unterscheidet sich deutlich von vorherigen Ausgaben
-* bei Fotografien sind Nutzungsrechte einschließlich Archivierung vorab geklärt, Bildquelle und Urheber im Bericht verlinkt
-* bei SVG Ausweichillustrationen sind keine Beschriftungen eingebettet
+* Titelbild ist zwingend eine echte Fotografie des konkreten Hauptthemas, niemals SVG, KI Bild, Grafik oder Illustration
+* Bildrechte für die öffentliche Website einschließlich dauerhafter Archivierung sind vorab belegt; Bildquelle, Urheber und Lizenz sind direkt beim Foto sichtbar und verlinkt
+* Desktop und mobile Bildausschnitte sind tatsächlich visuell geprüft; wichtige Gesichter, Werke oder Produkte sind vollständig und deutlich erkennbar, Text und Bildnachweis lesbar
 * Quellenlinks sind vorhanden und anklickbar
 * der verpflichtende deutsche Nachrichtencheck wurde durchgeführt
 * es fehlt kein erkennbar großes deutsches Wirtschafts, Industrie oder Automotive Ereignis aus der aktuellen Nachrichtenlage
@@ -314,7 +306,7 @@ Nach dem GitHub Update wird mindestens geprüft:
 * Anzahl der blauen Marker entspricht der Zahl der regulären Meldungen
 * regionale Rubrik ist sichtbar
 * Links weisen keine offensichtlichen Fehler auf
-* Titelbild lädt fehlerfrei, Bildnachweis ist sichtbar und Bilddarstellung auf Mobilgeräten und im Archiv funktioniert
+* echtes Titelbild lädt fehlerfrei; Desktop und Mobilansicht wurden visuell auf erkennbares Motiv ohne abgeschnittene Köpfe geprüft; Bildnachweis ist sichtbar und Archivnutzung ist zulässig
 * Layout und mobile Darstellung entsprechen weiterhin der Mastervorlage
 
 Zusätzlich wird der GitHub Änderungsumfang kontrolliert, damit keine unbeabsichtigten Dateien verändert wurden.
