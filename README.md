@@ -217,6 +217,9 @@ Urheber beziehungsweise Rechteinhaber, Quelle, konkrete Nutzungsgrundlage, Lizen
 
 **Verpflichtende Prüfung des tatsächlichen Bildausschnitts:** Vor der Veröffentlichung kontrollieren, dass das Originalfoto wirklich geladen wird und die relevanten Personen, Gesichter, Werke oder Produkte auf Desktop und Mobilgeräten deutlich erkennbar und nicht abgeschnitten sind. Insbesondere keine abgeschnittenen Köpfe, verdeckten Gesichter oder irreführenden Anschnitte. Bildausschnitt, `object-fit`, `object-position` und bei Bedarf getrennte echte Fotoausschnitte für Desktop und Mobilansicht passend einstellen. Die Textüberlagerung muss lesbar bleiben; Bildquelle und Urheber ebenfalls. Geprüft werden mindestens schmale Handybreiten und die Desktopansicht sowie die Darstellung nach GitHub Pages Deployment. Ein bloßer HTML Check oder ein erfolgreicher GitHub Commit ersetzt keine visuelle Bildprüfung. Ist eine visuelle Kontrolle nicht möglich, darf eine einwandfreie Darstellung nicht behauptet werden.
 
+**Zusätzliche verbindliche Bildgrößen- und Zuschnittkontrolle vor JEDEM Veröffentlichen:** Die echte Bilddatei laden und Originalbreite, Originalhöhe, Seitenverhältnis und ausreichende Auflösung mit dem tatsächlich gerenderten Bildbereich vergleichen. Für mindestens 320 px und 390 px Handybreite sowie 1280 px und 1440 px Desktopbreite die Seite im Browser rendern, Screenshots ansehen und Bildhöhe, Skalierung, `object-fit`, `object-position`, Textüberlagerung und Nachweis prüfen. Die Hauptpersonen müssen mit vollständig sichtbaren Köpfen und Gesichtern sowie ausreichend Rand dargestellt sein; bei Fahrzeugen, Produkten oder Werken muss das für die Nachricht wesentliche Motiv vollständig und eindeutig erkennbar bleiben. Weder durch Container-Zuschnitt noch durch Bildpositionierung oder Textüberlagerung darf das Hauptmotiv verdeckt oder abgeschnitten werden. Bei Mängeln einen besseren Originalzuschnitt beziehungsweise ein passendes echtes Querformat-/Hochformatfoto wählen, Position und responsive Darstellung korrigieren und **alle Bildschirmgrößen erneut mit Sichtprüfung testen**, bis das Ergebnis stimmt. Quellformat, Bildabmessungen oder eine bloße technische Bildprüfung beweisen nicht, dass der sichtbare Ausschnitt korrekt ist. Ohne tatsächliche visuelle Prüfung keine Veröffentlichung der neuen Root Ausgabe.
+
+
 Wenn für die geplante erste Hauptmeldung kein rechtssicher nutzbares und visuell geeignetes echtes Foto gefunden wird, gezielt weitere echte Fotos und belastbare Lizenzquellen prüfen. Allenfalls eine inhaltlich gleichrangige, tatsächlich aktuelle Hauptmeldung mit eigenem passenden echten Foto als Lead wählen, ohne Nachrichtenrelevanz künstlich zu verändern oder wichtige Themen wegzulassen. **Kann auch nach den zulässigen Alternativen kein passendes und rechtssicher nutzbares echtes Foto samt überprüfbarer Darstellung bereitgestellt werden, keine neue Root Ausgabe veröffentlichen; bisherige Ausgabe unverändert lassen und den konkreten Blocker melden. Niemals als Notlösung eine Grafik verwenden.**
 
 Das vorhandene Layout, die normale HTML Headline außerhalb des Fotos, die Mastervorlage, Karte, Navigation, Feedback und Archivierung bleiben erhalten. Keine gelben Testhinweise, Vorschau- oder Statusbanner.
@@ -281,7 +284,7 @@ Vor dem Root Update wird mindestens geprüft:
 * keine alternative Inline Feedbacklogik wurde erzeugt
 * Titelbild ist zwingend eine echte Fotografie des konkreten Hauptthemas, niemals SVG, KI Bild, Grafik oder Illustration
 * Bildrechte für die öffentliche Website einschließlich dauerhafter Archivierung sind vorab belegt; Bildquelle, Urheber und Lizenz sind direkt beim Foto sichtbar und verlinkt
-* Desktop und mobile Bildausschnitte sind tatsächlich visuell geprüft; wichtige Gesichter, Werke oder Produkte sind vollständig und deutlich erkennbar, Text und Bildnachweis lesbar
+* Bilddateiabmessungen, Seitenverhältnis und ausreichende Auflösung gegen die Anzeigegröße geprüft; Screenshots der gerenderten Seite bei 320 px, 390 px, 1280 px und 1440 px Breite tatsächlich visuell kontrolliert; Köpfe, Gesichter und Hauptmotive sind vollständig sichtbar, durch Zuschnitt oder Text nicht verdeckt, der Bildnachweis ist lesbar
 * Quellenlinks sind vorhanden und anklickbar
 * der verpflichtende deutsche Nachrichtencheck wurde durchgeführt
 * es fehlt kein erkennbar großes deutsches Wirtschafts, Industrie oder Automotive Ereignis aus der aktuellen Nachrichtenlage
@@ -306,7 +309,7 @@ Nach dem GitHub Update wird mindestens geprüft:
 * Anzahl der blauen Marker entspricht der Zahl der regulären Meldungen
 * regionale Rubrik ist sichtbar
 * Links weisen keine offensichtlichen Fehler auf
-* echtes Titelbild lädt fehlerfrei; Desktop und Mobilansicht wurden visuell auf erkennbares Motiv ohne abgeschnittene Köpfe geprüft; Bildnachweis ist sichtbar und Archivnutzung ist zulässig
+* echtes Titelbild lädt fehlerfrei; GitHub Pages Desktop und Handyansicht samt Bildgröße und Zuschnitt nach Deployment erneut per Browser und Screenshot geprüft, alle relevanten Köpfe, Gesichter, Produkte oder Werke bleiben vollständig sichtbar; Bildnachweis ist lesbar und Archivnutzung zulässig
 * Layout und mobile Darstellung entsprechen weiterhin der Mastervorlage
 
 Zusätzlich wird der GitHub Änderungsumfang kontrolliert, damit keine unbeabsichtigten Dateien verändert wurden.
