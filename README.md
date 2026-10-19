@@ -191,6 +191,9 @@ Vor jeder Ausgabe wird sie frisch über GitHub gelesen.
 
 Design, Seitenstruktur, CSS, Navigation, Archivfunktion, Feedbackfunktion, Themenwunsch, Leaflet Karte und Script Einbindungen bleiben erhalten.
 
+**Archivfeste Navigation:** Alle Archiv- und Kalenderlinks in der produktiven Root Mastervorlage müssen als projektabsolute Pfade `/koepfer-morgenbrief/archive/` beziehungsweise `/koepfer-morgenbrief/kalender/` ausgegeben werden. Relative `href="archive/"` oder `href="kalender/"` dürfen nicht in neu archivierte Ausgaben gelangen, weil sie innerhalb von `archive/YYYY-MM-DD.html` sonst auf `/archive/archive/` beziehungsweise `/archive/kalender/` zeigen. Historische archivierte Ausgaben dürfen nicht überschrieben werden; etwaige bestehende Weiterleitungsseiten müssen erhalten bleiben. Vor Veröffentlichung beide Navigationswege von einer Archivansicht aus prüfen.
+
+
 Tagesabhängig geändert werden nur:
 
 * Datum und Ausgabebezeichnung
