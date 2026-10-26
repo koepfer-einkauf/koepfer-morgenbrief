@@ -2,3 +2,6 @@ project_id = "zwzgbfyjqmmxzsonpdfj"
 
 [functions.feedback-admin]
 verify_jwt = false
+
+[functions.feedback-submit]
+verify_jwt = false

@@ -3,6 +3,9 @@
 
   const SUPABASE_URL = "https://zwzgbfyjqmmxzsonpdfj.supabase.co";
   const SUPABASE_KEY = "sb_publishable_x2Nv1tiZg2k8A0nwNC7qhA_K2QwWpAM";
+  const RECAPTCHA_ENABLED = true;
+  const RECAPTCHA_SITE_KEY = "6LejywEuAAAAADJvN8Xg82xZd28rL9ddX7Jw8TyR";
+  const FEEDBACK_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/feedback-submit`;
   const editionDate = document.body.dataset.editionDate;
   const storagePrefix = "koepfer_feedback_v1";
   const encoder = new TextEncoder();
@@ -10,6 +13,50 @@
   const hash = async (value) => {
     const bytes = await crypto.subtle.digest("SHA-256", encoder.encode(value));
     return Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2, "0")).join("");
+  };
+
+  let recaptchaLoader;
+  const captchaToken = async (action) => {
+    if (!RECAPTCHA_ENABLED) return null;
+    if (!recaptchaLoader) {
+      recaptchaLoader = new Promise((resolve, reject) => {
+        if (window.grecaptcha) {
+          resolve();
+          return;
+        }
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(RECAPTCHA_SITE_KEY)}`;
+        script.async = true;
+        script.defer = true;
+        script.addEventListener("load", resolve, {once: true});
+        script.addEventListener("error", () => reject(new Error("CAPTCHA konnte nicht geladen werden")), {once: true});
+        document.head.append(script);
+      });
+    }
+    await recaptchaLoader;
+    await new Promise(resolve => window.grecaptcha.ready(resolve));
+    return window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {action});
+  };
+
+  const submitFeedback = async (payload, action) => {
+    if (!RECAPTCHA_ENABLED) {
+      return fetch(`${SUPABASE_URL}/rest/v1/article_feedback`, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(payload)
+      });
+    }
+
+    const token = await captchaToken(action);
+    return fetch(FEEDBACK_FUNCTION_URL, {
+      method: "POST",
+      headers: {"apikey": SUPABASE_KEY, "Content-Type": "application/json"},
+      body: JSON.stringify({...payload, captcha_token: token, captcha_action: action})
+    });
   };
 
   let sessionId = localStorage.getItem(`${storagePrefix}:session`);
@@ -73,21 +120,13 @@
 
       try {
         const sessionHash = await hash(sessionId);
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/article_feedback`, {
-          method: "POST",
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Content-Type": "application/json",
-            "Prefer": "return=minimal"
-          },
-          body: JSON.stringify({
-            article_id: articleId,
-            edition_date: editionDate,
-            topic,
-            vote,
-            session_hash: sessionHash
-          })
-        });
+        const response = await submitFeedback({
+          article_id: articleId,
+          edition_date: editionDate,
+          topic,
+          vote,
+          session_hash: sessionHash
+        }, "feedback_vote");
 
         if (!response.ok) throw new Error(`Feedback request failed: ${response.status}`);
         localStorage.setItem(voteKey, String(vote));
@@ -120,11 +159,13 @@
     try {
       const sessionHash = await hash(sessionId);
       const requestId = `request://${direction}/${kind}/${encodeURIComponent(target.toLocaleLowerCase("de-DE"))}`;
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/article_feedback`, {
-        method: "POST",
-        headers: {"apikey": SUPABASE_KEY,"Content-Type": "application/json","Prefer": "return=minimal"},
-        body: JSON.stringify({article_id:requestId,edition_date:editionDate,topic:`Redaktionswunsch · ${direction} · ${kind} · ${target}`.slice(0, 200),vote:direction === "less" ? -1 : 1,session_hash:sessionHash})
-      });
+      const response = await submitFeedback({
+        article_id: requestId,
+        edition_date: editionDate,
+        topic: `Redaktionswunsch · ${direction} · ${kind} · ${target}`.slice(0, 200),
+        vote: direction === "less" ? -1 : 1,
+        session_hash: sessionHash
+      }, "editorial_request");
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
       wishMessage.textContent = "Gespeichert – wird in der nächsten Ausgabe berücksichtigt.";
       wishForm.reset();

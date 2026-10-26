@@ -11,6 +11,18 @@ const sha256 = async (value: string) => {
   return Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2, "0")).join("");
 };
 
+const hmacSha256 = async (secret: string, value: string) => {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    {name: "HMAC", hash: "SHA-256"},
+    false,
+    ["sign"],
+  );
+  const bytes = await crypto.subtle.sign("HMAC", key, encoder.encode(value));
+  return Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2, "0")).join("");
+};
+
 const constantTimeEqual = (left: string, right: string) => {
   if (left.length !== right.length) return false;
   let difference = 0;
@@ -25,9 +37,14 @@ const corsHeaders = (origin: string | null) => ({
   "Vary": "Origin",
 });
 
-const json = (body: unknown, status: number, origin: string | null) => new Response(JSON.stringify(body), {
+const json = (
+  body: unknown,
+  status: number,
+  origin: string | null,
+  extraHeaders: Record<string, string> = {},
+) => new Response(JSON.stringify(body), {
   status,
-  headers: {...corsHeaders(origin), "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store"},
+  headers: {...corsHeaders(origin), ...extraHeaders, "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store"},
 });
 
 const secretKey = () => {
@@ -37,21 +54,88 @@ const secretKey = () => {
   return defaults.default;
 };
 
+const clientAddress = (request: Request) => {
+  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return request.headers.get("cf-connecting-ip")?.trim() || forwarded || "unknown";
+};
+
+const callRateLimit = async (
+  supabaseUrl: string,
+  key: string,
+  name: "admin_rate_limit_check" | "admin_rate_limit_record",
+  body: Record<string, unknown>,
+) => {
+  const response = await fetch(`${supabaseUrl}/rest/v1/rpc/${name}`, {
+    method: "POST",
+    headers: {apikey: key, "Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) throw new Error(`Rate limit request failed (${response.status})`);
+  const rows = await response.json();
+  return Array.isArray(rows) ? rows[0] : rows;
+};
+
 Deno.serve(async request => {
   const origin = request.headers.get("Origin");
   if (request.method === "OPTIONS") return new Response(null, {status: 204, headers: corsHeaders(origin)});
   if (request.method !== "POST") return json({error: "Method not allowed"}, 405, origin);
   if (origin && !allowedOrigins.has(origin)) return json({error: "Origin not allowed"}, 403, origin);
 
-  const suppliedPassword = request.headers.get("x-admin-password");
-  const suppliedHash = suppliedPassword ? await sha256(suppliedPassword) : "";
-  if (!constantTimeEqual(suppliedHash, adminPasswordHash)) {
-    return json({error: "Anmeldung fehlgeschlagen"}, 401, origin);
-  }
-
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const key = secretKey();
   if (!supabaseUrl || !key) return json({error: "Server configuration missing"}, 500, origin);
+
+  const rateBucket = await hmacSha256(key, clientAddress(request));
+  let limit: {allowed?: boolean; retry_after_seconds?: number};
+  try {
+    limit = await callRateLimit(supabaseUrl, key, "admin_rate_limit_check", {p_bucket: rateBucket});
+  } catch (error) {
+    console.error("KOEPFER admin rate limit check:", error);
+    return json({error: "Anmeldung vorübergehend nicht verfügbar"}, 503, origin);
+  }
+  if (!limit?.allowed) {
+    const retryAfter = Math.max(1, Number(limit?.retry_after_seconds) || 900);
+    return json(
+      {error: "Zu viele Anmeldeversuche. Bitte später erneut versuchen."},
+      429,
+      origin,
+      {"Retry-After": String(retryAfter)},
+    );
+  }
+
+  const suppliedPassword = request.headers.get("x-admin-password");
+  const suppliedHash = suppliedPassword ? await sha256(suppliedPassword) : "";
+  if (!constantTimeEqual(suppliedHash, adminPasswordHash)) {
+    try {
+      const recorded = await callRateLimit(supabaseUrl, key, "admin_rate_limit_record", {
+        p_bucket: rateBucket,
+        p_success: false,
+      });
+      if (recorded?.blocked) {
+        const retryAfter = Math.max(1, Number(recorded?.retry_after_seconds) || 1800);
+        return json(
+          {error: "Zu viele Anmeldeversuche. Bitte später erneut versuchen."},
+          429,
+          origin,
+          {"Retry-After": String(retryAfter)},
+        );
+      }
+    } catch (error) {
+      console.error("KOEPFER admin rate limit record:", error);
+      return json({error: "Anmeldung vorübergehend nicht verfügbar"}, 503, origin);
+    }
+    return json({error: "Anmeldung fehlgeschlagen"}, 401, origin);
+  }
+
+  try {
+    await callRateLimit(supabaseUrl, key, "admin_rate_limit_record", {
+      p_bucket: rateBucket,
+      p_success: true,
+    });
+  } catch (error) {
+    console.error("KOEPFER admin rate limit reset:", error);
+    return json({error: "Anmeldung vorübergehend nicht verfügbar"}, 503, origin);
+  }
 
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return json({error: "Invalid JSON"}, 400, origin); }

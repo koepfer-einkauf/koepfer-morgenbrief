@@ -17,10 +17,18 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Check local run window
+      - name: Select the Berlin 06:15 schedule
         id: local_time
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
         run: |
-          if [ "$(TZ=Europe/Berlin date +%H)" = "06" ]; then
+          BERLIN_OFFSET="$(TZ=Europe/Berlin date +%z)"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$BERLIN_OFFSET" = "+0200" ] && [ "$SCHEDULE" = "15 4 * * *" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$BERLIN_OFFSET" = "+0100" ] && [ "$SCHEDULE" = "15 5 * * *" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
