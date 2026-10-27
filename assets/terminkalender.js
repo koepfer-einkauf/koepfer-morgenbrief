@@ -3,6 +3,11 @@
   const calendar = document.querySelector("#kalender.calendar-ui");
   if (!calendar) return;
   const events = [
+    {start:"2026-10-27",end:"2026-10-29",cat:"industrie",label:"Zuliefermesse",title:"Internationale ZuliefererbÃ¶rse IZB 2026",text:"Die Automotive-Zuliefermesse in Wolfsburg bietet vom 27. bis 29. Oktober eine Plattform fÃ¼r Vernetzung, Innovationen und GeschÃ¤ftsanbahnung. MesseankÃ¼ndigungen vor Qualifizierung nicht als gesicherte KapazitÃ¤t bewerten.",source:"IZB / Wolfsburg AG",url:"https://www.izb-online.com/aktuelles-presse/newsuebersicht/detail/update-izb-2026-verschoben-neuer-termin-27-bis-29-oktober-2026"},
+    {start:"2026-10-29",end:"2026-10-30",cat:"logistik",label:"Streikrisiko",title:"Italien: General-, Verkehrs- und Hafenstreiks",text:"Der Schienenverkehr ist ab 29. Oktober, 21 Uhr, bis 30. Oktober, 20:59 Uhr, angekÃ¼ndigt. FÃ¼r den 30. Oktober sind zudem ein landesweiter Generalstreik sowie ein 24-stÃ¼ndiger Hafenstreik registriert. Umfang und lokale Auswirkungen kurzfristig bestÃ¤tigen.",source:"Italienisches Infrastruktur- und Verkehrsministerium",url:"https://scioperi.mit.gov.it/mit2/public/scioperi"},
+    {start:"2026-10-26",end:"2026-10-30",cat:"logistik",label:"BahnÃ¼bergang",title:"Marbach: Sperrung SteinwiesenstraÃŸe",text:"Die Deutsche Bahn saniert den BahnÃ¼bergang in der SteinwiesenstraÃŸe. FÃ¼r die Dauer der Sperrung ist eine Ã¶rtliche Umleitung eingerichtet und ausgeschildert.",source:"Stadt Villingen-Schwenningen, 23.10.2026",url:"https://www.villingen-schwenningen.de/rathaus-leben/aktuelle-stadtmeldungen/detailansicht/bahnuebergang-in-marbach-wird-saniert-1/"},
+    {start:"2026-08-24",end:"2026-10-31",cat:"logistik",label:"Vollsperrung",title:"Furtwangen-Rohrbach: Holzdobelweg gesperrt",text:"Der Holzdobelweg ist wegen Sanierungsarbeiten komplett gesperrt. Eine Umleitung ist ausgeschildert.",source:"Stadt Furtwangen",url:"https://www.furtwangen.de/rathaus-service/aktuelles/neuigkeiten/480/vollsperrung-holzdobelweg"},
+    {start:"2027-10-31",cat:"compliance",label:"Sanktionsreview",title:"EU-Regime gegen ISIL/Daâ€™esh und Al-Qaida: aktuelles Ablaufdatum",text:"Die autonomen EU-Sanktionen mit VermÃ¶genssperren, Einreiseverboten und Bereitstellungsverbot wurden bis zu diesem Datum verlÃ¤ngert. Vorher auf erneute politische VerlÃ¤ngerung oder Ã„nderungen prÃ¼fen.",source:"Rat der EuropÃ¤ischen Union, 26.10.2026",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/10/26/eu-sanctions-against-isilda-esh-and-al-qaeda-council-renews-regime-until-2027/"},
     {start:"2026-11-24",cat:"industrie",label:"Tarifverhandlung",title:"Volkswagen und IG Metall starten Verhandlungen",text:"Auftakt zu den gekÃ¼ndigten TarifvertrÃ¤gen und beiderseitigen Forderungen am Standort Emden. Arbeitskosten, Personalinstrumente und Umsetzung des Zukunftsplans stehen im Fokus.",source:"Volkswagen Group, 23.10.2026",url:"https://www.volkswagen-group.com/de/pressemitteilungen/zweites-ueberpruefungsgespraech-volkswagen-ag-und-ig-metall-einigen-sich-auf-den-start-von-verhandlungen-20757"},
     {start:"2026-12-15",cat:"industrie",label:"Tarifverhandlung",title:"Volkswagen und IG Metall setzen Verhandlungen fort",text:"Zweite vereinbarte Tarifrunde am Standort Zwickau. Ergebnisse und mÃ¶gliche Auswirkungen auf Werke, Programme und PersonalmaÃŸnahmen getrennt prÃ¼fen.",source:"Volkswagen Group, 23.10.2026",url:"https://www.volkswagen-group.com/de/pressemitteilungen/zweites-ueberpruefungsgespraech-volkswagen-ag-und-ig-metall-einigen-sich-auf-den-start-von-verhandlungen-20757"},
     {start:"2026-11-18",end:"2026-11-19",cat:"industrie",label:"Recycling",title:"CMA Summit 2026 in Berlin",text:"Die Branchenveranstaltung zu Stahl- und Metallrecycling findet am 18. und 19. November 2026 in Berlin statt. Fuer Schrottmarkt und Sekundaerrohstoffe relevant.",source:"BDSV / Circular Metal Association",url:"https://www.bdsv.org/unser-service/termine/termin/tx_news/save-the-date-cma-summit-2026/"},
@@ -26,259 +31,8 @@
     {start:"2026-10-12",end:"2026-10-23",cat:"logistik",label:"StraÃŸensperre",title:"Villingen-Schwenningen: Fahrbahnsanierung SchillerstraÃŸe und Justinus-Kerner-StraÃŸe",text:"Die angekÃ¼ndigten Vollsperrungen sollen bis voraussichtlich 23. Oktober dauern; fÃ¼r lokale Anlieferungen Umleitungen und aktuellen Baustellenstand prÃ¼fen.",source:"Stadt Villingen-Schwenningen",url:"https://www.villingen-schwenningen.de/rathaus-leben/aktuelle-stadtmeldungen/detailansicht/fahrbahnsanierung-in-der-justinus-kerner-strasse-und-schillerstrasse-vollsperrung-vom-12-bis-voraussichtlich-23-oktober/"},
     {start:"2026-10-15",end:"2026-10-16",cat:"energie",label:"EU-Gipfel",title:"EuropÃ¤ischer Rat berÃ¤t Energiepreise und WettbewerbsfÃ¤higkeit",text:"Die Staats- und Regierungschefs diskutieren befristete EntlastungsmÃ¶glichkeiten fÃ¼r hohe Energiepreise und den Binnenmarkt. BeschlÃ¼sse und Folgeakte sind erst nach offizieller VerÃ¶ffentlichung verbindlich.",source:"EuropÃ¤ischer Rat",url:"https://www.consilium.europa.eu/en/meetings/european-council/2026/10/15-16/"},
     {start:"2026-10-19",end:"2026-10-23",cat:"logistik",label:"Nachtsperren",title:"Freiburg B31 Ost: nÃ¤chtliche Tunnel- und Galeriesperrungen",text:"Wartungsarbeiten an den B31-Ost-Tunnelanlagen mit Sperrungen in den NÃ¤chten von 20 bis 6 Uhr; die letzte Nacht ist als Reserve vorgesehen. Nachttransporte rechtzeitig umleiten.",source:"Stadt Freiburg",url:"https://www.freiburg.de/pb/2654640.html"},
-    {start:"2026-10-27",cat:"industrie",label:"Tarifrunde",title:"Metall- und Elektrotarif Baden-WÃ¼rttemberg: zweite Verhandlung",text:"IG Metall nennt den 27. Oktober als Termin der zweiten regionalen Tarifverhandlung, der Ort ist noch offen. Ergebnisse sind nicht vorwegzunehmen.",source:"IG Metall, TerminÃ¼bersicht",url:"https://www.igmetall.de/presse/termine/2026/tarifrunde-metall-und-elektroindustrie-2026"},
-    {start:"2026-10-27",cat:"industrie",label:"Tarifrunde",title:"Metall- und Elektrotarif Sachsen: zweite Verhandlung in Dresden",text:"Nach dem Auftakt ohne Arbeitgeberangebot folgen am 27. Oktober in Dresden weitere Verhandlungen. Kein bereits bekanntes Tarifergebnis.",source:"IG Metall, TerminÃ¼bersicht",url:"https://www.igmetall.de/presse/termine/2026/tarifrunde-metall-und-elektroindustrie-2026"},
-    {start:"2026-10-31",cat:"industrie",label:"Tariffrist",title:"Metall- und Elektroindustrie: tarifliche Friedenspflicht endet",text:"Laut IG Metall endet die Friedenspflicht mit dem 31. Oktober 2026. Ab November kÃ¶nnen Warnstreiks rechtlich mÃ¶glich werden; tatsÃ¤chliche Aktionen sind nicht vorweggenommen.",source:"IG Metall, TerminÃ¼bersicht",url:"https://www.igmetall.de/presse/termine/2026/tarifrunde-metall-und-elektroindustrie-2026"},
-    {start:"2026-09-30",cat:"handel",label:"Frist",title:"EU-Stahl: Konsultation zur Ausweitung des Produktumfangs endet",text:"Die Kommission prÃ¼ft unter anderem DrÃ¤hte, EdelstahldrÃ¤hte und geschmiedete StÃ¤be fÃ¼r eine mÃ¶gliche Aufnahme in die EU-StahlmaÃŸnahmen. FÃ¼r betroffene CN-Codes kann sich die Import- und Preislandschaft Ã¤ndern.",source:"EuropÃ¤ische Kommission",url:"https://policy.trade.ec.europa.eu/consultations/targeted-consultation-first-product-scope-review-under-eu-steel-regulation_en"},
-    {start:"2026-10-01",end:"2026-10-07",cat:"logistik",label:"China",title:"China National Day: siebentÃ¤gige Feiertagsphase",text:"Landesweite Feiertage kÃ¶nnen Produktion, Abfertigung, Spedition und Reaktionszeiten chinesischer Lieferanten verzÃ¶gern. Der 10. Oktober ist laut offiziellem Kalender ein Ausgleichs-Arbeitstag.",source:"Staatsrat der Volksrepublik China",url:"https://big5.www.gov.cn/gate/big5/www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm"},
-    {start:"2026-10-09",cat:"geopolitik",label:"Review",title:"EU-Sanktionsrahmen zu russischen hybriden AktivitÃ¤ten: aktuelles Ablaufdatum",text:"Die bestehenden restriktiven MaÃŸnahmen gegen destabilisierende russische AktivitÃ¤ten im Ausland laufen nach aktuellem Beschluss bis zu diesem Datum. Vorher ist mit einer politischen Ãœberpröß­m¢G§²ÚîÆ­yÔ:"2027-11-29",cat:"logistik",label:"IMO",title:"HNS-Ãœbereinkommen fÃ¼r gefÃ¤hrliche und schÃ¤dliche Stoffe tritt in Kraft",text:"Das internationale Haftungs- und EntschÃ¤digungsregime fÃ¼r UnfÃ¤lle mit gefÃ¤hrlichen und schÃ¤dlichen Stoffen auf See wird wirksam.",source:"International Maritime Organization",url:"https://www.imo.org/en/mediacentre/pressbriefings/pages/imo-hns-treaty-to-enter-into-force-in-2027-.aspx"},
-    {start:"2027-12-02",cat:"compliance",label:"AI Act",title:"EU-AI-Act: neue Frist fÃ¼r bestimmte Hochrisiko-Systeme",text:"Nach dem angepassten Zeitplan gelten die Vorgaben fÃ¼r Hochrisiko-KI in Bereichen wie BeschÃ¤ftigung, kritischer Infrastruktur und weiteren sensiblen Einsatzfeldern ab diesem Datum.",source:"EuropÃ¤ische Kommission",url:"https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems"},
-    {start:"2027-12-11",cat:"compliance",label:"CRA",title:"Cyber Resilience Act wird vollstÃ¤ndig anwendbar",text:"Ab diesem Datum greifen die wesentlichen CRA-Anforderungen an Produkte mit digitalen Elementen umfassend.",source:"EuropÃ¤ische Kommission",url:"https://digital-strategy.ec.europa.eu/en/policies/cra-summary"},
-    {start:"2027-12-14",cat:"compliance",label:"Lieferkette",title:"EU-Verordnung gegen Produkte aus Zwangsarbeit wird anwendbar",text:"Ab diesem Datum dÃ¼rfen Produkte, die mit Zwangsarbeit hergestellt wurden, nicht mehr auf dem EU-Markt bereitgestellt oder aus der EU exportiert werden.",source:"EuropÃ¤ische Kommission",url:"https://single-market-economy.ec.europa.eu/single-market/goods/forced-labour-regulation_en"}
-  ];
-
-  const catLabel={compliance:"Compliance",handel:"Handel & ZÃ¶lle",logistik:"Logistik",energie:"Energie",geopolitik:"Geopolitik",industrie:"Industrie & Automotive"};
-  const monthNames=["Januar","Februar","MÃ¤rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
-  const dayNames=[["Montag","Mo"],["Dienstag","Di"],["Mittwoch","Mi"],["Donnerstag","Do"],["Freitag","Fr"],["Samstag","Sa"],["Sonntag","So"]];
-  const stack=calendar.querySelector("#calendar-stack");
-  const dialog=calendar.querySelector("#day-dialog");
-  const dialogTitle=calendar.querySelector("#dialog-title");
-  const dialogSubtitle=calendar.querySelector("#dialog-subtitle");
-  const dialogBody=calendar.querySelector("#dialog-body");
-  const filters=[...calendar.querySelectorAll(".filter")];
-  const today=new Date();
-  const todayKey=[today.getFullYear(),String(today.getMonth()+1).padStart(2,"0"),String(today.getDate()).padStart(2,"0")].join("-");
-  let rangeStart=new Date(today.getFullYear(),today.getMonth(),1);
-  let visibleMonths=3;
-  let activeFilter="all";
-  const yearForm=calendar.querySelector("#year-jump");
-  const yearInput=calendar.querySelector("#year-input");
-  const yearFeedback=calendar.querySelector("#year-jump-feedback");
-
-  const toKey=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-  const parseKey=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
-
-  // Historische Umstellung fÃ¼r die zuerst gregorianisch umgestellten LÃ¤nder:
-  // Do. 04.10.1582 (julianisch) -> Fr. 15.10.1582 (gregorianisch).
-  // Andere Regionen, auch deutsche Territorien, stellten zu anderen Daten um.
-  // Native JavaScript Date rechnet hingegen durchgehend proleptisch gregorianisch.
-  const REFORM_DAY=2299161;
-  const civilToDay=(year,month,day)=>{
-    if(year===1582&&month===10&&day>=5&&day<=14)return null;
-    const a=Math.floor((14-month)/12);
-    const y=year+4800-a,m=month+12*a-3;
-    const base=day+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4);
-    const gregorian=year>1582||(year===1582&&(month>10||(month===10&&day>=15)));
-    return gregorian?base-Math.floor(y/100)+Math.floor(y/400)-32045:base-32083;
-  };
-  const dayToCivil=jdn=>{
-    let year,month,day;
-    if(jdn>=REFORM_DAY){
-      const a=jdn+32044,b=Math.floor((4*a+3)/146097),c=a-Math.floor(146097*b/4);
-      const d=Math.floor((4*c+3)/1461),e=c-Math.floor(1461*d/4),m=Math.floor((5*e+2)/153);
-      day=e-Math.floor((153*m+2)/5)+1;
-      month=m+3-12*Math.floor(m/10);
-      year=100*b+d-4800+Math.floor(m/10);
-    }else{
-      const a=jdn+32082,b=Math.floor((4*a+3)/1461),c=a-Math.floor(1461*b/4),m=Math.floor((5*c+2)/153);
-      day=c-Math.floor((153*m+2)/5)+1;
-      month=m+3-12*Math.floor(m/10);
-      year=b-4800+Math.floor(m/10);
-    }
-    return {year,month,day};
-  };
-  const weekDay=jdn=>((jdn%7)+7)%7; // 0 = Montag
-  const civilKey=d=>d.year+"-"+String(d.month).padStart(2,"0")+"-"+String(d.day).padStart(2,"0");
-  const formatDate=s=>{
-    const [year,month,day]=s.split("-").map(Number);
-    const jdn=civilToDay(year,month,day);
-    return (jdn===null?"":dayNames[weekDay(jdn)][0]+", ")+String(day).padStart(2,"0")+". "+monthNames[month-1]+" "+year;
-  };
-  const eventOnDay=(event,key)=>key>=event.start&&key<=(event.end||event.start);
-  const visibleEventsForDay=key=>events.filter(e=>eventOnDay(e,key)&&(activeFilter==="all"||e.cat===activeFilter));
-  const isoWeek=jdn=>{
-    // ISO-Wochennummer, fÃ¼r historische Daten rÃ¼ckwirkend berechnet.
-    const thursday=dayToCivil(jdn+3);
-    const jan4=civilToDay(thursday.year,1,4);
-    return Math.floor((jdn-(jan4-weekDay(jan4)))/7)+1;
-  };
-
-  function previewHtml(dayEvents){
-    const shown=dayEvents.slice(0,3).map(e=>"<p><b>"+e.label+"</b> Â· "+e.title+"</p>").join("");
-    const more=dayEvents.length>3?"<p>+"+(dayEvents.length-3)+" weitere</p>":"";
-    return '<div class="preview"><b>Vorschau</b>'+shown+more+"</div>";
-  }
-
-  function openDay(key){
-    const dayEvents=visibleEventsForDay(key);
-    if(!dayEvents.length)return;
-    dialogTitle.textContent=formatDate(key);
-    dialogSubtitle.textContent=dayEvents.length===1?"1 Ereignis":dayEvents.length+" Ereignisse";
-    dialogBody.innerHTML=dayEvents.map(e=>
-      '<article class="detail-card" data-cat="'+e.cat+'">'+
-        '<div class="detail-meta">'+catLabel[e.cat]+' Â· '+e.label+(e.end?" Â· "+formatDate(e.start)+" bis "+formatDate(e.end):"")+'</div>'+
-        '<h3>'+e.title+'</h3><p>'+e.text+'</p>'+
-        '<a href="'+e.url+'" target="_blank" rel="noopener noreferrer">Quelle: '+e.source+' â†—</a>'+
-      '</article>'
-    ).join("");
-    dialog.showModal();
-  }
-
-  function monthElement(year,month){
-    const card=document.createElement("section");card.className="month-card";
-    // Fortlaufende echte Tage statt der proleptisch gregorianischen Date-RÃ¼ckrechnung.
-    const firstDay=civilToDay(year,month+1,1);
-    const nextYear=month===11?year+1:year,nextMonth=month===11?1:month+2;
-    const endDay=civilToDay(nextYear,nextMonth,1);
-    const startDay=firstDay-weekDay(firstDay);
-    const rows=Math.ceil((endDay-startDay)/7);
-
-    const title=document.createElement("div");title.className="month-title";
-    const eventCount=events.filter(e=>{
-      const [sy,sm,sd]=e.start.split("-").map(Number),[ey,em,ed]=(e.end||e.start).split("-").map(Number);
-      const es=civilToDay(sy,sm,sd),ee=civilToDay(ey,em,ed);
-      return ee!==null&&es!==null&&ee>=firstDay&&es<endDay&&(activeFilter==="all"||e.cat===activeFilter);
-    }).length;
-    const phase=year<1582||(year===1582&&month<9)?"julian":year===1582&&month===9?"transition":"gregorian";
-    card.dataset.calendarPhase=phase;
-    title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+
-      (eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
-    card.appendChild(title);
-
-    if(phase==="transition"){
-      const notice=document.createElement("div");
-      notice.className="calendar-transition";
-      notice.innerHTML='<strong>Kalenderwechsel Â· Oktober 1582</strong>'+
-        '<div class="calendar-transition-days"><span><b>Donnerstag, 4. Oktober</b><small>letzter julianischer Tag</small></span>'+
-        '<span class="calendar-skip" aria-label="10 Kalendertage entfallen">â†’ 10 Tage entfallen â†’</span>'+
-        '<span><b>Freitag, 15. Oktober</b><small>erster gregorianischer Tag</small></span></div>'+
-        '<p>5. bis 14. Oktober 1582 entfielen bei der ersten EinfÃ¼hrung der Reform. Andere Regionen, auch viele deutsche Gebiete, wechselten erst spÃ¤ter.</p>';
-      card.appendChild(notice);
-    }
-
-    const grid=document.createElement("div");grid.className="calendar-grid";
-    const kw=document.createElement("div");kw.className="head-cell";kw.textContent="KW";grid.appendChild(kw);
-    dayNames.forEach(([full,short])=>{const h=document.createElement("div");h.className="head-cell";h.innerHTML=short+"<small>"+full+"</small>";grid.appendChild(h)});
-
-    for(let r=0;r<rows;r++){
-      const monday=startDay+r*7;
-      const w=document.createElement("div");w.className="weekno";w.textContent=isoWeek(monday);grid.appendChild(w);
-      for(let c=0;c<7;c++){
-        const d=dayToCivil(monday+c);
-        const key=civilKey(d);
-        const dayEvents=visibleEventsForDay(key);
-        const btn=document.createElement("button");
-        btn.type="button";btn.className="day";
-        if(d.year!==year||d.month!==month+1)btn.classList.add("is-outside");
-        if(c>=5)btn.classList.add("is-weekend");
-        if(c===6)btn.classList.add("is-sunday");
-        if(key===todayKey)btn.classList.add("is-today");
-        btn.innerHTML='<span class="day-num">'+d.day+'</span>';
-        if(dayEvents.length){
-          btn.classList.add("has-events");
-          btn.setAttribute("aria-label",formatDate(key)+": "+dayEvents.length+" Ereignis"+(dayEvents.length===1?"":"se"));
-          const cats=[...new Set(dayEvents.map(e=>e.cat))];
-          btn.innerHTML+=(dayEvents.length>1?'<span class="event-count">'+dayEvents.length+'</span>':"")+
-            '<span class="dots">'+cats.map(cat=>'<i class="dot-'+cat+'"></i>').join("")+'</span>'+previewHtml(dayEvents);
-          btn.addEventListener("click",()=>openDay(key));
-        }else{
-          btn.disabled=true;
-          btn.setAttribute("aria-label",formatDate(key)+": keine Ereignisse");
-        }
-        if(year===1582&&month===9&&d.year===1582&&d.month===10){
-          const isJulian=d.day<=4;
-          btn.classList.add(isJulian?"is-julian":"is-gregorian");
-          if(d.day===4||d.day===15){
-            const isFirstGregorian=d.day===15;
-            btn.classList.add(isFirstGregorian?"is-reform-after":"is-reform-before");
-            btn.innerHTML+='<span class="calendar-boundary-label" aria-hidden="true">'+(isFirstGregorian?"Greg.":"Jul.")+"</span>";
-            btn.title=isFirstGregorian?"Erster Tag des gregorianischen Kalenders":"Letzter Tag des julianischen Kalenders";
-            btn.setAttribute("aria-label",btn.getAttribute("aria-label")+", "+btn.title);
-          }
-        }
-        grid.appendChild(btn);
-      }
-    }
-    card.appendChild(grid);
-    return card;
-  }
-
-  function render(){
-    stack.innerHTML="";
-    stack.classList.toggle("is-year-view",visibleMonths===12);
-    for(let i=0;i<visibleMonths;i++){
-      const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+i,1);
-      stack.appendChild(monthElement(d.getFullYear(),d.getMonth()));
-    }
-    if(yearFeedback){
-      if(visibleMonths===12){
-        const selectedYear=rangeStart.getFullYear();
-        const begin=selectedYear+"-01-01";
-        const end=selectedYear+"-12-31";
-        const matched=events.filter(e=>e.start<=end&&(e.end||e.start)>=begin&&(activeFilter==="all"||e.cat===activeFilter)).length;
-        yearFeedback.textContent=matched
-          ?"Jahresansicht "+selectedYear+": "+matched+" belegte "+(matched===1?"Eintragung":"Eintragungen")+"."
-          :"FÃ¼r "+selectedYear+" sind keine Termine hinterlegt.";
-      }else{
-        const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+2,1);
-        yearFeedback.textContent="Ansicht: "+monthNames[rangeStart.getMonth()]+" "+rangeStart.getFullYear()+" bis "+monthNames[d.getMonth()]+" "+d.getFullYear()+".";
-      }
-    }
-  }
-
-  function updateQuick(){
-    const nowKey=todayKey;
-    const future=events.filter(e=>(e.end||e.start)>=nowKey).sort((a,b)=>{
-      const aOngoing=a.start<=nowKey&&(a.end||a.start)>=nowKey;
-      const bOngoing=b.start<=nowKey&&(b.end||b.start)>=nowKey;
-      if(aOngoing!==bOngoing)return aOngoing?-1:1;
-      return aOngoing
-        ?(a.end||a.start).localeCompare(b.end||b.start)
-        :a.start.localeCompare(b.start);
-    });
-    if(future.length){
-      const next=future[0];
-      const ongoing=next.start<=nowKey&&(next.end||next.start)>=nowKey;
-      const displayKey=ongoing?(next.end||next.start):next.start;
-      const displayDate=parseKey(displayKey).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"});
-      calendar.querySelector("#next-date").textContent=ongoing?"LÃ¤uft bis "+displayDate:displayDate;
-      calendar.querySelector("#next-title").textContent=next.title;
-    }else{
-      calendar.querySelector("#next-date").textContent="â€“";
-      calendar.querySelector("#next-title").textContent="Keine gepflegten Termine";
-    }
-    const end90=new Date(today);end90.setDate(end90.getDate()+90);
-    const end90Key=toKey(end90);
-    calendar.querySelector("#next-90").textContent=String(events.filter(e=>(e.end||e.start)>=nowKey&&e.start<=end90Key).length);
-  }
-
-  calendar.querySelector("#prev-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()-3,1);visibleMonths=3;render()});
-  calendar.querySelector("#next-range").addEventListener("click",()=>{rangeStart=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+3,1);visibleMonths=3;render()});
-  calendar.querySelector("#today-range").addEventListener("click",()=>{rangeStart=new Date(today.getFullYear(),today.getMonth(),1);visibleMonths=3;if(yearInput)yearInput.value=String(today.getFullYear());render()});
-  if(yearForm&&yearInput&&yearFeedback){
-    yearInput.value=String(today.getFullYear());
-    yearForm.addEventListener("submit",e=>{
-      e.preventDefault();
-      const raw=yearInput.value.trim();
-      const year=Number(raw);
-      if(!/^[0-9]{4}$/.test(raw)||!Number.isInteger(year)||year<1000||year>9999){
-        yearInput.setAttribute("aria-invalid","true");
-        yearFeedback.textContent="Bitte ein vierstelliges Jahr zwischen 1000 und 9999 eingeben.";
-        yearInput.focus();
-        return;
-      }
-      yearInput.removeAttribute("aria-invalid");
-      rangeStart=new Date(year,0,1);
-      visibleMonths=12;
-      render();
-    });
-  }
-  filters.forEach(btn=>btn.addEventListener("click",()=>{
-    activeFilter=btn.dataset.filter;
-    filters.forEach(b=>b.setAttribute("aria-pressed",b===btn?"true":"false"));
-    render();
-  }));
-  dialog.querySelector(".dialog-close").addEventListener("click",()=>dialog.close());
-  dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
-  updateQuick();render();
-})();
+    {start:"2026-10-27",cat:"industrie",label:"Tarifrunde",title:"Metall- und Elektrotarif Baden-WÃ¼rttemberg: zweite Verhandlung",text:"IG Metall nennt den 27. Oktober als Termin der zweiten rß_y¶‰žËkºwµçe¡”MÑ½™™”ÑÉ¥ÑÐ¥¸-É…™Ðˆ±Ñ•áÐè‰…Ì¥¹Ñ•É¹…Ñ¥½¹…±”!…™ÑÕ¹Ì´Õ¹¹ÑÍ£‘‘¥Õ¹ÍÉ•¥µ”›ñÈU¹›‘±±”µ¥Ð•›‘¡É±¥¡•¸Õ¹Í£‘‘±¥¡•¸MÑ½™™•¸…Õ˜M•”Ý¥ÉÝ¥É­Í…´¸ˆ±Í½ÕÉ”è‰%¹Ñ•É¹…Ñ¥½¹…°5…É¥Ñ¥µ”=É…¹¥é…Ñ¥½¸ˆ±ÕÉ°è‰¡ÑÑÁÌè¼½ÝÝÜ¹¥µ¼¹½Éœ½•¸½µ•‘¥…•¹ÑÉ”½ÁÉ•ÍÍ‰É¥•™¥¹Ì½Á…•Ì½¥µ¼µ¡¹ÌµÑÉ•…ÑäµÑ¼µ•¹Ñ•Èµ¥¹Ñ¼µ™½É”µ¥¸´ÈÀÈÜ´¹…ÍÁà‰ô°4(€€€íÍÑ…ÉÐèˆÈÀÈÜ´ÄÈ´ÀÈˆ±…Ðè‰½µÁ±¥…¹”ˆ±±…‰•°è‰$Ðˆ±Ñ¥Ñ±”è‰Tµ$µÐè¹•Õ”É¥ÍÐ›ñÈ‰•ÍÑ¥µµÑ”!½¡É¥Í¥­¼µMåÍÑ•µ”ˆ±Ñ•áÐè‰9… ‘•´…¹•Á…ÍÍÑ•¸i•¥ÑÁ±…¸•±Ñ•¸‘¥”Y½É…‰•¸›ñÈ!½¡É¥Í¥­¼µ-$¥¸	•É•¥¡•¸Ý¥”	•Í£‘™Ñ¥Õ¹œ°­É¥Ñ¥Í¡•È%¹™É…ÍÑÉÕ­ÑÕÈÕ¹Ý•¥Ñ•É•¸Í•¹Í¥‰±•¸¥¹Í…Ñé™•±‘•É¸…ˆ‘¥•Í•´…ÑÕ´¸ˆ±Í½ÕÉ”è‰ÕÉ½Ã‘¥Í¡”-½µµ¥ÍÍ¥½¸ˆ±ÕÉ°è‰¡ÑÑÁÌè¼½‘¥¥Ñ…°µÍÑÉ…Ñ•ä¹•Œ¹•ÕÉ½Á„¹•Ô½•¸½Á½±¥¥•Ì½Õ¥‘•±¥¹•Ìµ…¤µ¡¥ µÉ¥Í¬µÍåÍÑ•µÌ‰ô°4(€€€íÍÑ…ÉÐèˆÈÀÈÜ´ÄÈ´ÄÄˆ±…Ðè‰½µÁ±¥…¹”ˆ±±…‰•°è‰Iˆ±Ñ¥Ñ±”è‰å‰•ÈI•Í¥±¥•¹”ÐÝ¥ÉÙ½±±ÍÓ‘¹‘¥œ…¹Ý•¹‘‰…Èˆ±Ñ•áÐè‰ˆ‘¥•Í•´…ÑÕ´É•¥™•¸‘¥”Ý•Í•¹Ñ±¥¡•¸Iµ¹™½É‘•ÉÕ¹•¸…¸AÉ½‘Õ­Ñ”µ¥Ð‘¥¥Ñ…±•¸±•µ•¹Ñ•¸Õµ™…ÍÍ•¹¸ˆ±Í½ÕÉ”è‰ÕÉ½Ã‘¥Í¡”-½µµ¥ÍÍ¥½¸ˆ±ÕÉ°è‰¡ÑÑÁÌè¼½‘¥¥Ñ…°µÍÑÉ…Ñ•ä¹•Œ¹•ÕÉ½Á„¹•Ô½•¸½Á½±¥¥•Ì½É„µÍÕµµ…Éä‰ô°4(€€€íÍÑ…ÉÐèˆÈÀÈÜ´ÄÈ´ÄÐˆ±…Ðè‰½µÁ±¥…¹”ˆ±±…‰•°è‰1¥•™•É­•ÑÑ”ˆ±Ñ¥Ñ±”è‰TµY•É½É‘¹Õ¹œ••¸AÉ½‘Õ­Ñ”…ÕÌiÝ…¹Í…É‰•¥ÐÝ¥É…¹Ý•¹‘‰…Èˆ±Ñ•áÐè‰ˆ‘¥•Í•´…ÑÕ´“ñÉ™•¸AÉ½‘Õ­Ñ”°‘¥”µ¥ÐiÝ…¹Í…É‰•¥Ð¡•É•ÍÑ•±±ÐÝÕÉ‘•¸°¹¥¡Ðµ•¡È…Õ˜‘•´Tµ5…É­Ð‰•É•¥Ñ•ÍÑ•±±Ð½‘•È…ÕÌ‘•ÈT•áÁ½ÉÑ¥•ÉÐÝ•É‘•¸¸ˆ±Í½ÕÉ”è‰ÕÉ½Ã‘¥Í¡”-½µµ¥ÍÍ¥½¸ˆ±ÕÉ°è‰¡ÑÑÁÌè¼½Í¥¹±”µµ…É­•Ðµ•½¹½µä¹•Œ¹•ÕÉ½Á„¹•Ô½Í¥¹±”µµ…É­•Ð½½½‘Ì½™½É•µ±…‰½ÕÈµÉ•Õ±…Ñ¥½¹}•¸‰ô4(€tì4(4(€½¹ÍÐ…Ñ1…‰•°õí½µÁ±¥…¹”è‰½µÁ±¥…¹”ˆ±¡…¹‘•°è‰!…¹‘•°€˜kÙ±±”ˆ±±½¥ÍÑ¥¬è‰1½¥ÍÑ¥¬ˆ±•¹•É¥”è‰¹•É¥”ˆ±•½Á½±¥Ñ¥¬è‰•½Á½±¥Ñ¥¬ˆ±¥¹‘ÕÍÑÉ¥”è‰%¹‘ÕÍÑÉ¥”€˜ÕÑ½µ½Ñ¥Ù”‰ôì4(€½¹ÍÐµ½¹Ñ¡9…µ•Ìõl‰)…¹Õ…Èˆ°‰•‰ÉÕ…Èˆ°‰7‘Éèˆ°‰ÁÉ¥°ˆ°‰5…¤ˆ°‰)Õ¹¤ˆ°‰)Õ±¤ˆ°‰ÕÕÍÐˆ°‰M•ÁÑ•µ‰•Èˆ°‰=­Ñ½‰•Èˆ°‰9½Ù•µ‰•Èˆ°‰•é•µ‰•È‰tì4(€½¹ÍÐ‘…å9…µ•Ìõml‰5½¹Ñ…œˆ°‰5¼‰t±l‰¥•¹ÍÑ…œˆ°‰¤‰t±l‰5¥ÑÑÝ½ ˆ°‰5¤‰t±l‰½¹¹•ÉÍÑ…œˆ°‰¼‰t±l‰É•¥Ñ…œˆ°‰È‰t±l‰M…µÍÑ…œˆ°‰M„‰t±l‰M½¹¹Ñ…œˆ°‰M¼‰utì4(€½¹ÍÐÍÑ…¬õ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ…±•¹‘…ÈµÍÑ…¬ˆ¤ì4(€½¹ÍÐ‘¥…±½œõ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ‘…äµ‘¥…±½œˆ¤ì4(€½¹ÍÐ‘¥…±½Q¥Ñ±”õ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ‘¥…±½œµÑ¥Ñ±”ˆ¤ì4(€½¹ÍÐ‘¥…±½MÕ‰Ñ¥Ñ±”õ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ‘¥…±½œµÍÕ‰Ñ¥Ñ±”ˆ¤ì4(€½¹ÍÐ‘¥…±½	½‘äõ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ‘¥…±½œµ‰½‘äˆ¤ì4(€½¹ÍÐ™¥±Ñ•ÉÌõl¸¸¹…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½É±° ˆ¹™¥±Ñ•Èˆ¥tì4(€½¹ÍÐÑ½‘…äõ¹•Ü…Ñ” ¤ì4(€½¹ÍÐÑ½‘…å-•äõmÑ½‘…ä¹•ÑÕ±±e•…È ¤±MÑÉ¥¹œ¡Ñ½‘…ä¹•Ñ5½¹Ñ  ¤¬Ä¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¤±MÑÉ¥¹œ¡Ñ½‘…ä¹•Ñ…Ñ” ¤¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¥t¹©½¥¸ ˆ´ˆ¤ì4(€±•ÐÉ…¹•MÑ…ÉÐõ¹•Ü…Ñ”¡Ñ½‘…ä¹•ÑÕ±±e•…È ¤±Ñ½‘…ä¹•Ñ5½¹Ñ  ¤°Ä¤ì4(€±•ÐÙ¥Í¥‰±•5½¹Ñ¡ÌôÌì4(€±•Ð…Ñ¥Ù•¥±Ñ•Èô‰…±°ˆì4(€½¹ÍÐå•…É½É´õ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆå•…Èµ©ÕµÀˆ¤ì4(€½¹ÍÐå•…É%¹ÁÕÐõ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆå•…Èµ¥¹ÁÕÐˆ¤ì4(€½¹ÍÐå•…É••‘‰…¬õ…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆå•…Èµ©ÕµÀµ™••‘‰…¬ˆ¤ì4(4(€½¹ÍÐÑ½-•äõôù¹•ÑÕ±±e•…È ¤¬ˆ´ˆ­MÑÉ¥¹œ¡¹•Ñ5½¹Ñ  ¤¬Ä¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¤¬ˆ´ˆ­MÑÉ¥¹œ¡¹•Ñ…Ñ” ¤¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¤ì4(€½¹ÍÐÁ…ÉÍ•-•äõÌôùí½¹ÍÐmä±´±‘tõÌ¹ÍÁ±¥Ð ˆ´ˆ¤¹µ…À¡9Õµ‰•È¤íÉ•ÑÕÉ¸¹•Ü…Ñ”¡ä±´´Ä±¥ôì4(4(€€¼¼!¥ÍÑ½É¥Í¡”UµÍÑ•±±Õ¹œ›ñÈ‘¥”éÕ•ÉÍÐÉ•½É¥…¹¥Í Õµ•ÍÑ•±±Ñ•¸3‘¹‘•Èè4(€€¼¼¼¸€ÀÐ¸ÄÀ¸ÄÔàÈ€¡©Õ±¥…¹¥Í ¤€´øÈ¸€ÄÔ¸ÄÀ¸ÄÔàÈ€¡É•½É¥…¹¥Í ¤¸4(€€¼¼¹‘•É”I•¥½¹•¸°…Õ ‘•ÕÑÍ¡”Q•ÉÉ¥Ñ½É¥•¸°ÍÑ•±±Ñ•¸éÔ…¹‘•É•¸…Ñ•¸Õ´¸4(€€¼¼9…Ñ¥Ù”)…Ù…MÉ¥ÁÐ…Ñ”É•¡¹•Ð¡¥¹••¸‘ÕÉ¡•¡•¹ÁÉ½±•ÁÑ¥Í É•½É¥…¹¥Í ¸4(€½¹ÍÐI=I5}dôÈÈääÄØÄì4(€½¹ÍÐ¥Ù¥±Q½…äô¡å•…È±µ½¹Ñ ±‘…ä¤ôùì4(€€€¥˜¡å•…ÈôôôÄÔàÈ˜™µ½¹Ñ ôôôÄÀ˜™‘…äøôÔ˜™‘…äðôÄÐ¥É•ÑÕÉ¸¹Õ±°ì4(€€€½¹ÍÐ„õ5…Ñ ¹™±½½È  ÄÐµµ½¹Ñ ¤¼ÄÈ¤ì4(€€€½¹ÍÐäõå•…È¬ÐàÀÀµ„±´õµ½¹Ñ ¬ÄÈ©„´Ìì4(€€€½¹ÍÐ‰…Í”õ‘…ä­5…Ñ ¹™±½½È  ÄÔÌ©´¬È¤¼Ô¤¬ÌØÔ©ä­5…Ñ ¹™±½½È¡ä¼Ð¤ì4(€€€½¹ÍÐÉ•½É¥…¸õå•…ÈøÄÔàÉñð¡å•…ÈôôôÄÔàÈ˜˜¡µ½¹Ñ øÄÁñð¡µ½¹Ñ ôôôÄÀ˜™‘…äøôÄÔ¤¤¤ì4(€€€É•ÑÕÉ¸É•½É¥…¸ý‰…Í”µ5…Ñ ¹™±½½È¡ä¼ÄÀÀ¤­5…Ñ ¹™±½½È¡ä¼ÐÀÀ¤´ÌÈÀÐÔé‰…Í”´ÌÈÀàÌì4(€ôì4(€½¹ÍÐ‘…åQ½¥Ù¥°õ©‘¸ôùì4(€€€±•Ðå•…È±µ½¹Ñ ±‘…äì4(€€€¥˜¡©‘¸øõI=I5}d¥ì4(€€€€€½¹ÍÐ„õ©‘¸¬ÌÈÀÐÐ±ˆõ5…Ñ ¹™±½½È  Ð©„¬Ì¤¼ÄÐØÀäÜ¤±Œõ„µ5…Ñ ¹™±½½È ÄÐØÀäÜ©ˆ¼Ð¤ì4(€€€€€½¹ÍÐõ5…Ñ ¹™±½½È  Ð©Œ¬Ì¤¼ÄÐØÄ¤±”õŒµ5…Ñ ¹™±½½È ÄÐØÄ©¼Ð¤±´õ5…Ñ ¹™±½½È  Ô©”¬È¤¼ÄÔÌ¤ì4(€€€€€‘…äõ”µ5…Ñ ¹™±½½È  ÄÔÌ©´¬È¤¼Ô¤¬Äì4(€€€€€µ½¹Ñ õ´¬Ì´ÄÈ©5…Ñ ¹™±½½È¡´¼ÄÀ¤ì4(€€€€€å•…ÈôÄÀÀ©ˆ­´ÐàÀÀ­5…Ñ ¹™±½½È¡´¼ÄÀ¤ì4(€€€õ•±Í•ì4(€€€€€½¹ÍÐ„õ©‘¸¬ÌÈÀàÈ±ˆõ5…Ñ ¹™±½½È  Ð©„¬Ì¤¼ÄÐØÄ¤±Œõ„µ5…Ñ ¹™±½½È ÄÐØÄ©ˆ¼Ð¤±´õ5…Ñ ¹™±½½È  Ô©Œ¬È¤¼ÄÔÌ¤ì4(€€€€€‘…äõŒµ5…Ñ ¹™±½½È  ÄÔÌ©´¬È¤¼Ô¤¬Äì4(€€€€€µ½¹Ñ õ´¬Ì´ÄÈ©5…Ñ ¹™±½½È¡´¼ÄÀ¤ì4(€€€€€å•…Èõˆ´ÐàÀÀ­5…Ñ ¹™±½½È¡´¼ÄÀ¤ì4(€€€ô4(€€€É•ÑÕÉ¸íå•…È±µ½¹Ñ ±‘…åôì4(€ôì4(€½¹ÍÐÝ••­…äõ©‘¸ôø ¡©‘¸”Ü¤¬Ü¤”Üì€¼¼€À€ô5½¹Ñ…œ4(€½¹ÍÐ¥Ù¥±-•äõôù¹å•…È¬ˆ´ˆ­MÑÉ¥¹œ¡¹µ½¹Ñ ¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¤¬ˆ´ˆ­MÑÉ¥¹œ¡¹‘…ä¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¤ì4(€½¹ÍÐ™½Éµ…Ñ…Ñ”õÌôùì4(€€€½¹ÍÐmå•…È±µ½¹Ñ ±‘…åtõÌ¹ÍÁ±¥Ð ˆ´ˆ¤¹µ…À¡9Õµ‰•È¤ì4(€€€½¹ÍÐ©‘¸õ¥Ù¥±Q½…ä¡å•…È±µ½¹Ñ ±‘…ä¤ì4(€€€É•ÑÕÉ¸€¡©‘¸ôôõ¹Õ±°üˆˆé‘…å9…µ•ÍmÝ••­…ä¡©‘¸¥ulÁt¬ˆ°€ˆ¤­MÑÉ¥¹œ¡‘…ä¤¹Á…‘MÑ…ÉÐ È°ˆÀˆ¤¬ˆ¸€ˆ­µ½¹Ñ¡9…µ•Ímµ½¹Ñ ´Åt¬ˆ€ˆ­å•…Èì4(€ôì4(€½¹ÍÐ•Ù•¹Ñ=¹…äô¡•Ù•¹Ð±­•ä¤ôù­•äøõ•Ù•¹Ð¹ÍÑ…ÉÐ˜™­•äðô¡•Ù•¹Ð¹•¹‘ññ•Ù•¹Ð¹ÍÑ…ÉÐ¤ì4(€½¹ÍÐÙ¥Í¥‰±•Ù•¹ÑÍ½É…äõ­•äôù•Ù•¹ÑÌ¹™¥±Ñ•È¡”ôù•Ù•¹Ñ=¹…ä¡”±­•ä¤˜˜¡…Ñ¥Ù•¥±Ñ•Èôôô‰…±°‰ññ”¹…Ðôôõ…Ñ¥Ù•¥±Ñ•È¤¤ì4(€½¹ÍÐ¥Í½]••¬õ©‘¸ôùì4(€€€€¼¼%M<µ]½¡•¹¹Õµµ•È°›ñÈ¡¥ÍÑ½É¥Í¡”…Ñ•¸Ëñ­Ý¥É­•¹‰•É•¡¹•Ð¸4(€€€½¹ÍÐÑ¡ÕÉÍ‘…äõ‘…åQ½¥Ù¥°¡©‘¸¬Ì¤ì4(€€€½¹ÍÐ©…¸Ðõ¥Ù¥±Q½…ä¡Ñ¡ÕÉÍ‘…ä¹å•…È°Ä°Ð¤ì4(€€€É•ÑÕÉ¸5…Ñ ¹™±½½È ¡©‘¸´¡©…¸ÐµÝ••­…ä¡©…¸Ð¤¤¤¼Ü¤¬Äì4(€ôì4(4(€™Õ¹Ñ¥½¸ÁÉ•Ù¥•Ý!Ñµ°¡‘…åÙ•¹ÑÌ¥ì4(€€€½¹ÍÐÍ¡½Ý¸õ‘…åÙ•¹ÑÌ¹Í±¥” À°Ì¤¹µ…À¡”ôøˆñÀøñˆøˆ­”¹±…‰•°¬ˆð½ˆøƒ
+Ü€ˆ­”¹Ñ¥Ñ±”¬ˆð½Àøˆ¤¹©½¥¸ ˆˆ¤ì4(€€€½¹ÍÐµ½É”õ‘…åÙ•¹ÑÌ¹±•¹Ñ øÌüˆñÀø¬ˆ¬¡‘…åÙ•¹ÑÌ¹±•¹Ñ ´Ì¤¬ˆÝ•¥Ñ•É”ð½Àøˆèˆˆì4(€€€É•ÑÕÉ¸€œñ‘¥Ø±…ÍÌô‰ÁÉ•Ù¥•ÜˆøñˆùY½ÉÍ¡…Ôð½ˆøœ­Í¡½Ý¸­µ½É”¬ˆð½‘¥Øøˆì4(€ô4(4(€™Õ¹Ñ¥½¸½Á•¹…ä¡­•ä¥ì4(€€€½¹ÍÐ‘…åÙ•¹ÑÌõÙ¥Í¥‰±•Ù•¹ÑÍ½É…ä¡­•ä¤ì4(€€€¥˜ …‘…åÙ•¹ÑÌ¹±•¹Ñ ¥É•ÑÕÉ¸ì4(€€€‘¥…±½Q¥Ñ±”¹Ñ•áÑ½¹Ñ•¹Ðõ™½Éµ…Ñ…Ñ”¡­•ä¤ì4(€€€‘¥…±½MÕ‰Ñ¥Ñ±”¹Ñ•áÑ½¹Ñ•¹Ðõ‘…åÙ•¹ÑÌ¹±•¹Ñ ôôôÄüˆÄÉ•¥¹¥Ìˆé‘…åÙ•¹ÑÌ¹±•¹Ñ ¬ˆÉ•¥¹¥ÍÍ”ˆì4(€€€‘¥…±½	½‘ä¹¥¹¹•É!Q50õ‘…åÙ•¹ÑÌ¹µ…À¡”ôø4(€€€€€€œñ…ÉÑ¥±”±…ÍÌô‰‘•Ñ…¥°µ…Éˆ‘…Ñ„µ…Ðôˆœ­”¹…Ð¬œˆøœ¬4(€€€€€€€€œñ‘¥Ø±…ÍÌô‰‘•Ñ…¥°µµ•Ñ„ˆøœ­…Ñ1…‰•±m”¹…Ñt¬œƒ
+Ü€œ­”¹±…‰•°¬¡”¹•¹üˆƒ
+Ü€ˆ­™½Éµ…Ñ…Ñ”¡”¹ÍÑ…ÉÐ¤¬ˆ‰¥Ì€ˆ­™½Éµ…Ñ…Ñ”¡”¹•¹¤èˆˆ¤¬œð½‘¥Øøœ¬4(€€€€€€€€œñ Ìøœ­”¹Ñ¥Ñ±”¬œð½ ÌøñÀøœ­”¹Ñ•áÐ¬œð½Àøœ¬4(€€€€€€€€œñ„¡É•˜ôˆœ­”¹ÕÉ°¬œˆÑ…É•Ðô‰}‰±…¹¬ˆÉ•°ô‰¹½½Á•¹•È¹½É•™•ÉÉ•ÈˆùEÕ•±±”è€œ­”¹Í½ÕÉ”¬œƒŠ\ð½„øœ¬4(€€€€€€œð½…ÉÑ¥±”øœ4(€€€€¤¹©½¥¸ ˆˆ¤ì4(€€€‘¥…±½œ¹Í¡½Ý5½‘…° ¤ì4(€ô4(4(€™Õ¹Ñ¥½¸µ½¹Ñ¡±•µ•¹Ð¡å•…È±µ½¹Ñ ¥ì4(€€€½¹ÍÐ…Éõ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰Í•Ñ¥½¸ˆ¤í…É¹±…ÍÍ9…µ”ô‰µ½¹Ñ µ…Éˆì4(€€€€¼¼½ÉÑ±…Õ™•¹‘”•¡Ñ”Q…”ÍÑ…ÑÐ‘•ÈÁÉ½±•ÁÑ¥Í É•½É¥…¹¥Í¡•¸…Ñ”µKñ­É•¡¹Õ¹œ¸4(€€€½¹ÍÐ™¥ÉÍÑ…äõ¥Ù¥±Q½…ä¡å•…È±µ½¹Ñ ¬Ä°Ä¤ì4(€€€½¹ÍÐ¹•áÑe•…Èõµ½¹Ñ ôôôÄÄýå•…È¬Äéå•…È±¹•áÑ5½¹Ñ õµ½¹Ñ ôôôÄÄüÄéµ½¹Ñ ¬Èì4(€€€½¹ÍÐ•¹‘…äõ¥Ù¥±Q½…ä¡¹•áÑe•…È±¹•áÑ5½¹Ñ °Ä¤ì4(€€€½¹ÍÐÍÑ…ÉÑ…äõ™¥ÉÍÑ…äµÝ••­…ä¡™¥ÉÍÑ…ä¤ì4(€€€½¹ÍÐÉ½ÝÌõ5…Ñ ¹•¥° ¡•¹‘…äµÍÑ…ÉÑ…ä¤¼Ü¤ì4(4(€€€½¹ÍÐÑ¥Ñ±”õ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‘¥Øˆ¤íÑ¥Ñ±”¹±…ÍÍ9…µ”ô‰µ½¹Ñ µÑ¥Ñ±”ˆì4(€€€½¹ÍÐ•Ù•¹Ñ½Õ¹Ðõ•Ù•¹ÑÌ¹™¥±Ñ•È¡”ôùì4(€€€€€½¹ÍÐmÍä±Í´±Í‘tõ”¹ÍÑ…ÉÐ¹ÍÁ±¥Ð ˆ´ˆ¤¹µ…À¡9Õµ‰•È¤±m•ä±•´±•‘tô¡”¹•¹‘ññ”¹ÍÑ…ÉÐ¤¹ÍÁ±¥Ð ˆ´ˆ¤¹µ…À¡9Õµ‰•È¤ì4(€€€€€½¹ÍÐ•Ìõ¥Ù¥±Q½…ä¡Íä±Í´±Í¤±•”õ¥Ù¥±Q½…ä¡•ä±•´±•¤ì4(€€€€€É•ÑÕÉ¸•”„ôõ¹Õ±°˜™•Ì„ôõ¹Õ±°˜™•”øõ™¥ÉÍÑ…ä˜™•Ìñ•¹‘…ä˜˜¡…Ñ¥Ù•¥±Ñ•Èôôô‰…±°‰ññ”¹…Ðôôõ…Ñ¥Ù•¥±Ñ•È¤ì4(€€€ô¤¹±•¹Ñ ì4(€€€½¹ÍÐÁ¡…Í”õå•…ÈðÄÔàÉñð¡å•…ÈôôôÄÔàÈ˜™µ½¹Ñ ðä¤ü‰©Õ±¥…¸ˆéå•…ÈôôôÄÔàÈ˜™µ½¹Ñ ôôôäü‰ÑÉ…¹Í¥Ñ¥½¸ˆè‰É•½É¥…¸ˆì4(€€€…É¹‘…Ñ…Í•Ð¹…±•¹‘…ÉA¡…Í”õÁ¡…Í”ì4(€€€Ñ¥Ñ±”¹¥¹¹•É!Q50ôˆñ Ìøˆ­µ½¹Ñ¡9…µ•Ímµ½¹Ñ¡t¬ˆ€ˆ­å•…È¬ˆð½ ÌøñÍÁ…¸øˆ¬4(€€€€€€¡•Ù•¹Ñ½Õ¹Ðý•Ù•¹Ñ½Õ¹Ð¬ˆQ•Éµ¥¹”ˆè‰-•¥¹”Q•Éµ¥¹”¥´¥±Ñ•Èˆ¤¬ˆð½ÍÁ…¸øˆì4(€€€…É¹…ÁÁ•¹‘¡¥±¡Ñ¥Ñ±”¤ì4(4(€€€¥˜¡Á¡…Í”ôôô‰ÑÉ…¹Í¥Ñ¥½¸ˆ¥ì4(€€€€€½¹ÍÐ¹½Ñ¥”õ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‘¥Øˆ¤ì4(€€€€€¹½Ñ¥”¹±…ÍÍ9…µ”ô‰…±•¹‘…ÈµÑÉ…¹Í¥Ñ¥½¸ˆì4(€€€€€¹½Ñ¥”¹¥¹¹•É!Q50ôœñÍÑÉ½¹œù-…±•¹‘•ÉÝ•¡Í•°ƒ
+Ü=­Ñ½‰•È€ÄÔàÈð½ÍÑÉ½¹œøœ¬4(€€€€€€€€œñ‘¥Ø±…ÍÌô‰…±•¹‘…ÈµÑÉ…¹Í¥Ñ¥½¸µ‘…åÌˆøñÍÁ…¸øñˆù½¹¹•ÉÍÑ…œ°€Ð¸=­Ñ½‰•Èð½ˆøñÍµ…±°ù±•ÑéÑ•È©Õ±¥…¹¥Í¡•ÈQ…œð½Íµ…±°øð½ÍÁ…¸øœ¬4(€€€€€€€€œñÍÁ…¸±…ÍÌô‰…±•¹‘…ÈµÍ­¥Àˆ…É¥„µ±…‰•°ôˆÄÀ-…±•¹‘•ÉÑ…”•¹Ñ™…±±•¸ˆûŠH€ÄÀQ…”•¹Ñ™…±±•¸ƒŠHð½ÍÁ…¸øœ¬4(€€€€€€€€œñÍÁ…¸øñˆùÉ•¥Ñ…œ°€ÄÔ¸=­Ñ½‰•Èð½ˆøñÍµ…±°ù•ÉÍÑ•ÈÉ•½É¥…¹¥Í¡•ÈQ…œð½Íµ…±°øð½ÍÁ…¸øð½‘¥Øøœ¬4(€€€€€€€€œñÀøÔ¸‰¥Ì€ÄÐ¸=­Ñ½‰•È€ÄÔàÈ•¹Ñ™¥•±•¸‰•¤‘•È•ÉÍÑ•¸¥¹›ñ¡ÉÕ¹œ‘•ÈI•™½É´¸¹‘•É”I•¥½¹•¸°…Õ Ù¥•±”‘•ÕÑÍ¡”•‰¥•Ñ”°Ý•¡Í•±Ñ•¸•ÉÍÐÍÃ‘Ñ•È¸ð½Àøœì4(€€€€€…É¹…ÁÁ•¹‘¡¥±¡¹½Ñ¥”¤ì4(€€€ô4(4(€€€½¹ÍÐÉ¥õ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‘¥Øˆ¤íÉ¥¹±…ÍÍ9…µ”ô‰…±•¹‘…ÈµÉ¥ˆì4(€€€½¹ÍÐ­Üõ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‘¥Øˆ¤í­Ü¹±…ÍÍ9…µ”ô‰¡•…µ•±°ˆí­Ü¹Ñ•áÑ½¹Ñ•¹Ðô‰-\ˆíÉ¥¹…ÁÁ•¹‘¡¥±¡­Ü¤ì4(€€€‘…å9…µ•Ì¹™½É…  ¡m™Õ±°±Í¡½ÉÑt¤ôùí½¹ÍÐ õ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‘¥Øˆ¤í ¹±…ÍÍ9…µ”ô‰¡•…µ•±°ˆí ¹¥¹¹•É!Q50õÍ¡½ÉÐ¬ˆñÍµ…±°øˆ­™Õ±°¬ˆð½Íµ…±°øˆíÉ¥¹…ÁÁ•¹‘¡¥±¡ ¥ô¤ì4(4(€€€™½È¡±•ÐÈôÀíÈñÉ½ÝÌíÈ¬¬¥ì4(€€€€€½¹ÍÐµ½¹‘…äõÍÑ…ÉÑ…ä­È¨Üì4(€€€€€½¹ÍÐÜõ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‘¥Øˆ¤íÜ¹±…ÍÍ9…µ”ô‰Ý••­¹¼ˆíÜ¹Ñ•áÑ½¹Ñ•¹Ðõ¥Í½]••¬¡µ½¹‘…ä¤íÉ¥¹…ÁÁ•¹‘¡¥±¡Ü¤ì4(€€€€€™½È¡±•ÐŒôÀíŒðÜíŒ¬¬¥ì4(€€€€€€€½¹ÍÐõ‘…åQ½¥Ù¥°¡µ½¹‘…ä­Œ¤ì4(€€€€€€€½¹ÍÐ­•äõ¥Ù¥±-•ä¡¤ì4(€€€€€€€½¹ÍÐ‘…åÙ•¹ÑÌõÙ¥Í¥‰±•Ù•¹ÑÍ½É…ä¡­•ä¤ì4(€€€€€€€½¹ÍÐ‰Ñ¸õ‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰‰ÕÑÑ½¸ˆ¤ì4(€€€€€€€‰Ñ¸¹ÑåÁ”ô‰‰ÕÑÑ½¸ˆí‰Ñ¸¹±…ÍÍ9…µ”ô‰‘…äˆì4(€€€€€€€¥˜¡¹å•…È„ôõå•…Éññ¹µ½¹Ñ „ôõµ½¹Ñ ¬Ä¥‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘ ‰¥Ìµ½ÕÑÍ¥‘”ˆ¤ì4(€€€€€€€¥˜¡ŒøôÔ¥‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘ ‰¥ÌµÝ••­•¹ˆ¤ì4(€€€€€€€¥˜¡ŒôôôØ¥‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘ ‰¥ÌµÍÕ¹‘…äˆ¤ì4(€€€€€€€¥˜¡­•äôôõÑ½‘…å-•ä¥‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘ ‰¥ÌµÑ½‘…äˆ¤ì4(€€€€€€€‰Ñ¸¹¥¹¹•É!Q50ôœñÍÁ…¸±…ÍÌô‰‘…äµ¹Õ´ˆøœ­¹‘…ä¬œð½ÍÁ…¸øœì4(€€€€€€€¥˜¡‘…åÙ•¹ÑÌ¹±•¹Ñ ¥ì4(€€€€€€€€€‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘ ‰¡…Ìµ•Ù•¹ÑÌˆ¤ì4(€€€€€€€€€‰Ñ¸¹Í•ÑÑÑÉ¥‰ÕÑ” ‰…É¥„µ±…‰•°ˆ±™½Éµ…Ñ…Ñ”¡­•ä¤¬ˆè€ˆ­‘…åÙ•¹ÑÌ¹±•¹Ñ ¬ˆÉ•¥¹¥Ìˆ¬¡‘…åÙ•¹ÑÌ¹±•¹Ñ ôôôÄüˆˆè‰Í”ˆ¤¤ì4(€€€€€€€€€½¹ÍÐ…ÑÌõl¸¸¹¹•ÜM•Ð¡‘…åÙ•¹ÑÌ¹µ…À¡”ôù”¹…Ð¤¥tì4(€€€€€€€€€‰Ñ¸¹¥¹¹•É!Q50¬ô¡‘…åÙ•¹ÑÌ¹±•¹Ñ øÄüœñÍÁ…¸±…ÍÌô‰•Ù•¹Ðµ½Õ¹Ðˆøœ­‘…åÙ•¹ÑÌ¹±•¹Ñ ¬œð½ÍÁ…¸øœèˆˆ¤¬4(€€€€€€€€€€€€œñÍÁ…¸±…ÍÌô‰‘½ÑÌˆøœ­…ÑÌ¹µ…À¡…Ðôøœñ¤±…ÍÌô‰‘½Ð´œ­…Ð¬œˆøð½¤øœ¤¹©½¥¸ ˆˆ¤¬œð½ÍÁ…¸øœ­ÁÉ•Ù¥•Ý!Ñµ°¡‘…åÙ•¹ÑÌ¤ì4(€€€€€€€€€‰Ñ¸¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ° ¤ôù½Á•¹…ä¡­•ä¤¤ì4(€€€€€€€õ•±Í•ì4(€€€€€€€€€‰Ñ¸¹‘¥Í…‰±•õÑÉÕ”ì4(€€€€€€€€€‰Ñ¸¹Í•ÑÑÑÉ¥‰ÕÑ” ‰…É¥„µ±…‰•°ˆ±™½Éµ…Ñ…Ñ”¡­•ä¤¬ˆè­•¥¹”É•¥¹¥ÍÍ”ˆ¤ì4(€€€€€€€ô4(€€€€€€€¥˜¡å•…ÈôôôÄÔàÈ˜™µ½¹Ñ ôôôä˜™¹å•…ÈôôôÄÔàÈ˜™¹µ½¹Ñ ôôôÄÀ¥ì4(€€€€€€€€€½¹ÍÐ¥Í)Õ±¥…¸õ¹‘…äðôÐì4(€€€€€€€€€‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘¡¥Í)Õ±¥…¸ü‰¥Ìµ©Õ±¥…¸ˆè‰¥ÌµÉ•½É¥…¸ˆ¤ì4(€€€€€€€€€¥˜¡¹‘…äôôôÑññ¹‘…äôôôÄÔ¥ì4(€€€€€€€€€€€½¹ÍÐ¥Í¥ÉÍÑÉ•½É¥…¸õ¹‘…äôôôÄÔì4(€€€€€€€€€€€‰Ñ¸¹±…ÍÍ1¥ÍÐ¹…‘¡¥Í¥ÉÍÑÉ•½É¥…¸ü‰¥ÌµÉ•™½É´µ…™Ñ•Èˆè‰¥ÌµÉ•™½É´µ‰•™½É”ˆ¤ì4(€€€€€€€€€€€‰Ñ¸¹¥¹¹•É!Q50¬ôœñÍÁ…¸±…ÍÌô‰…±•¹‘…Èµ‰½Õ¹‘…Éäµ±…‰•°ˆ…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆøœ¬¡¥Í¥ÉÍÑÉ•½É¥…¸ü‰É•œ¸ˆè‰)Õ°¸ˆ¤¬ˆð½ÍÁ…¸øˆì4(€€€€€€€€€€€‰Ñ¸¹Ñ¥Ñ±”õ¥Í¥ÉÍÑÉ•½É¥…¸ü‰ÉÍÑ•ÈQ…œ‘•ÌÉ•½É¥…¹¥Í¡•¸-…±•¹‘•ÉÌˆè‰1•ÑéÑ•ÈQ…œ‘•Ì©Õ±¥…¹¥Í¡•¸-…±•¹‘•ÉÌˆì4(€€€€€€€€€€€‰Ñ¸¹Í•ÑÑÑÉ¥‰ÕÑ” ‰…É¥„µ±…‰•°ˆ±‰Ñ¸¹•ÑÑÑÉ¥‰ÕÑ” ‰…É¥„µ±…‰•°ˆ¤¬ˆ°€ˆ­‰Ñ¸¹Ñ¥Ñ±”¤ì4(€€€€€€€€€ô4(€€€€€€€ô4(€€€€€€€É¥¹…ÁÁ•¹‘¡¥±¡‰Ñ¸¤ì4(€€€€€ô4(€€€ô4(€€€…É¹…ÁÁ•¹‘¡¥±¡É¥¤ì4(€€€É•ÑÕÉ¸…Éì4(€ô4(4(€™Õ¹Ñ¥½¸É•¹‘•È ¥ì4(€€€ÍÑ…¬¹¥¹¹•É!Q50ôˆˆì4(€€€ÍÑ…¬¹±…ÍÍ1¥ÍÐ¹Ñ½±” ‰¥Ìµå•…ÈµÙ¥•Üˆ±Ù¥Í¥‰±•5½¹Ñ¡ÌôôôÄÈ¤ì4(€€€™½È¡±•Ð¤ôÀí¤ñÙ¥Í¥‰±•5½¹Ñ¡Ìí¤¬¬¥ì4(€€€€€½¹ÍÐõ¹•Ü…Ñ”¡É…¹•MÑ…ÉÐ¹•ÑÕ±±e•…È ¤±É…¹•MÑ…ÉÐ¹•Ñ5½¹Ñ  ¤­¤°Ä¤ì4(€€€€€ÍÑ…¬¹…ÁÁ•¹‘¡¥±¡µ½¹Ñ¡±•µ•¹Ð¡¹•ÑÕ±±e•…È ¤±¹•Ñ5½¹Ñ  ¤¤¤ì4(€€€ô4(€€€¥˜¡å•…É••‘‰…¬¥ì4(€€€€€¥˜¡Ù¥Í¥‰±•5½¹Ñ¡ÌôôôÄÈ¥ì4(€€€€€€€½¹ÍÐÍ•±•Ñ•‘e•…ÈõÉ…¹•MÑ…ÉÐ¹•ÑÕ±±e•…È ¤ì4(€€€€€€€½¹ÍÐ‰•¥¸õÍ•±•Ñ•‘e•…È¬ˆ´ÀÄ´ÀÄˆì4(€€€€€€€½¹ÍÐ•¹õÍ•±•Ñ•‘e•…È¬ˆ´ÄÈ´ÌÄˆì4(€€€€€€€½¹ÍÐµ…Ñ¡•õ•Ù•¹ÑÌ¹™¥±Ñ•È¡”ôù”¹ÍÑ…ÉÐðõ•¹˜˜¡”¹•¹‘ññ”¹ÍÑ…ÉÐ¤øõ‰•¥¸˜˜¡…Ñ¥Ù•¥±Ñ•Èôôô‰…±°‰ññ”¹…Ðôôõ…Ñ¥Ù•¥±Ñ•È¤¤¹±•¹Ñ ì4(€€€€€€€å•…É••‘‰…¬¹Ñ•áÑ½¹Ñ•¹Ðõµ…Ñ¡•4(€€€€€€€€€€ü‰)…¡É•Í…¹Í¥¡Ð€ˆ­Í•±•Ñ•‘e•…È¬ˆè€ˆ­µ…Ñ¡•¬ˆ‰•±•Ñ”€ˆ¬¡µ…Ñ¡•ôôôÄü‰¥¹ÑÉ…Õ¹œˆè‰¥¹ÑÉ…Õ¹•¸ˆ¤¬ˆ¸ˆ4(€€€€€€€€€€è‰ñÈ€ˆ­Í•±•Ñ•‘e•…È¬ˆÍ¥¹­•¥¹”Q•Éµ¥¹”¡¥¹Ñ•É±•Ð¸ˆì4(€€€€€õ•±Í•ì4(€€€€€€€½¹ÍÐõ¹•Ü…Ñ”¡É…¹•MÑ…ÉÐ¹•ÑÕ±±e•…È ¤±É…¹•MÑ…ÉÐ¹•Ñ5½¹Ñ  ¤¬È°Ä¤ì4(€€€€€€€å•…É••‘‰…¬¹Ñ•áÑ½¹Ñ•¹Ðô‰¹Í¥¡Ðè€ˆ­µ½¹Ñ¡9…µ•ÍmÉ…¹•MÑ…ÉÐ¹•Ñ5½¹Ñ  ¥t¬ˆ€ˆ­É…¹•MÑ…ÉÐ¹•ÑÕ±±e•…È ¤¬ˆ‰¥Ì€ˆ­µ½¹Ñ¡9…µ•Ím¹•Ñ5½¹Ñ  ¥t¬ˆ€ˆ­¹•ÑÕ±±e•…È ¤¬ˆ¸ˆì4(€€€€€ô4(€€€ô4(€ô4(4(€™Õ¹Ñ¥½¸ÕÁ‘…Ñ•EÕ¥¬ ¥ì(€€€½¹ÍÐ¹½Ý-•äõÑ½‘…å-•äì(€€€½¹ÍÐ™ÕÑÕÉ”õ•Ù•¹ÑÌ¹™¥±Ñ•È¡”ôø¡”¹•¹‘ññ”¹ÍÑ…ÉÐ¤øõ¹½Ý-•ä¤¹Í½ÉÐ ¡„±ˆ¤ôùì(€€€€€½¹ÍÐ…=¹½¥¹œõ„¹ÍÑ…ÉÐðõ¹½Ý-•ä˜˜¡„¹•¹‘ññ„¹ÍÑ…ÉÐ¤øõ¹½Ý-•äì(€€€€€½¹ÍÐ‰=¹½¥¹œõˆ¹ÍÑ…ÉÐðõ¹½Ý-•ä˜˜¡ˆ¹•¹‘ññˆ¹ÍÑ…ÉÐ¤øõ¹½Ý-•äì(€€€€€¥˜¡…=¹½¥¹œ„ôõ‰=¹½¥¹œ¥É•ÑÕÉ¸…=¹½¥¹œü´ÄèÄì(€€€€€É•ÑÕÉ¸…=¹½¥¹œ(€€€€€€€€ü¡„¹•¹‘ññ„¹ÍÑ…ÉÐ¤¹±½…±•½µÁ…É”¡ˆ¹•¹‘ññˆ¹ÍÑ…ÉÐ¤(€€€€€€€€é„¹ÍÑ…ÉÐ¹±½…±•½µÁ…É”¡ˆ¹ÍÑ…ÉÐ¤ì(€€€ô¤ì(€€€¥˜¡™ÕÑÕÉ”¹±•¹Ñ ¥ì(€€€€€½¹ÍÐ¹•áÐõ™ÕÑÕÉ•lÁtì(€€€€€½¹ÍÐ½¹½¥¹œõ¹•áÐ¹ÍÑ…ÉÐðõ¹½Ý-•ä˜˜¡¹•áÐ¹•¹‘ññ¹•áÐ¹ÍÑ…ÉÐ¤øõ¹½Ý-•äì(€€€€€½¹ÍÐ‘¥ÍÁ±…å-•äõ½¹½¥¹œü¡¹•áÐ¹•¹‘ññ¹•áÐ¹ÍÑ…ÉÐ¤é¹•áÐ¹ÍÑ…ÉÐì(€€€€€½¹ÍÐ‘¥ÍÁ±…å…Ñ”õÁ…ÉÍ•-•ä¡‘¥ÍÁ±…å-•ä¤¹Ñ½1½…±•…Ñ•MÑÉ¥¹œ ‰‘”µˆ±í‘…äèˆÈµ‘¥¥Ðˆ±µ½¹Ñ èˆÈµ‘¥¥Ð‰ô¤ì(€€€€€½¹ÍÐ¥ÍQ½‘…å=¹±äõ¹•áÐ¹ÍÑ…ÉÐôôõ¹½Ý-•ä˜˜¡¹•áÐ¹•¹‘ññ¹•áÐ¹ÍÑ…ÉÐ¤ôôõ¹½Ý-•äì(€€€€€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ¹•áÐµ‘…Ñ”ˆ¤¹Ñ•áÑ½¹Ñ•¹Ðõ¥ÍQ½‘…å=¹±äü‰!•ÕÑ”ˆé½¹½¥¹œü‰3‘Õ™Ð‰¥Ì€ˆ­‘¥ÍÁ±…å…Ñ”é‘¥ÍÁ±…å…Ñ”ì(€€€€€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ¹•áÐµÑ¥Ñ±”ˆ¤¹Ñ•áÑ½¹Ñ•¹Ðõ¹•áÐ¹Ñ¥Ñ±”ì(€€€õ•±Í•ì(€€€€€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ¹•áÐµ‘…Ñ”ˆ¤¹Ñ•áÑ½¹Ñ•¹Ðô‹ŠLˆì(€€€€€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ¹•áÐµÑ¥Ñ±”ˆ¤¹Ñ•áÑ½¹Ñ•¹Ðô‰-•¥¹”•Á™±•Ñ•¸Q•Éµ¥¹”ˆì(€€€ô(€€€½¹ÍÐ•¹äÀõ¹•Ü…Ñ”¡Ñ½‘…ä¤í•¹äÀ¹Í•Ñ…Ñ”¡•¹äÀ¹•Ñ…Ñ” ¤¬äÀ¤ì(€€€½¹ÍÐ•¹äÁ-•äõÑ½-•ä¡•¹äÀ¤ì(€€€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ¹•áÐ´äÀˆ¤¹Ñ•áÑ½¹Ñ•¹ÐõMÑÉ¥¹œ¡•Ù•¹ÑÌ¹™¥±Ñ•È¡”ôø¡”¹•¹‘ññ”¹ÍÑ…ÉÐ¤øõ¹½Ý-•ä˜™”¹ÍÑ…ÉÐðõ•¹äÁ-•ä¤¹±•¹Ñ ¤ì(€ô(4(€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆÁÉ•ØµÉ…¹”ˆ¤¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ° ¤ôùíÉ…¹•MÑ…ÉÐõ¹•Ü…Ñ”¡É…¹•MÑ…ÉÐ¹•ÑÕ±±e•…È ¤±É…¹•MÑ…ÉÐ¹•Ñ5½¹Ñ  ¤´Ì°Ä¤íÙ¥Í¥‰±•5½¹Ñ¡ÌôÌíÉ•¹‘•È ¥ô¤ì4(€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆ¹•áÐµÉ…¹”ˆ¤¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ° ¤ôùíÉ…¹•MÑ…ÉÐõ¹•Ü…Ñ”¡É…¹•MÑ…ÉÐ¹•ÑÕ±±e•…È ¤±É…¹•MÑ…ÉÐ¹•Ñ5½¹Ñ  ¤¬Ì°Ä¤íÙ¥Í¥‰±•5½¹Ñ¡ÌôÌíÉ•¹‘•È ¥ô¤ì4(€…±•¹‘…È¹ÅÕ•ÉåM•±•Ñ½È ˆÑ½‘…äµÉ…¹”ˆ¤¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ° ¤ôùíÉ…¹•MÑ…ÉÐõ¹•Ü…Ñ”¡Ñ½‘…ä¹•ÑÕ±±e•…È ¤±Ñ½‘…ä¹•Ñ5½¹Ñ  ¤°Ä¤íÙ¥Í¥‰±•5½¹Ñ¡ÌôÌí¥˜¡å•…É%¹ÁÕÐ¥å•…É%¹ÁÕÐ¹Ù…±Õ”õMÑÉ¥¹œ¡Ñ½‘…ä¹•ÑÕ±±e•…È ¤¤íÉ•¹‘•È ¥ô¤ì4(€¥˜¡å•…É½É´˜™å•…É%¹ÁÕÐ˜™å•…É••‘‰…¬¥ì4(€€€å•…É%¹ÁÕÐ¹Ù…±Õ”õMÑÉ¥¹œ¡Ñ½‘…ä¹•ÑÕ±±e•…È ¤¤ì4(€€€å•…É½É´¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰ÍÕ‰µ¥Ðˆ±”ôùì4(€€€€€”¹ÁÉ•Ù•¹Ñ•™…Õ±Ð ¤ì4(€€€€€½¹ÍÐÉ…Üõå•…É%¹ÁÕÐ¹Ù…±Õ”¹ÑÉ¥´ ¤ì4(€€€€€½¹ÍÐå•…Èõ9Õµ‰•È¡É…Ü¤ì4(€€€€€¥˜ „½ylÀ´åuìÑô¼¹Ñ•ÍÐ¡É…Ü¥ñð…9Õµ‰•È¹¥Í%¹Ñ••È¡å•…È¥ññå•…ÈðÄÀÀÁññå•…Èøääää¥ì4(€€€€€€€å•…É%¹ÁÕÐ¹Í•ÑÑÑÉ¥‰ÕÑ” ‰…É¥„µ¥¹Ù…±¥ˆ°‰ÑÉÕ”ˆ¤ì4(€€€€€€€å•…É••‘‰…¬¹Ñ•áÑ½¹Ñ•¹Ðô‰	¥ÑÑ”•¥¸Ù¥•ÉÍÑ•±±¥•Ì)…¡ÈéÝ¥Í¡•¸€ÄÀÀÀÕ¹€ääää•¥¹•‰•¸¸ˆì4(€€€€€€€å•…É%¹ÁÕÐ¹™½ÕÌ ¤ì4(€€€€€€€É•ÑÕÉ¸ì4(€€€€€ô4(€€€€€å•…É%¹ÁÕÐ¹É•µ½Ù•ÑÑÉ¥‰ÕÑ” ‰…É¥„µ¥¹Ù…±¥ˆ¤ì4(€€€€€É…¹•MÑ…ÉÐõ¹•Ü…Ñ”¡å•…È°À°Ä¤ì4(€€€€€Ù¥Í¥‰±•5½¹Ñ¡ÌôÄÈì4(€€€€€É•¹‘•È ¤ì4(€€€ô¤ì4(€ô4(€™¥±Ñ•ÉÌ¹™½É… ¡‰Ñ¸ôù‰Ñ¸¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ° ¤ôùì4(€€€…Ñ¥Ù•¥±Ñ•Èõ‰Ñ¸¹‘…Ñ…Í•Ð¹™¥±Ñ•Èì4(€€€™¥±Ñ•ÉÌ¹™½É… ¡ˆôùˆ¹Í•ÑÑÑÉ¥‰ÕÑ” ‰…É¥„µÁÉ•ÍÍ•ˆ±ˆôôõ‰Ñ¸ü‰ÑÉÕ”ˆè‰™…±Í”ˆ¤¤ì4(€€€É•¹‘•È ¤ì4(€ô¤¤ì4(€‘¥…±½œ¹ÅÕ•ÉåM•±•Ñ½È ˆ¹‘¥…±½œµ±½Í”ˆ¤¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ° ¤ôù‘¥…±½œ¹±½Í” ¤¤ì4(€‘¥…±½œ¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰±¥¬ˆ±”ôùí¥˜¡”¹Ñ…É•Ðôôõ‘¥…±½œ¥‘¥…±½œ¹±½Í” ¥ô¤ì4(€ÕÁ‘…Ñ•EÕ¥¬ ¤íÉ•¹‘•È ¤ì4)ô¤ ¤ì4
