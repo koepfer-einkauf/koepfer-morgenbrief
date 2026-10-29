@@ -103,13 +103,14 @@ Ein Update zu einer bereits produktiv berichteten Entwicklung wird nur veröffen
 9. Lieferantenradar durchführen.
 10. Regionale News für ungefähr 50 km um Furtwangen recherchieren.
 11. Reguläre Meldungen priorisieren und redaktionell ausarbeiten.
-12. Globale Risiko und Ereigniskarte aktualisieren.
-13. Vorherige Root Ausgabe archivieren.
-14. Archivindex ergänzen.
-15. Neue Root Ausgabe aus der aktuellen Mastervorlage erzeugen.
-16. Vor Veröffentlichung die vorbereitete Ausgabe validieren.
-17. Root `index.html` aktualisieren.
-18. GitHub Stand und anschließend die veröffentlichte Seite prüfen.
+12. Rohstoffmonitor aus den aktuellen amtlichen Zeitreihen aktualisieren.
+13. Globale Risiko und Ereigniskarte aktualisieren.
+14. Vorherige Root Ausgabe archivieren.
+15. Archivindex ergänzen.
+16. Neue Root Ausgabe aus der aktuellen Mastervorlage erzeugen.
+17. Vor Veröffentlichung die vorbereitete Ausgabe validieren.
+18. Root `index.html` aktualisieren.
+19. GitHub Stand prüfen. Nach erfolgreichem Commit keine Veröffentlichungskontrolle abwarten.
 
 ## Feedback, Bewertungen und Wünsche
 
@@ -135,9 +136,9 @@ Das verwendete Schema besteht aus:
 * `vote`
 * `session_hash`
 
-Bewertungen werden redaktionell nur innerhalb von 14 Kalendertagen ab `edition_date` berücksichtigt.
+Bewertungen werden redaktionell nur innerhalb von 5 Kalendertagen ab dem Zeitpunkt der Abgabe berücksichtigt.
 
-Themen und Firmenwünsche über `request://` werden höchstens 3 Kalendertage berücksichtigt. Ein bereits produktiv verarbeiteter Wunsch wird nicht an Folgetagen erneut als neuer Wunsch dargestellt.
+Themen und Firmenwünsche über `request://` werden höchstens 5 Kalendertage ab dem Zeitpunkt der Abgabe berücksichtigt. Ein bereits produktiv verarbeiteter Wunsch wird nicht an Folgetagen erneut als neuer Wunsch dargestellt.
 
 Positive oder negative Bewertungen verändern die Themenpriorisierung nur weich. Sie erzwingen weder Wiederholungen noch das Weglassen wichtiger Pflicht, Risiko oder Compliance Meldungen.
 
@@ -229,6 +230,22 @@ Urheber beziehungsweise Rechteinhaber, Quelle, konkrete Nutzungsgrundlage, Lizen
 
 Das vorhandene Layout, die normale HTML Headline außerhalb des Fotos, die Mastervorlage, Karte, Navigation, Feedback und Archivierung bleiben erhalten. Keine gelben Testhinweise, Vorschau- oder Statusbanner.
 
+## Rohstoffmonitor
+
+Jede reguläre Ausgabe enthält direkt unter den priorisierten Meldungen und vor der Risikokarte den kompakten Abschnitt `Marktindizes`.
+
+Der Monitor enthält vier Karten für Stahl, Strom, Industriegas und Kraftstoffe. Die Graphen werden aus den tatsächlichen Quelldaten erzeugt und sind niemals dekorative Richtungslinien.
+
+Strom verwendet die letzten 30 verfügbaren abgeschlossenen Tageswerte für die Preiszone Deutschland und Luxemburg aus SMARD. Angezeigt werden der jüngste Tageswert sowie die Veränderung des Durchschnitts dieser 30 Tage gegenüber den vorherigen 30 Tagen.
+
+Stahl, Industriegas und Kraftstoffe verwenden jeweils die letzten zwölf verfügbaren Monatswerte aus der amtlichen Destatis Tabelle `61241-02` der langen Reihen des Erzeugerpreisindex. Angezeigt werden der jüngste Indexwert mit Basis 2021 gleich 100 sowie die Veränderung gegenüber dem Vorjahresmonat.
+
+Datenstand und Abrufzeit werden getrennt genannt. Die Karten verlinken die jeweilige Primärquelle. Noch nicht neu veröffentlichte Monatswerte bleiben mit ihrem tatsächlichen Datenstand stehen. Werte werden niemals interpoliert oder erfunden.
+
+Der Abschnitt bleibt horizontal kompakt. Bei schmaleren Desktopbreiten und mobil darf die Kartenreihe innerhalb des Abschnitts horizontal scrollen, ohne die Gesamtseite zu verbreitern.
+
+Die Markierungen `ROHSTOFFMONITOR:START` und `ROHSTOFFMONITOR:END` bleiben erhalten, damit der Abschnitt im täglichen Lauf eindeutig aktualisiert werden kann.
+
 ## Globale Risiko und Ereigniskarte
 
 Die interaktive Karte bleibt Bestandteil der produktiven Mastervorlage.
@@ -283,6 +300,7 @@ Vor dem Root Update wird mindestens geprüft:
 * mindestens 6 reguläre Meldungen, sofern ausreichend belastbare Meldungen vorhanden sind
 * Artikelzahl und Kartenmarker stimmen überein
 * Regionale Rubrik ist vorhanden
+* Rohstoffmonitor enthält vier Karten mit echten Zeitreihen und aktuellem Datenstand
 * Archivlinks sind vorhanden
 * Themenwunsch Button und Dialog sind vorhanden
 * zentrale Feedback Komponente wird exakt eingebunden
