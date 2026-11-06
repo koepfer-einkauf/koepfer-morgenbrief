@@ -1,8 +1,11 @@
+
 (() => {
   "use strict";
   const calendar = document.querySelector("#kalender.calendar-ui");
   if (!calendar) return;
   const events = [
+    {start:"2026-11-09",cat:"industrie",label:"Tarifverhandlung",title:"Metall und Elektro: nächste Verhandlungsrunde in Düsseldorf",text:"Die IG Metall erwartet eine Antwort auf ihren Vorschlag für eine befristete Regelung mit überprüfbaren Investitions, Standort und Beschäftigungszusagen. Bei ausbleibender Lösung ist eine Ausweitung der Warnstreiks angekündigt.",source:"IG Metall, 5.11.2026",url:"https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro"},
+    {start:"2026-11-09",end:"2026-11-13",cat:"industrie",label:"Produktionsstopp",title:"Stellantis: Fiat 500 Produktion in Mirafiori weiter ausgesetzt",text:"Stellantis verlängert den Produktionsstopp um eine vierte Woche. Das Unternehmen nennt für die aktuelle und kommende Woche fehlende Chips für Motorsteuergeräte; Abrufe und Lagerbestände getrennt nach Nachfrage und Komponentenengpass prüfen.",source:"Reuters über Euronext, 5.11.2026",url:"https://live.euronext.com/en/financial-news/stellantis-extends-one-more-week-production-stoppage-fiat-500"},
     {start:"2026-11-02",end:"2026-11-06",cat:"industrie",label:"Warnstreiks",title:"Metall und Elektro: bundesweite Warnstreikwoche",text:"In Baden Württemberg beteiligten sich am 4. November mehr als 15.000 Beschäftigte aus 70 Betrieben. Betroffene Werke und Zeitfenster können sich kurzfristig ändern; Schicht, Abholung und Warenausgang direkt mit kritischen Lieferanten abstimmen.",source:"IG Metall, 4.11.2026",url:"https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro"},
     {start:"2026-11-05",cat:"industrie",label:"Quartalsbericht",title:"DHL veröffentlicht Q3 Ergebnisse",text:"Der Bericht enthält neue Angaben zu Logistikkapazität, Expressnachfrage und Cashflow. Auswirkungen auf Kontingente, Zuschläge und Laufzeiten prüfen.",source:"DHL Group, 5.11.2026",url:"https://reporting-hub.group.dhl.com/2026-q3/en/"},
     {start:"2026-11-05",cat:"industrie",label:"Quartalsbericht",title:"LANXESS veröffentlicht Q3 Ergebnisse",text:"Höhere Rohstoffkosten und schwache Nachfrage aus der Automobilindustrie beeinflussen Preis und Mengenentwicklung. Produktgruppen getrennt bewerten.",source:"LANXESS, 5.11.2026",url:"https://lanxess.com/-/media/project/lanxess/corporate-internet/investors/reporting/2026/q3/2026-q3-lanxess-en-web.pdf"},
@@ -58,6 +61,7 @@
     {start:"2027-01-01",cat:"handel",label:"UK-CBAM",title:"Vereinigtes Königreich führt Carbon Border Adjustment Mechanism ein",text:"Der britische CBAM startet für bestimmte Importe aus Aluminium, Zement, Düngemitteln, Wasserstoff sowie Eisen und Stahl.",source:"HM Revenue & Customs",url:"https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism/carbon-border-adjustment-mechanism"},
     {start:"2027-03-31",cat:"energie",label:"Rechtsfrist",title:"Deutschland: Gesetzliche Gasspeicherfüllstandsvorgaben laufen nach aktuellem Recht aus",text:"Nach § 35i EnWG gelten die §§ 35a bis 35e sowie §§ 35g und 35h bis einschließlich 31. März 2027. Eine nationale Gasreserve als künftige Krisenvorsorge ist Gegenstand eines Gesetzesvorhabens. Die Rechtslage vor Fristende erneut prüfen; keine bereits beschlossene Verlängerung oder Nachfolgeregelung unterstellen.",source:"Energiewirtschaftsgesetz, § 35i (amtlicher Gesetzestext)",url:"https://www.gesetze-im-internet.de/enwg_2005/__35i.html"},
     {start:"2027-04-05",end:"2027-04-08",cat:"industrie",label:"Industrie",title:"HANNOVER MESSE 2027",text:"Die internationale Industriemesse bündelt Maschinenbau, Elektro- und Digitalindustrie sowie Energiewirtschaft. Für Einkauf und Lieferantenmanagement ist sie ein Frühindikator für Automatisierung, KI, Energie, Produktionstechnik und neue Anbieter.",source:"HANNOVER MESSE",url:"https://www.hannovermesse.de/de/fuer-besucher/oeffnungszeiten/"},
+
     {start:"2027-06-23",cat:"geopolitik",label:"Review",title:"EU-Sanktionen wegen der Annexion der Krim: aktuelles Ablaufdatum",text:"Die maßnahmenbezogenen Beschränkungen wurden bis zu diesem Datum verlängert. Für Lieferanten- und Transaktionsscreening ist die weitere politische Verlängerung beziehungsweise Anpassung zu beobachten.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/06/15/russia-s-war-of-aggression-against-ukraine-new-eu-sanctions-target-energy-revenues-the-military-industrial-complex-propaganda-and-human-rights-violations/"},
     {start:"2027-07-31",cat:"geopolitik",label:"Review",title:"EU-Wirtschaftssanktionen gegen Russland: aktuelles Ablaufdatum",text:"Die sektoralen Wirtschaftssanktionen zu Handel, Finanzen, Energie, Dual-Use und Transport wurden im Juni 2026 für zwölf Monate bis Ende Juli 2027 verlängert.",source:"Rat der Europäischen Union",url:"https://www.consilium.europa.eu/en/press/press-releases/2026/06/25/russia-s-war-of-aggression-against-ukraine-council-extends-economic-sanctions-for-another-year/"},
     {start:"2027-08-18",cat:"compliance",label:"Batterien",title:"EU-Batterieverordnung: Sorgfaltspflichten starten",text:"Ab diesem Datum gelten die Batterie-Sorgfaltspflichten für erfasste Wirtschaftsakteure. Dazu gehören Due-Diligence-Strategien und unabhängige Prüfung entlang relevanter Rohstoffketten.",source:"EUR-Lex",url:"https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1775489433349&uri=CELEX%3A02023R1542-20250731"},
@@ -118,6 +122,7 @@
       month=m+3-12*Math.floor(m/10);
       year=b-4800+Math.floor(m/10);
     }
+
     return {year,month,day};
   };
   const weekDay=jdn=>((jdn%7)+7)%7; // 0 = Montag
@@ -177,6 +182,7 @@
     title.innerHTML="<h3>"+monthNames[month]+" "+year+"</h3><span>"+
       (eventCount?eventCount+" Termine":"Keine Termine im Filter")+"</span>";
     card.appendChild(title);
+
 
     if(phase==="transition"){
       const notice=document.createElement("div");
@@ -238,6 +244,7 @@
 
   function render(){
     stack.innerHTML="";
+
     stack.classList.toggle("is-year-view",visibleMonths===12);
     for(let i=0;i<visibleMonths;i++){
       const d=new Date(rangeStart.getFullYear(),rangeStart.getMonth()+i,1);
@@ -298,6 +305,7 @@
       if(!/^[0-9]{4}$/.test(raw)||!Number.isInteger(year)||year<1000||year>9999){
         yearInput.setAttribute("aria-invalid","true");
         yearFeedback.textContent="Bitte ein vierstelliges Jahr zwischen 1000 und 9999 eingeben.";
+
         yearInput.focus();
         return;
       }
