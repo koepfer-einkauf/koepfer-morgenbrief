@@ -28,15 +28,15 @@ a:focus-visible {outline:3px solid #324dc0;outline-offset:4px}
 .photo {display:block;background:url("../../assets/lead/2026-11-16-salzgitter-stahlwerk.jpg") center/cover}
 .mag {background:linear-gradient(#112524 36%,#dcfa73 36% 39%,#f5f4ed 39%);color:white}
 .mag b {margin-bottom:clamp(32px,4.5vw,64px)}.mag i {color:#192823;width:52%}
-.mag .photo {position:absolute;top:46%;bottom:8%;right:5%;width:39%;clip-path:polygon(0 0,100% 0,100% 80%,88% 100%,0 100%)}
+.mag .photo {position:absolute;top:46%;bottom:8%;right:5%;width:39%;border-radius:10px 34px 10px 10px}
 .reg {background:linear-gradient(90deg,#2939ac 32%,#faf9f6 32%)}
 .reg b {width:23%;color:white;font:italic clamp(1.25rem,2.6vw,2.7rem)/.94 Georgia,serif;overflow-wrap:break-word}
 .reg .photo {position:absolute;inset:10% 6% 50% 39%;border-radius:0 20px 0 0}
 .reg i {position:absolute;inset:56% 6% auto 39%;color:#191d32}
-.pla {background:linear-gradient(#faf9f5 33%,#c82d19 33%);color:#191919}
+.pla {background:#faf9f5;color:#191919}.mag,.pla {border-radius:18px}
 .pla b {font-weight:900}
-.pla i {position:absolute;top:44%;left:6%;width:45%;font-family:Arial,sans-serif;font-weight:900;color:white}
-.pla .photo {position:absolute;inset:33% 0 0 56%}
+.pla i {position:absolute;bottom:9%;left:6%;width:82%;font-family:Arial,sans-serif;font-weight:900;color:white;z-index:2}
+.pla .photo {position:absolute;inset:33% 0 0;border-radius:12px}.pla i span {background:#c82d19;padding:0 .1em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .nacht {color:#f0f6fa;background:#0a1117}
 .nacht .photo {position:absolute;inset:29% 0 0;z-index:-1}
 .nacht .photo:after {content:"";position:absolute;inset:0;background:linear-gradient(90deg,#081018eb,#08101835)}
@@ -54,9 +54,9 @@ a:focus-visible {outline:3px solid #324dc0;outline-offset:4px}
 <header><img src="../../assets/koepfer-logo.svg" alt=""><span>KOEPFER Morgenbrief</span><time datetime="2026-11-18">18. November 2026</time></header>
 <h1>Vorlagenarchiv</h1>
 <div class="gallery">
-<a class="card" href="magazin/"><div class="cover mag" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i>EU genehmigt kombinierbare Stromhilfen</i></div><div class="caption"><strong>Magazin</strong><span aria-hidden="true">↗</span></div><span class="desc">Die bisherige Vorlage mit geteiltem Titelbild und limettengrüner Kurzlage.</span></a>
+<a class="card" href="magazin/"><div class="cover mag" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i>EU genehmigt kombinierbare Stromhilfen</i></div><div class="caption"><strong>Magazin</strong><span aria-hidden="true">↗</span></div><span class="desc">Großes Titelfoto, limettengrüne Themenmarke und weich gerundete Meldungskarten.</span></a>
 <a class="card" href="register/"><div class="cover reg" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i>EU genehmigt kombinierbare Stromhilfen</i></div><div class="caption"><strong>Register</strong><span aria-hidden="true">↗</span></div><span class="desc">Kobaltblaue Randspalte mit Rubriken und kompaktem Lageüberblick.</span></a>
-<a class="card" href="plakat/"><div class="cover pla" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i>EU genehmigt kombinierbare Stromhilfen</i></div><div class="caption"><strong>Plakat</strong><span aria-hidden="true">↗</span></div><span class="desc">Große Schlagzeilen, signalrote Titelfläche und ein strenges Spaltenraster.</span></a>
+<a class="card" href="plakat/"><div class="cover pla" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i><span>EU genehmigt kombinierbare Stromhilfen</span></i></div><div class="caption"><strong>Plakat</strong><span aria-hidden="true">↗</span></div><span class="desc">Rote Schlagzeilenbänder direkt auf dem Titelbild und kompakte Meldungskarten.</span></a>
 <a class="card" href="nachtschicht/"><div class="cover nacht" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i>EU genehmigt kombinierbare Stromhilfen</i></div><div class="caption"><strong>Nachtschicht</strong><span aria-hidden="true">↗</span></div><span class="desc">Dunkle Leseflächen, ein breites Panoramabild und helle Marktdaten.</span></a>
 <a class="card" href="feuilleton/"><div class="cover feu" aria-hidden="true"><b>Der Morgenbrief</b><span class="photo"></span><i>EU genehmigt kombinierbare Stromhilfen</i></div><div class="caption"><strong>Feuilleton</strong><span aria-hidden="true">↗</span></div><span class="desc">Bogenförmiges Titelbild, kursive Rubriken und großzügiger Lesesatz.</span></a>
 </div>
