@@ -1,0 +1,61 @@
+:root {
+  --ink:#e7f1f7;--paper:#0d151c;--night:#0a1117;--card:#14212b;
+  --muted:#b4c4cd;--line:#3e5660;--blue:#8dd9df;--red:#ffab89;
+  --green:#9ae0bc;--amber:#ffd075;--shadow:none;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+html {color-scheme:dark}
+body {background:var(--paper);font-family:Arial,sans-serif}
+.masthead {background:var(--night);border-color:var(--line)}
+.masthead-inner,main,footer {width:min(1370px,94%)}
+.utility {font: .74rem/1.5 var(--mono);color:var(--blue);border-style:dashed}
+.brand {grid-template-columns:auto 1fr auto;gap:20px;padding:19px 0}
+.brand h1 {font:650 clamp(2.1rem,4.2vw,4.4rem)/1 var(--mono);letter-spacing:-.08em;text-align:left;color:var(--ink)}
+.brand h1 span {font:.69rem/1.4 var(--mono);color:var(--blue);letter-spacing:.14em}
+.archive-cta,nav a {border-radius:3px;color:var(--ink);border:1px solid var(--line);background:transparent}
+.archive-cta:hover,nav a:hover {color:var(--night);background:var(--blue)}
+nav {border:0}
+.alert {background:#182c32;box-shadow:inset 3px 0 var(--blue);border-radius:0;color:var(--ink)}
+.alert strong,.kicker,.section-head span,.meta,.score small,.commodity-card h3,.commodity-period {font-family:var(--mono)}
+.alert strong,.kicker {color:var(--blue)}
+.alert span {font: .95rem/1.45 Arial,sans-serif}
+.lead-grid {display:block}
+.lead {display:grid;align-items:end;min-height:clamp(440px,48vw,620px);border:1px solid var(--line);border-radius:12px;container-type:normal}
+.lead:after {background:linear-gradient(90deg,rgba(6,13,17,.98),rgba(6,13,17,.89) 30%,rgba(6,13,17,.55) 65%,rgba(6,13,17,.04)),linear-gradient(0deg,rgba(6,13,17,.6),transparent 70%);pointer-events:none}
+.lead-copy {position:relative;inset:auto;max-width:850px;padding:clamp(23px,4.3vw,78px)}
+.lead h2 {font:550 clamp(3rem,5.8vw,6.3rem)/.98 Arial,sans-serif;letter-spacing:-.055em;max-width:14ch}
+.lead p {color:#eef5f7}
+.lead p.lead-photo-credit {max-width:73ch}
+.scorecard {grid-template-columns:repeat(3,minmax(0,1fr));margin-top:10px;gap:10px}
+.score {border-radius:3px;background:var(--card);border-color:var(--line)}
+.score b {font:600 clamp(1.7rem,2.9vw,3rem)/1.1 var(--mono);letter-spacing:-.07em;color:var(--blue)}
+.risk-scale {width:115px}.risk-scale i {background:#374d55}.risk-scale i.on {background:var(--amber)}
+.section-head {border-bottom:1px dashed var(--line);padding-bottom:16px}
+.section-head h2 {font:600 clamp(1.75rem,3.8vw,3.4rem)/1.05 var(--mono);letter-spacing:-.075em}
+.news-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.story,.story.wide {grid-column:auto;box-shadow:none;border:1px solid var(--line);border-radius:10px;padding:clamp(18px,2.4vw,36px);background:linear-gradient(140deg,#192a35,#101c25)}
+.meta {flex-wrap:wrap;font-weight:500}
+.story h3,.supplier-card h3,.panel h3 {font:550 clamp(1.45rem,2.4vw,2.5rem)/1.1 Arial,sans-serif;letter-spacing:-.04em}
+.story>p,.supplier-card p,.sources li,.wish-context {color:#c4d2da}
+.pill,.pill.medium,.pill.low,.pill.update {background:var(--night);color:var(--blue)}
+.pill.medium {color:var(--amber)}.pill.low {color:var(--green)}
+.impact,.action {background:#1c303b;border-left-color:var(--blue)}
+.action {background:#1b302c;border-color:var(--green)}
+.commodity-card,.supplier-card,.panel.light {background:var(--card);color:var(--ink);border-color:var(--line)}
+.commodity-value small,.commodity-change span {color:var(--muted)}
+.commodity-change span {background:var(--night)}
+.commodity-footer {border-color:var(--line)}
+.commodity-card .axis {stroke:var(--line)}
+.feedback-button,.wish-field select,.wish-field input {background:#1a2b33;color:var(--ink)}
+.feedback-button.selected-up,.feedback-button.selected-down {color:#142123}
+.wish-launch,.wish-submit {background:var(--blue);color:var(--night);font-family:var(--mono)}
+.map-shell .leaflet-container,.map-legend,.map-popup {color:#213642}
+.map-popup a {color:#17526a}.map-popup small {color:#50606a}
+.news-marker span,.marker-cluster div {color:var(--night)}
+@media(max-width:640px){
+ .brand {grid-template-columns:auto 1fr;gap:12px}.brand h1 {font-size:clamp(1.85rem,7vw,2.8rem)}
+ .lead {min-height:0}.lead:after {background:linear-gradient(0deg,#0a1117 9%,rgba(10,17,23,.92) 65%,rgba(10,17,23,.05))}
+ .lead-copy {padding:115px 20px 24px}.lead h2 {font-size:clamp(2.4rem,9vw,3.7rem)}
+ .news-grid,.scorecard {grid-template-columns:1fr}
+ .supplier-card dl {grid-template-columns:1fr 1.5fr}.map-note {flex-wrap:wrap}
+}

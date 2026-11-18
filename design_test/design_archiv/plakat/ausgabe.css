@@ -1,0 +1,71 @@
+:root {
+  --ink:#191919;--night:#141414;--muted:#53514e;--paper:#faf9f5;
+  --card:#faf9f5;--line:#aaa8a3;--red:#ac2314;--blue:#852518;
+  --shadow:none;--accent:#c82d19;--type:"Archivo Black",Arial,sans-serif;
+}
+body {background:var(--paper);font-family:Arial,sans-serif}
+.masthead {background:var(--paper);border:0;backdrop-filter:none}
+.masthead-inner,main,footer {width:min(1450px,94%)}
+.utility {font-family:monospace;border-bottom:1px solid var(--ink);color:var(--ink)}
+.brand {grid-template-columns:auto 1fr auto;gap:1.5vw;padding:24px 0 16px}
+.brand-mark {width:clamp(40px,4vw,70px);height:auto;aspect-ratio:1}
+.brand h1 {font:900 clamp(3rem,8vw,8.3rem)/.86 var(--type);letter-spacing:-.085em;text-align:left;color:var(--ink)}
+.brand h1 span {font:700 .7rem/1 Arial,sans-serif;letter-spacing:.16em;color:var(--red);margin:14px 0 0 5px}
+.archive-cta,nav a {border-radius:0}
+nav {border-block:5px solid var(--ink);padding:0;gap:0}
+nav a {background:transparent;border-right:1px solid var(--line);padding:9px 14px}
+nav a:hover,.archive-cta:hover {background:var(--ink);color:white}
+main {display:flex;flex-direction:column;padding-top:20px}
+.alert {order:0;background:white;color:var(--ink);border:1px solid var(--ink);border-radius:0;padding:0;gap:14px}
+.alert strong {align-self:stretch;display:grid;align-items:center;background:var(--accent);color:white;padding:10px 14px}
+.alert span {font: .9rem/1.45 Arial,sans-serif}
+.alert a {padding-right:14px}
+.lead-grid {display:block}
+.lead {display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:stretch;background:var(--accent);color:white;border-radius:0;min-height:0;container-type:normal}
+.lead:after {display:none}
+.lead picture {position:relative;grid-column:2;grid-row:1;min-height:220px}
+.lead img.lead-art.photo-lead {opacity:1}
+.lead-copy {position:static;grid-column:1;grid-row:1;padding:clamp(23px,3vw,55px)}
+.kicker {font:bold .74rem/1.4 monospace;letter-spacing:.08em;color:white}
+.lead h2 {font:900 clamp(2.75rem,5.7vw,6.4rem)/.93 var(--type);letter-spacing:-.065em;margin:20px 0}
+.lead p {color:white}
+.lead p.lead-photo-credit {color:#fff!important;max-width:none}
+.lead-photo-credit a {color:white}
+.scorecard {grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-block:5px solid var(--ink);margin-top:12px}
+.score {border:0;border-radius:0;padding:18px;border-right:1px solid var(--line)}
+.score:last-child {border:0}
+.score b,.commodity-value {font-family:var(--type);letter-spacing:-.06em}
+.section-head {border-bottom:6px solid var(--ink);margin:52px 0 0}
+.section-head h2 {font:900 clamp(1.85rem,4.2vw,4.8rem)/1 var(--type);letter-spacing:-.075em}
+.news-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.story,.story.wide {grid-column:auto;border:0;border-radius:0;border-bottom:1px solid var(--ink);border-right:1px solid var(--line);background:transparent;box-shadow:none;padding:22px}
+.story:nth-child(3n) {border-right:0}
+.story:first-child {grid-column:span 2;border-right:1px solid var(--line)}
+.story:first-child h3 {font-size:clamp(2.4rem,4.5vw,4.8rem);max-width:19ch}
+.story h3,.panel h3,.supplier-card h3 {font:800 clamp(1.4rem,2.1vw,2.45rem)/1.04 var(--type);letter-spacing:-.05em}
+.meta {flex-wrap:wrap}
+.pill {border-radius:0}
+.impact,.action {border:0;border-top:1px solid var(--ink);background:transparent;padding:10px 0}
+.action b {color:var(--red)}
+.commodity-card,.panel,.map-shell,.supplier-card {border-radius:0}
+.commodity-card {border-top:4px solid var(--accent)}
+.dashboard,.supplier,.map-shell {margin-top:16px}
+.wish-launch {border-radius:0;background:var(--ink)}
+@media(max-width:900px){
+ .news-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+ .story:first-child {grid-column:span 2}
+ .lead h2 {font-size:clamp(2.2rem,5.2vw,3.1rem)}
+}
+@media(max-width:640px){
+ .brand {grid-template-columns:auto 1fr;gap:12px}
+ .brand h1 {font-size:clamp(2.1rem,8.5vw,3.3rem)}
+ .alert {gap:0}.alert span,.alert a {padding:8px 12px}
+ .lead {display:flex;flex-direction:column-reverse}
+ .lead picture {min-height:0;aspect-ratio:2.45}
+ .lead h2 {font-size:clamp(2.6rem,10.5vw,4rem)}
+ .scorecard,.news-grid {display:block}
+ .score,.score:last-child {border:0;border-top:1px solid var(--line)}
+ .story,.story:first-child {border-right:0;padding-inline:0}
+ .supplier-card dl {grid-template-columns:1fr 1.5fr}
+ .map-note {flex-wrap:wrap}
+}
